@@ -1,0 +1,25 @@
+%h {
+    color: $titleColor;
+    font-family: 'PT Sans';
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+}
+
+@mixin h1() {
+    @extend %h;
+    font-size: 4.5rem;
+
+    @media ($tablet) {
+        font-size: 5.5rem;
+    }
+}
+
+@mixin h2() {
+    @extend %h;
+    font-size: 3.5rem;
+
+    @media ($tablet) {
+        font-size: 4rem;
+    }
+}

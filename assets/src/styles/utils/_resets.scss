@@ -1,0 +1,29 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 10px;
+    scroll-behavior: smooth;
+    scroll-padding-top: 4rem; // обязательно указываем для html scroll-padding-top:- иначе при перемотке к якорю #id - блок окажется в самом верху страницы и может сломаться его вёрстка (например, если есть overflow:hidden и выходящие абсолютно позиционированные элементы )
+}
+
+button {
+    outline: none;
+    border: none;
+    background-color: transparent;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
