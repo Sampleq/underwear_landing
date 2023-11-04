@@ -1,0 +1,50 @@
+.card {
+    width: 35.4rem;
+    padding: 4.1rem 2.5rem 2.5rem;
+    background-color: $white;
+    transition: transform 0.3s;
+
+    &:hover {
+        transform: scale(1.02);
+        box-shadow: 0.25rem 0.5rem 1.5rem #44444473;
+    }
+
+    @media ($mobileL) {
+        width: 38.4rem;
+        padding: 4.6rem 3rem 3rem;
+    }
+
+    &__img-cont {
+        width: 30.4rem;
+        height: 30.4rem;
+        background-color: aquamarine;
+        margin-bottom: 2.5rem;
+
+        @media ($mobileL) {
+            width: 32.4rem;
+            height: 32.4rem;
+            margin-bottom: 3rem;
+        }
+    }
+
+    &__img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+
+    &__features {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__title {
+        @include h3();
+        margin-bottom: 1.5rem;
+    }
+
+    &__text {
+        @include p2();
+    }
+}

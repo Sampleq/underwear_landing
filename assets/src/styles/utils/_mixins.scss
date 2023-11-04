@@ -28,3 +28,70 @@
     @extend %h;
     font-size: 2.2rem;
 }
+
+@mixin p1($_color: $textColor) {
+    color: $_color;
+    font-family: 'PT Sans';
+    font-size: 1.8rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
+}
+
+@mixin menuText() {
+    @include p1();
+    font-family: 'Roboto';
+    font-weight: 300;
+}
+
+@mixin catText() {
+    @include p1();
+    font-family: 'Nunito';
+    font-weight: 300;
+}
+
+@mixin p2() {
+    @include p1();
+    font-size: 1.4rem;
+}
+
+@mixin btn() {
+    display: flex;
+    width: 26rem;
+    padding: 2.2rem;
+    justify-content: center;
+    align-items: center;
+    background: $red;
+    @include p1($white);
+}
+
+@mixin btn_small() {
+    width: 7rem;
+    display: block;
+    height: 7rem;
+    padding: 0;
+    background: url(../images/Small-button.svg) no-repeat;
+    background-size: 100%;
+}
+
+@mixin btn_arrow () {
+    width: 4rem;
+    display: block;
+    height: 1.6rem;
+    background: url(../images/Arrows.svg) no-repeat;
+    background-size: 200%;
+    transition: 0.3s;
+}
+
+@mixin basket() {
+    @include menuText();
+    display: flex;
+    align-items: end;
+    width: 4.5rem;
+    height: 2.5rem;
+    padding-left: 2.8rem;
+    font-size: 1.4rem;
+    background: url(../images/bascket.svg) no-repeat;
+    background-size: 55%;
+    transition: 0.3s;
+}

@@ -1,6 +1,11 @@
 @import './utils';
 @import './components/';
 
+.divider {
+    display: block;
+    height: 3rem;
+}
+
 .wrapper {
     max-width: 120rem;
     margin: 0 auto;
@@ -17,4 +22,68 @@
 
 .h3 {
     @include h3()
+}
+
+.p1 {
+    @include p1();
+}
+
+.p2 {
+    @include p2();
+}
+
+.menutext {
+    @include menuText();
+}
+
+.cattext {
+    @include catText();
+}
+
+.btn {
+    @include btn();
+
+    &:hover {
+        background: saturate($color: $red, $amount: 20%);
+    }
+}
+
+.btn_small {
+    @include btn_small();
+
+    &:hover {
+        background: url(../images/Small-button.svg) no-repeat;
+        background-size: 100%;
+        filter: saturate(1.2);
+    }
+}
+
+.btn_arrow {
+    @include btn_arrow();
+
+    &:hover {
+        transform: scale(1.2);
+    }
+
+    &_r {
+        background-position: 120% 0%;
+    }
+}
+
+.basket {
+    @include basket();
+
+    &::before {
+        content: '(';
+    }
+
+    &::after {
+        content: ')';
+    }
+
+    &:hover {
+        cursor: pointer;
+        transform: scale(1.2);
+        filter: saturate(1.2);
+    }
 }
