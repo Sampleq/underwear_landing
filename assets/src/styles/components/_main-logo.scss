@@ -19,6 +19,11 @@
     // задаём чтобы работали отрицательные margin у детей - т.е блоков с буквами. position и transform применить для расположения букв в данном случае нельзя т.к. они "вмешиваются" в поток и не будет работать обрезка фона по буквам текста.
     display: flex;
 
+    // добавляет обводку
+    -webkit-text-stroke: 0.05rem $red;
+
+    // filter: drop-shadow(0 0 0.05rem #000);
+
 
     &-letter {
         display: block;
@@ -61,3 +66,35 @@
     // скрываем выходящие за пределы блока частей букв (из-за отрицательных margin)   - из-за этого в том числе не работает hover на соседних элементах
     overflow: hidden;
 }
+
+// https://codepen.io/santo-ss/pen/xvpBya
+
+// https://lenadesign.org/2021/09/10/how-to-create-a-transparent-text-with-stroke-in-css/
+
+// https://stackoverflow.com/questions/13932946/transparent-text-cut-out-of-background
+
+// Transparent text also could be made with CSS property mix-blend-mode: 
+
+// for transparent text on a black background: background: black;
+// color: white;
+// mix-blend-mode: multiply;
+
+
+// for transparent text on a white background: background: white;
+// color: black;
+// mix-blend-mode: screen;
+
+// body {
+//     background: url(https://source.unsplash.com/d1FZlcQM9uE/1600x900) no-repeat center center;
+// }
+
+// .black {
+//     background: black;
+//     color: white;
+//     mix-blend-mode: multiply;
+//   }
+// .white {
+//     background: white;
+//     color: black;
+//     mix-blend-mode: screen;
+//    }
