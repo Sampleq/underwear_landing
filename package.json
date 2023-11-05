@@ -7,8 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "parcel assets/src/index.html --open",
     "dev:uikit": "parcel assets/src/uikit.html --open",
-    "build": "parcel build assets/src/index.html --out-dir=build/www --public-url ./",
-    "build:uikit": "parcel build assets/src/uikit.html --out-dir=build/www/uikit --public-url ./"
+    "build": "parcel build assets/src/index.html --public-url ./",
+    "build:uikit": "parcel build assets/src/uikit.html --out-dir=uikit --public-url ./"
   },
   "keywords": [],
   "author": "",
@@ -42,6 +42,7 @@
         "mkv",
         "flv"
       ],
+      ".svg": "svgs",
       ".fileExtension": "folder/in/dist",
       "folder/in/dist": [
         ".file",
