@@ -1,0 +1,50 @@
+.select {
+    display: block;
+    width: 100%;
+    padding: 2.2rem 2.5rem;
+    border: 0.1rem solid $borderColor;
+    @include p1();
+    color: $textColor;
+
+    &:focus {
+        // outline: 0.1rem solid darken($color: $borderColor, $amount: 20%);
+        outline: none;
+        border: 0.1rem solid darken($color: $borderColor, $amount: 20%);
+    }
+
+    cursor: pointer;
+    // background-color: transparent; // без прозрачного фона select загораживает иконку из псевдоэлемента select-wrapper-а. 
+    // не нужно задавать прозрачный фон, тюкю мы не переносим "галочку" на задний план, а отключаем событие клика на ней с помощью pointer-events: none; 
+
+    appearance: none; // убираем стандартное для браузера.платформы оформление элемента. в данном случае убираем "галочку" по умолчанию.
+    -webkit-appearance: none;
+
+    &-wrapper {
+        width: 32rem;
+        position: relative;
+
+        &::after {
+            content: '';
+            position: absolute;
+            //z-index: -10; // при нажатии на псевдоэлемент select-wrapper-а - не раскрывается список выбора  - убираем иконку на задний план
+            pointer-events: none; //  отключаем у псевдоэлемента взаимодействие с мышкой, иначе при клике на него выпадающий список раскрываться не будет. (тогда не нужно задавать отрицательный z-index и делать прозрачность самому select-у)
+            right: 2.5rem;
+            top: calc(50% - (1.6rem / 2));
+            display: block;
+            width: 1.6rem;
+            height: 1.6rem;
+            background: url(../images/arrow-select.svg) no-repeat;
+            background-size: 100%;
+            transition: 0.3s;
+        }
+
+        &:hover::after {
+            transform: scale(1.15);
+            filter: brightness(0.7);
+        }
+    }
+}
+
+// Выпадающий список — это один из элементов формы, почти не поддающийся стилизации. Мы можем немного изменить внешний вид самого элемента <select>, но стилизовать выпадающий список опций можно не для всех браузеров. Многие дизайнеры любят рисовать нестандартные выпадающие списки в угоду красоте, но реализация таких списков очень трудоёмка на чистом HTML и CSS. Рекомендуется для выпадающих списков оставлять родной вид, потому что такие списки обладают рядом преимуществ перед нестандартными. Например, выпадающий список опций может выходить за границы окна браузера, давая пользователю возможность выбрать нужный элемент.
+
+// https://doka.guide/html/select/ 

@@ -1,12 +1,12 @@
 @font-face {
-    font-family: 'PT Sans';
+    font-family: $mainFont;
     src: url(../fonts/PTSans-Regular.ttf);
     font-style: normal;
     font-weight: 400;
 }
 
 @font-face {
-    font-family: 'PT Sans';
+    font-family: $mainFont;
     src: url(../fonts/PTSans-Bold.ttf);
     font-style: normal;
     font-weight: 700;

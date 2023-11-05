@@ -1,0 +1,17 @@
+.input {
+    display: block;
+    width: 32rem;
+    padding: 2.2rem 2.5rem;
+    border: 0.1rem solid $borderColor;
+    @include p1();
+    color: $textColor;
+
+    &::placeholder {
+        color: $inputColor;
+    }
+
+    &:focus {
+        outline: none;
+        border: 0.1rem solid darken($color: $borderColor, $amount: 20%);
+    }
+}
