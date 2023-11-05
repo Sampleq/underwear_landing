@@ -12,6 +12,10 @@
     // background-color: beige
 }
 
+.logo {
+    @include logo();
+}
+
 .h1 {
     @include h1();
 }
@@ -67,6 +71,24 @@
 
     &_r {
         background-position: 120% 0%;
+    }
+}
+
+.slider__dot {
+    @include slider__dot();
+
+    &:hover {
+        background-color: lighten($color: $bordo, $amount: 20%);
+        cursor: pointer;
+    }
+
+    &_active {
+        background-color: $bordo;
+
+        &:hover {
+            background-color: $bordo;
+            cursor: auto
+        }
     }
 }
 

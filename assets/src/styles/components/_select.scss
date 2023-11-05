@@ -6,18 +6,31 @@
     @include p1();
     color: $textColor;
 
-    &:focus {
-        // outline: 0.1rem solid darken($color: $borderColor, $amount: 20%);
-        outline: none;
-        border: 0.1rem solid darken($color: $borderColor, $amount: 20%);
-    }
-
     cursor: pointer;
     // background-color: transparent; // без прозрачного фона select загораживает иконку из псевдоэлемента select-wrapper-а. 
     // не нужно задавать прозрачный фон, тюкю мы не переносим "галочку" на задний план, а отключаем событие клика на ней с помощью pointer-events: none; 
 
     appearance: none; // убираем стандартное для браузера.платформы оформление элемента. в данном случае убираем "галочку" по умолчанию.
     -webkit-appearance: none;
+
+    &:hover {
+        border: 0.1rem solid darken($color: $borderColor, $amount: 10%);
+    }
+
+    &:focus {
+        // outline: 0.1rem solid darken($color: $borderColor, $amount: 20%);
+        outline: none;
+        border: 0.1rem solid darken($color: $borderColor, $amount: 20%);
+    }
+
+    // :required - не обязательно
+    // &:required:invalid {
+    //     color: $inputColor;
+    // }
+
+    &:invalid {
+        color: $inputColor;
+    }
 
     &-wrapper {
         width: 32rem;
@@ -43,7 +56,14 @@
             filter: brightness(0.7);
         }
     }
+
+    // Скрываем опцию которая служит нам плейсхолдером - применяется после того, как мы выберем какую-то опцию
+    option[value=""][disabled] {
+        display: none;
+    }
 }
+
+
 
 // Выпадающий список — это один из элементов формы, почти не поддающийся стилизации. Мы можем немного изменить внешний вид самого элемента <select>, но стилизовать выпадающий список опций можно не для всех браузеров. Многие дизайнеры любят рисовать нестандартные выпадающие списки в угоду красоте, но реализация таких списков очень трудоёмка на чистом HTML и CSS. Рекомендуется для выпадающих списков оставлять родной вид, потому что такие списки обладают рядом преимуществ перед нестандартными. Например, выпадающий список опций может выходить за границы окна браузера, давая пользователю возможность выбрать нужный элемент.
 

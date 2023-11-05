@@ -10,8 +10,16 @@
         color: $inputColor;
     }
 
+    &:hover {
+        border: 0.1rem solid darken($color: $borderColor, $amount: 10%);
+    }
+
     &:focus {
         outline: none;
         border: 0.1rem solid darken($color: $borderColor, $amount: 20%);
     }
+
+    // &:invalid {
+    //     color: red;
+    // }
 }

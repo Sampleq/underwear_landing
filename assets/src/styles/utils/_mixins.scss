@@ -29,6 +29,16 @@
     font-size: 2.2rem;
 }
 
+@mixin logo ($_color: $red) {
+    color: $_color;
+    font-family: 'Roboto';
+    font-size: 3.2rem;
+    font-style: normal;
+    font-weight: 900;
+    line-height: 140%;
+    user-select: none;
+}
+
 @mixin p1($_color: $textColor) {
     color: $_color;
     font-family: 'PT Sans';
@@ -94,4 +104,10 @@
     background: url(../images/bascket.svg) no-repeat;
     background-size: 55%;
     transition: 0.3s;
+}
+
+@mixin slider__dot($_color: $white) {
+    width: 1.5rem;
+    height: 1.5rem;
+    background-color: $_color;
 }
