@@ -73,6 +73,10 @@
     align-items: center;
     background: $red;
     @include p1($white);
+
+    &:hover {
+        background: saturate($color: $red, $amount: 20%);
+    }
 }
 
 @mixin btn_small() {
@@ -88,6 +92,10 @@
     padding: 0;
     background: url(../images/Small-button.svg) no-repeat;
     background-size: 100%;
+
+    &:hover {
+        filter: saturate(1.2);
+    }
 }
 
 @mixin btn_arrow () {
@@ -97,23 +105,60 @@
     background: url(../images/Arrows.svg) no-repeat;
     background-size: 200%;
     transition: 0.3s;
+
+    &:hover {
+        transform: scale(1.2);
+    }
+
+    &_r {
+        background-position: 120% 0%;
+    }
 }
 
 @mixin basket() {
     @include menuText();
     display: flex;
     align-items: end;
-    width: 4.5rem;
-    height: 2.5rem;
-    padding-left: 2.8rem;
+    width: 9.5rem;
+    height: 4.5rem;
+    padding-left: 4.8rem;
     font-size: 1.4rem;
     background: url(../images/bascket.svg) no-repeat;
-    background-size: 55%;
+    background-size: 50%;
     transition: 0.3s;
+
+    &::before {
+        content: '(';
+    }
+
+    &::after {
+        content: ')';
+    }
+
+    &:hover {
+        cursor: pointer;
+        transform: scale(1.2);
+        filter: saturate(1.2);
+    }
 }
 
 @mixin slider__dot($_color: $white) {
     width: 1.5rem;
     height: 1.5rem;
     background-color: $_color;
+    transition: 0.3s;
+
+    &:hover {
+        background-color: lighten($color: $bordo, $amount: 20%);
+        cursor: pointer;
+    }
+
+    &_active {
+        background-color: $bordo;
+
+        &:hover {
+            background-color: $bordo;
+            cursor: auto
+        }
+    }
 }

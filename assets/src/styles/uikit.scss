@@ -52,66 +52,27 @@
 
 .btn {
     @include btn();
-
-    &:hover {
-        background: saturate($color: $red, $amount: 20%);
-    }
 }
 
 .btn_small {
     @include btn_small();
-
-    &:hover {
-        background: url(../images/Small-button.svg) no-repeat;
-        background-size: 100%;
-        filter: saturate(1.2);
-    }
 }
 
 .btn_arrow {
     @include btn_arrow();
-
-    &:hover {
-        transform: scale(1.2);
-    }
-
-    &_r {
-        background-position: 120% 0%;
-    }
 }
 
 .slider__dot {
     @include slider__dot();
-
-    &:hover {
-        background-color: lighten($color: $bordo, $amount: 20%);
-        cursor: pointer;
-    }
-
-    &_active {
-        background-color: $bordo;
-
-        &:hover {
-            background-color: $bordo;
-            cursor: auto
-        }
-    }
 }
 
 .basket {
     @include basket();
-
-    &::before {
-        content: '(';
-    }
-
-    &::after {
-        content: ')';
-    }
-
-    &:hover {
-        cursor: pointer;
-        transform: scale(1.2);
-        filter: saturate(1.2);
-    }
 }
+
+
+// .card {
+//     @media ($tablet) {
+//         margin-left: 3rem;
+//     }
+// }
