@@ -42,9 +42,20 @@
         // font-size: calc(137vw * 542 / 1200);
         // font-size: 74.25rem;
 
-        font-size: min(calc(136.8vw * 542 / 1200), 74.12rem);
 
-        margin-top: -41.15%;
+        font-size: min(calc(133.8vw * 542 / 1200), 74.12rem);
+
+        margin-top: -42.0%;
+
+        @media ($mobileL) {
+            font-size: min(calc(133.8vw * 542 / 1200), 74.12rem);
+            margin-top: -40.95%;
+        }
+
+        @media (min-width:1200) {
+            margin-top: -41.15%;
+        }
+
         margin-left: -5.1%;
 
         flex-shrink: 0;
