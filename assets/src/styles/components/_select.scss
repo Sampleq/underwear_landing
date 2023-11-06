@@ -1,7 +1,12 @@
 .select {
     display: block;
     width: 100%;
-    padding: 2.2rem 2.5rem;
+    padding: 2.0rem 2.3rem;
+
+    @media ($mobileM) {
+        padding: 2.2rem 2.5rem;
+    }
+
     border: 0.1rem solid $borderColor;
     @include p1();
     color: $textColor;
@@ -13,7 +18,7 @@
     appearance: none; // убираем стандартное для браузера.платформы оформление элемента. в данном случае убираем "галочку" по умолчанию.
     -webkit-appearance: none;
     -moz-appearance: none; // не работает в  Firefox
-    background-color: $white; //  принудительно задаём фон для Firefox
+    background-color: transparent; //  принудительно задаём фон для Firefox
 
     &:hover {
         border: 0.1rem solid darken($color: $borderColor, $amount: 10%);
@@ -35,7 +40,12 @@
     }
 
     &-wrapper {
-        width: 32rem;
+        width: 30rem;
+
+        @media ($mobileM) {
+            width: 32rem;
+        }
+
         position: relative;
 
         &::after {

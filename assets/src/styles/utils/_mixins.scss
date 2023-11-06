@@ -76,9 +76,15 @@
 }
 
 @mixin btn_small() {
-    width: 7rem;
     display: block;
-    height: 7rem;
+    width: 5rem;
+    height: 5rem;
+
+    @media ($mobileM) {
+        width: 7rem;
+        height: 7rem;
+    }
+
     padding: 0;
     background: url(../images/Small-button.svg) no-repeat;
     background-size: 100%;

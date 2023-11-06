@@ -63,7 +63,7 @@
         <div class="divider"></div>
         <h1>Card</h1>
         <div class="divider"></div>
-        <div style="padding: 5rem 0 5rem 1rem; background-color: #FFEEEF;">
+        <div style="padding: 5rem 0 5rem 0rem; background-color: #FFEEEF;">
 
             <div class="card">
                 <div class="card__img-cont">
@@ -105,6 +105,10 @@
         <br>
 
 
+        <div class="divider"></div>
+        <div class="divider"></div>
+        <h1>Main logo via -webkit-background-clip</h1>
+        <div class="divider"></div>
 
         <div class="main__logo">
             <span class="main__logo-letter">C</span>
@@ -112,7 +116,59 @@
             <span class="main__logo-letter main__logo-letter_t">t</span>
         </div>
 
+        <div class="divider"></div>
+        <div class="divider"></div>
+        <h1>Main logo via mix-blend-mode </h1>
+        <div class="divider"></div>
+
+        <!-- <button class="btn">Кнопка</button> -->
+        <div class="main__logo_mixblend">
+            <div class="main__logo_mixblend-cont">
+                <span class="main__logo_mixblend-letter">C</span>
+                <span class="main__logo_mixblend-letter main__logo_mixblend-letter_m">m</span>
+                <span class="main__logo_mixblend-letter main__logo_mixblend-letter_t">t</span>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+        <div class="divider"></div>
+        <h1>Main logo via IMG with transparent mask</h1>
+        <div class="divider"></div>
+
+        <img src="./images/Mask-group-letters@4x.png" alt="" class="main__logo_transp-mask-img">
+
+        <!-- <div class="main__logo_transp-mask2">
+            <img src="./images/Mask-group-letters@4x.png" alt="" class="main__logo_transp-mask2-img2">
+        </div> -->
+
+        <div class="divider"></div>
+
+
     </div>
+
+    <script>
+        const logoWebkit = document.querySelector('.main__logo');
+        const logoMixBlend = document.querySelector('.main__logo_mixblend');
+        const logoTranspMaskImg = document.querySelector('.main__logo_transp-mask-img');
+
+        document.onmousemove = (event) => {
+            // console.log(event);
+            // console.log(event.clientX);
+            // console.log(event.clientY);
+            // console.log(logoWebkit);
+            // console.log(78 - 7 + (event.clientX / 100) + '% ' + (70 - 4 + (event.clientY / 100)) + '%');
+
+            logoWebkit.style.backgroundPosition = (78 - 7 + (1.0 * event.clientX / 100)) + '% ' + (70 - 4 + (1.5 * event.clientY / 100)) + '%';
+            logoWebkit.style.backgroundSize = (135 - 3.5 + (event.clientX / 400) + 2 - (event.clientY / 400)) + '%';
+
+
+            logoMixBlend.style.backgroundPosition = (78 - 7 + (event.clientX / 100)) + '% ' + (70 - 4 + (1.5 * event.clientY / 100)) + '%';
+            logoMixBlend.style.backgroundSize = (135 - 3.5 + (event.clientX / 400) + 2 - (event.clientY / 400)) + '%';
+
+            logoTranspMaskImg.style.backgroundPosition = (78 - 7 + (event.clientX / 100)) + '% ' + (68 - 4 + (event.clientY / 100)) + '%';
+            logoTranspMaskImg.style.backgroundSize = (130 - 3.5 + (event.clientX / 400) + 2 - (1.5 * event.clientY / 400)) + '%';
+        }
+    </script>
 </body>
 
 </html>

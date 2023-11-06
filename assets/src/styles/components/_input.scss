@@ -1,10 +1,15 @@
 .input {
     display: block;
-    width: 32rem;
-    padding: 2.2rem 2.5rem;
+    width: 30rem;
+    padding: 2.0rem 2.2rem;
     border: 0.1rem solid $borderColor;
     @include p1();
     color: $textColor;
+
+    @media ($mobileM) {
+        width: 32rem;
+        padding: 2.2rem 2.5rem;
+    }
 
     &::placeholder {
         color: $inputColor;
