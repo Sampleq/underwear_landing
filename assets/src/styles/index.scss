@@ -1,3 +1,15 @@
 @import './utils';
 @import './components/';
 @import './layout/';
+
+.wrapper {
+    max-width: 120rem;
+    margin: 0 auto;
+    padding: 0 1rem;
+
+    // background-color: beige;
+
+    @media (min-width:1220px) {
+        padding: 0;
+    }
+}
