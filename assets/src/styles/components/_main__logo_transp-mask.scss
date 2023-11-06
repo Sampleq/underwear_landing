@@ -1,6 +1,6 @@
 .main__logo_transp-mask-img {
     display: block;
-    width: 100%;
+    width: calc(100% * 545 / 1200);
     max-width: 54.5rem;
     max-height: 54.2rem;
     background: url(../images/main.jpg) no-repeat;
