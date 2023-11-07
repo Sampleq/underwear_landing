@@ -24,7 +24,7 @@
 
     // filter: drop-shadow(0 0 0.05rem #000);
 
-    // outline: 1px solid #000;
+    outline: 1px solid #000;
 
     &-letter {
         display: block;
@@ -40,8 +40,8 @@
         // font-size: calc(137vw * 542 / 1200);
         // font-size: 74.25rem;
 
-        font-size: calc(135.5vw * 542 / 1200);
-        margin-top: -40.3%;
+        font-size: calc(134.5vw * 542 / 1200);
+        margin-top: -39.7%;
         margin-left: -5.0%;
 
         @media ($laptop) {
