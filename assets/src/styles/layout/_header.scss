@@ -1,0 +1,99 @@
+.header {
+    position: relative;
+    margin-top: 2rem;
+
+    &__wrapper {
+        display: flex;
+
+        flex-direction: row;
+        column-gap: 2rem;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &__logo {
+        order: 2;
+
+        @media ($tablet) {
+            order: 1;
+        }
+    }
+
+    &__nav {
+        order: 1;
+
+        @media ($tablet) {
+            order: 2;
+            flex-grow: 1;
+        }
+
+        // flex-shrink: 1;  и так по умолчанию
+        display: flex;
+        align-items: center
+    }
+
+    &__icon-menu {
+        @include icon-menu();
+    }
+
+    &__catalog {
+        display: flex;
+        column-gap: 1.3rem;
+        align-items: center;
+    }
+
+    &__catalog-text {
+        @include catText();
+        display: none;
+
+        @media ($tablet) {
+            display: block;
+        }
+    }
+
+    &__menu {
+        display: none;
+
+        @media ($tablet) {
+            display: flex;
+            margin-left: calc(100% * 367 / 1200);
+            justify-content: space-between;
+            width: 28.5rem;
+        }
+
+        gap: 1.3rem;
+
+        // align-items: center;
+    }
+
+    // &__menu_desktop {}
+
+    &__menu_mobile {
+        @media (max-width:767px) {
+            width: fit-content;
+            min-width: 50vw;
+            background-color: lighten($color: $borderColor, $amount: 0);
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            left: 0;
+            top: 6.5rem;
+            padding: 2rem;
+        }
+    }
+
+    &__menu-link {
+        @include menuText();
+        white-space: nowrap;
+    }
+
+    &__basket {
+        order: 3;
+        @include basket();
+        flex-shrink: 0;
+        align-self: flex-start;
+    }
+
+
+
+}
