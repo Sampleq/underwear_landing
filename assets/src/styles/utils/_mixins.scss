@@ -122,12 +122,12 @@
     // width: 9.5rem;
     // height: 4.5rem;
     // padding-left: 4.8rem;
-    width: 7.4rem;
+    width: calc(3.5rem + 1.7rem + 0.4rem);
     height: 3.5rem;
     padding-left: 3.8rem;
     font-size: 1.4rem;
     background: url(../images/bascket.svg) no-repeat;
-    background-size: 50%;
+    background-size: 65%;
     transition: 0.3s;
 
     &::before {
@@ -171,8 +171,16 @@
     width: 2.6rem;
     height: 1.6rem;
     background: url(../images/Icon-Menu.svg);
+    transition: 0.15s;
 
     &:hover {
         transform: scale(1.2);
+        cursor: pointer;
+    }
+
+    &_close {
+        background: url(../images/icon-close.svg) repeat;
+        height: 2.6rem;
+        background-size: 100%;
     }
 }
