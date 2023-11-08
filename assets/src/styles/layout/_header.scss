@@ -1,10 +1,11 @@
 .header {
-    position: relative;
+    width: 100%;
     margin-top: 2rem;
+
+
 
     &__wrapper {
         display: flex;
-
         flex-direction: row;
         column-gap: 2rem;
         align-items: center;
@@ -20,29 +21,24 @@
         }
     }
 
-    &__nav {
-        order: 1;
 
-        @media ($tablet) {
-            order: 2;
-            flex-grow: 1;
-        }
 
-        // flex-shrink: 1;  и так по умолчанию
-        display: flex;
-        align-items: center
-    }
-
-    &__icon-menu {
-        @include icon-menu();
-        z-index: 10;
-        // position: relative;
-    }
 
     &__catalog {
         display: flex;
         column-gap: 1.3rem;
         align-items: center;
+
+        order: 1;
+
+        @media ($tablet) {
+            order: 2;
+        }
+    }
+
+    &__icon-menu {
+        @include icon-menu();
+        z-index: 10;
     }
 
     &__catalog-text {
@@ -51,6 +47,47 @@
 
         @media ($tablet) {
             display: block;
+        }
+    }
+
+    &__nav {
+        display: none;
+
+        @media ($tablet) {
+            order: 3;
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+        }
+
+        &_mob-menu {
+            @media (max-width:767px) {
+                display: block;
+                position: fixed;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background-color: rgba(255, 0, 43, 0.429);
+
+                overflow: auto;
+                margin-top: 0;
+                padding-top: 2rem;
+
+                // непрозрачный фон полоса сверху при открытии моб. меню
+                &::before {
+                    content: '';
+                    display: block;
+                    height: 8rem;
+                    width: 100%;
+                    position: fixed;
+                    top: 0;
+                    // background-color: rgb(254, 152, 168);
+                    background-color: rgb(254, 154, 169);
+                    // position: relative;
+                    z-index: 2;
+                }
+            }
         }
     }
 
@@ -65,67 +102,82 @@
         }
 
         column-gap: 1.3rem;
-
-        // align-items: center;
     }
-
-    // &__menu_desktop {}
 
     &__menu_mobile {
         @media (max-width:767px) {
-            // width: fit-content;
-            // min-width: 50vw;
             width: 100%;
-            height: 100vh;
-            // background-color: transparentize($color: $borderColor, $amount: 0.07);
-            background-color: rgba(255, 0, 43, 0.429);
+            // min-height: 100vh;
+            // background-color: rgba(255, 0, 43, 0.429);
             display: flex;
             flex-direction: column;
             position: absolute;
             left: 0;
+            top: 0;
             // top: 6.5rem;
-            top: -2rem;
+            // top: 2rem;
             padding: 8.0rem 0;
             z-index: 1;
 
         }
     }
 
-    &__menu-link {
-        @include menuText();
-        white-space: nowrap;
-        user-select: none;
-
+    &__menu-item {
         @media (max-width:767px) {
-            display: block;
-            // text-align: center;
-            // background-color: darken($color: $borderColor, $amount: 20%);
-            background-color: rgba(255, 0, 43, 0.612);
-            width: 100%;
-            padding: 1rem;
-            padding-left: 4rem;
-            border-bottom: 0.1rem solid darken($color: $borderColor, $amount: 15%);
-            color: $white;
+            // скрываем начальное положение пунктов меню
+            transform: translate(-100%, 0);
+            // анимация вылетания
+            animation: menu-link-show 0.3s forwards;
 
-            &:hover {
-                // background-color: darken($color: $borderColor, $amount: 7%);
-                // background-color: rgba(255, 0, 43, 0.975);
-                // background-color: transparentize($color: rgb(255, 0, 166), $amount: 0.1);
-                background-color: rgb(255, 0, 43);
-                ;
-                // color: $titleColor;
+            // задаём задержку срабатывания анимации для разных пунктов меню 
+            &:nth-child(2) {
+                animation-delay: 0.1s
+            }
+
+            &:nth-child(3) {
+                animation-delay: 0.2s
             }
         }
     }
 
-    &__basket {
-        order: 3;
-        @include basket();
-        flex-shrink: 0;
-        align-self: flex-start;
-        // z-index: 10;
+    &__menu-link {
+
+        @include menuText();
+        white-space: nowrap;
+        user-select: none;
+        transition: background-color 0.2s;
+
+        @media (max-width:767px) {
+            display: block;
+            background-color: rgba(255, 0, 43, 0.612);
+            width: 100%;
+            padding: 1rem;
+            padding-left: 5rem;
+            border-bottom: 0.1rem solid darken($color: $borderColor, $amount: 15%);
+            color: $white;
+
+            &:hover {
+                background-color: rgb(255, 0, 43);
+            }
+        }
     }
 
 
+    &__basket {
+        order: 4;
+        @include basket();
+        flex-shrink: 0;
+        align-self: flex-start;
+        z-index: 10;
+    }
+}
 
+@keyframes menu-link-show {
+    0% {
+        transform: translate(-100%, 0);
+    }
+
+    100% {
+        transform: translate(0%, 0);
+    }
 }

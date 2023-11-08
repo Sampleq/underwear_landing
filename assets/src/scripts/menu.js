@@ -1,5 +1,7 @@
 const btnMenuToggle = document.querySelector('.header__icon-menu');
 const menu = document.querySelector('.header__menu');
+const header = document.querySelector('.header');
+const nav = document.querySelector('.header__nav');
 
 function closeMenu(event) {
     // if (event.target !== menu) {
@@ -11,6 +13,13 @@ function closeMenu(event) {
     // убираем иконку закрытия (на случай если закрытие было кликом не по иконке)
     btnMenuToggle.classList.remove('header__icon-menu_close')
     // }
+
+    // возобновляем возможность прокрутки страницы при закрытии меню
+    document.body.style.overflow = 'visible';
+
+    header.classList.remove('header_mob-menu');
+    nav.classList.remove('header__nav_mob-menu');
+
 }
 
 function openMenu() {
@@ -23,6 +32,15 @@ function openMenu() {
     setTimeout(() => {
         document.addEventListener('click', closeMenu);
     }, 16);
+
+    // перематывем страницу вверх (к меню) - на случай если меню откроют когда иконка меню уже  частично скрыта перемоткой
+    // window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+    // запрещаем прокрутку страницы при открытии меню
+    document.body.style.overflow = 'hidden';
+
+    // header.classList.add('header_mob-menu');
+    nav.classList.add('header__nav_mob-menu');
 }
 
 btnMenuToggle.addEventListener('click', openMenu, { once: true });
