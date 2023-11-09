@@ -37,6 +37,7 @@ function openMenu() {
     // window.scrollTo(0, 0);
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     // запрещаем прокрутку страницы при открытии меню
+    // на iPhone всё равно можно прокрутить страницу - выглядит очень странно.
     document.body.style.overflow = 'hidden!important';
 
     // header.classList.add('header_mob-menu');
