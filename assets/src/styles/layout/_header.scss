@@ -19,6 +19,14 @@
         @media ($tablet) {
             order: 1;
         }
+
+        &-nav-mob {
+            position: fixed;
+            top: 2rem;
+            left: calc(50% - 1.5rem);
+            transform: translate(-50%, 0);
+            z-index: 3;
+        }
     }
 
 
@@ -38,7 +46,15 @@
 
     &__icon-menu {
         @include icon-menu();
-        // z-index: 10;
+
+        &-nav-mob {
+            @media (max-width:767px) {
+                position: fixed;
+                top: 3.5rem;
+                left: 2%;
+                z-index: 3;
+            }
+        }
     }
 
     &__catalog-text {

@@ -10,14 +10,9 @@ function closeMenu(event) {
     document.removeEventListener('click', closeMenu);
     btnMenuToggle.addEventListener('click', openMenu, { once: true });
 
-    // убираем иконку закрытия (на случай если закрытие было кликом не по иконке)
-    btnMenuToggle.classList.remove('header__icon-menu_close')
-    // }
-
     // возобновляем возможность прокрутки страницы при закрытии меню
-    document.body.style.overflow = 'visible!important';
+    document.body.style.overflow = 'visible';
 
-    header.classList.remove('header_mob-menu');
     nav.classList.remove('header__nav_mob-menu');
 
 }
@@ -38,17 +33,17 @@ function openMenu() {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     // запрещаем прокрутку страницы при открытии меню
     // на iPhone всё равно можно прокрутить страницу - выглядит очень странно.
-    document.body.style.overflow = 'hidden!important';
+    document.body.style.overflow = 'hidden';
+    document.body.style.height = '100vh';
 
-    // header.classList.add('header_mob-menu');
     nav.classList.add('header__nav_mob-menu');
 }
 
 btnMenuToggle.addEventListener('click', openMenu, { once: true });
 
-btnMenuToggle.onclick = () => {
-    btnMenuToggle.classList.toggle('header__icon-menu_close')
-}
+// btnMenuToggle.onclick = () => {
+//     btnMenuToggle.classList.toggle('header__icon-menu_close')
+// }
 
 
 
