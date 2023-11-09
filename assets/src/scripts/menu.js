@@ -44,6 +44,12 @@ function openMenu() {
         window.scrollTo(0, 0);
     };
 
+
+    function preventDefault(e) {
+        e.preventDefault();
+    }
+    window.addEventListener('touchmove', preventDefault);
+
     // header.classList.add('header_mob-menu');
     nav.classList.add('header__nav_mob-menu');
 }
