@@ -32,7 +32,7 @@ function openMenu() {
     // window.scrollTo(0, 0);
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     // запрещаем прокрутку страницы при открытии меню
-    // на iPhone всё равно можно прокрутить страницу - выглядит очень странно.
+    // на iPhone всё равно можно прокрутить страницу - выглядит очень странно. - Делаем непрозрачный фиксированный фон в цвет  и добавляем лого, дублируя HTML
     document.body.style.overflow = 'hidden';
     document.body.style.height = '100vh';
 
