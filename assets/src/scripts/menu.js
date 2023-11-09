@@ -47,8 +47,9 @@ function openMenu() {
 
     function preventDefault(e) {
         e.preventDefault();
+        e.stopPropagation();
     }
-    window.addEventListener('touchmove', preventDefault);
+    document.body.addEventListener('touchmove', preventDefault);
 
     // header.classList.add('header_mob-menu');
     nav.classList.add('header__nav_mob-menu');
