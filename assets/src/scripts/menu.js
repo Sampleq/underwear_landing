@@ -16,9 +16,11 @@ function closeMenu(event) {
 
     // возобновляем возможность прокрутки страницы при закрытии меню
     document.body.style.overflow = 'visible';
+    window.onscroll = null;
 
-    header.classList.remove('header_mob-menu');
+    // header.classList.remove('header_mob-menu');
     nav.classList.remove('header__nav_mob-menu');
+
 
 }
 
@@ -38,6 +40,9 @@ function openMenu() {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     // запрещаем прокрутку страницы при открытии меню
     document.body.style.overflow = 'hidden';
+    window.onscroll = () => {
+        window.scrollTo(0, 0);
+    };
 
     // header.classList.add('header_mob-menu');
     nav.classList.add('header__nav_mob-menu');
