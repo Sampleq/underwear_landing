@@ -2,14 +2,13 @@
     width: 100%;
     margin-top: 2rem;
 
-
-
     &__wrapper {
         display: flex;
         flex-direction: row;
         column-gap: 2rem;
         align-items: center;
         justify-content: space-between;
+        position: relative; // for position of header__catalog-menu
     }
 
     &__logo {
@@ -47,6 +46,15 @@
         @media ($tablet) {
             order: 2;
         }
+
+        &-text {
+            @include catText();
+            display: none;
+
+            @media ($tablet) {
+                display: block;
+            }
+        }
     }
 
     &__icon-menu {
@@ -65,12 +73,72 @@
         }
     }
 
-    &__catalog-text {
-        @include catText();
-        display: none;
+    &__submenu-opener {
+        display: block;
+
+        &:hover {
+            cursor: pointer;
+        }
 
         @media ($tablet) {
+            display: none;
+        }
+    }
+
+    &__catalog-menu {
+        display: none;
+
+        &_visible {
             display: block;
+        }
+
+        @media ($tablet) {
+            // display: none;
+            display: block;
+
+            position: absolute;
+            top: 4.5rem;
+            left: 14rem;
+        }
+
+        &-item {
+            border-bottom: 0.1rem solid darken($color: $borderColor, $amount: 15%);
+
+            &:first-child {
+                border-top: 0.1rem solid darken($color: $borderColor, $amount: 15%);
+
+                @media ($tablet) {
+                    border-top: none;
+                }
+            }
+
+            &:last-child {
+                border-bottom: none
+            }
+        }
+
+        &-link {
+            @include menuText();
+            white-space: nowrap;
+            user-select: none;
+            transition: background-color 0.2s;
+            display: block;
+            // background-color: rgba(255, 0, 43, 0.612);
+            background-color: rgba(0, 26, 255, 0.612);
+            width: 100%;
+            padding: 1rem;
+            padding-left: 7rem;
+            color: $white;
+
+            @media ($tablet) {
+                padding-left: 3rem;
+            }
+
+
+
+            &:hover {
+                background-color: rgb(255, 0, 43);
+            }
         }
     }
 
@@ -152,6 +220,11 @@
             transform: translate(-100%, 0);
             // анимация вылетания
             animation: menu-link-show 0.3s forwards;
+            border-bottom: 0.1rem solid darken($color: $borderColor, $amount: 15%);
+
+            &:last-child {
+                border-bottom: none
+            }
 
             // задаём задержку срабатывания анимации для разных пунктов меню (переписать через JS!)
             &:nth-child(2) {
@@ -185,7 +258,6 @@
             width: 100%;
             padding: 1rem;
             padding-left: 5rem;
-            border-bottom: 0.1rem solid darken($color: $borderColor, $amount: 15%);
             color: $white;
 
             &:hover {
