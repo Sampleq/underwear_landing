@@ -50,10 +50,27 @@
         &-text {
             @include catText();
             display: none;
+            user-select: none;
+
+            &:hover {
+                cursor: pointer;
+            }
 
             @media ($tablet) {
                 display: block;
             }
+        }
+
+        &:hover {
+            cursor: pointer;
+        }
+
+        &:hover &-text {
+            text-shadow: 0 0 0.05rem $textColor;
+        }
+
+        &:hover .header__icon-menu {
+            transform: scale(1.2);
         }
     }
 
@@ -93,8 +110,12 @@
         }
 
         @media ($tablet) {
-            // display: none;
-            display: block;
+            display: none;
+
+            // отдельный класс &_visible-desktop чтобы открытие каталога в мобильной версии не вызывало открытие в десктопной ;
+            &_visible-desktop {
+                display: block;
+            }
 
             position: absolute;
             top: 4.5rem;
@@ -114,6 +135,57 @@
 
             &:last-child {
                 border-bottom: none
+            }
+
+            transform: translate(-100%, 0%);
+            opacity: 0;
+            animation: menu-link-show 0.2s forwards;
+
+            &:nth-child(2) {
+                animation-delay: 0.1s;
+            }
+
+            &:nth-child(3) {
+                animation-delay: 0.2s;
+            }
+
+            &:nth-child(4) {
+                animation-delay: 0.3s;
+            }
+
+            &:nth-child(5) {
+                animation-delay: 0.4s;
+            }
+
+            &:nth-child(6) {
+                animation-delay: 0.5s;
+            }
+
+            @media ($tablet) {
+                width: 33.33vw;
+                max-width: 40rem;
+                transform: translate(0%, 200%);
+                opacity: 0;
+
+                // &:nth-child(2) {
+                //     animation-delay: 0.1s;
+                // }
+
+                // &:nth-child(3) {
+                //     animation-delay: 0.2s;
+                // }
+
+                // &:nth-child(4) {
+                //     animation-delay: 0.3s;
+                // }
+
+                // &:nth-child(5) {
+                //     animation-delay: 0.4s;
+                // }
+
+                // &:nth-child(6) {
+                //     animation-delay: 0.5s;
+                // }
             }
         }
 
@@ -218,8 +290,9 @@
         @media (max-width:767px) {
             // скрываем начальное положение пунктов меню
             transform: translate(-100%, 0);
+            opacity: 0;
             // анимация вылетания
-            animation: menu-link-show 0.3s forwards;
+            animation: menu-link-show 0.2s forwards;
             border-bottom: 0.1rem solid darken($color: $borderColor, $amount: 15%);
 
             &:last-child {
@@ -277,11 +350,10 @@
 }
 
 @keyframes menu-link-show {
-    0% {
-        transform: translate(-100%, 0);
-    }
+    0% {}
 
     100% {
         transform: translate(0%, 0);
+        opacity: 1;
     }
 }

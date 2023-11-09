@@ -4,6 +4,7 @@ const header = document.querySelector('.header');
 const nav = document.querySelector('.header__nav');
 const catalog = document.querySelector('.header__catalog-menu');
 const btnMobSubMenu = document.querySelector('.header__submenu-opener');
+const btnCatDesktOpener = document.querySelector('.header__catalog')
 
 
 function closeMenu(event) {
@@ -12,14 +13,19 @@ function closeMenu(event) {
         if (event.target !== btnMobSubMenu) {
             // console.log('document.addEventListener click');
             menu.classList.remove('header__menu_mobile');
+            catalog.classList.remove('header__catalog-menu_visible');
             document.removeEventListener('click', closeMenu);
-            btnMenuToggle.addEventListener('click', openMenu, { once: true });
+            btnCatDesktOpener.addEventListener('click', openMenu, { once: true });
 
             // возобновляем возможность прокрутки страницы при закрытии меню
             document.body.style.overflow = 'visible';
 
             nav.classList.remove('header__nav_mob-menu');
         }
+    } else {
+        catalog.classList.remove('header__catalog-menu_visible-desktop');
+        document.removeEventListener('click', closeMenu);
+        btnCatDesktOpener.addEventListener('click', openMenu, { once: true });
     }
 }
 
@@ -44,10 +50,16 @@ function openMenu() {
         document.body.style.height = '100vh';
 
         nav.classList.add('header__nav_mob-menu');
+    } else {
+        catalog.classList.add('header__catalog-menu_visible-desktop');
+        setTimeout(() => {
+            document.addEventListener('click', closeMenu);
+        }, 16);
     }
 }
 
-btnMenuToggle.addEventListener('click', openMenu, { once: true });
+// повесили этот листнер на btnCatDesktOpener
+// btnMenuToggle.addEventListener('click', openMenu, { once: true });
 
 // btnMenuToggle.onclick = () => {
 //     btnMenuToggle.classList.toggle('header__icon-menu_close')
@@ -56,6 +68,12 @@ btnMenuToggle.addEventListener('click', openMenu, { once: true });
 btnMobSubMenu.onclick = () => {
     catalog.classList.toggle('header__catalog-menu_visible');
 }
+
+btnCatDesktOpener.addEventListener('click', openMenu, { once: true });
+
+
+// повесить отдельный дублирующий листнер закрытия мобильного меню на кнопку закрытия моб.меню - на всякий случай
+
 
 
 
