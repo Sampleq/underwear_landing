@@ -8,22 +8,18 @@ const btnCatDesktOpener = document.querySelector('.header__catalog')
 
 
 function closeMenu(event) {
-    if (window.innerWidth < 768) {
-        // if (event.target !== menu ) {
-        if (event.target !== btnMobSubMenu) {
-            // console.log('document.addEventListener click');
-            menu.classList.remove('header__menu_mobile');
-            catalog.classList.remove('header__catalog-menu_visible');
-            document.removeEventListener('click', closeMenu);
-            btnCatDesktOpener.addEventListener('click', openMenu, { once: true });
-
-            // возобновляем возможность прокрутки страницы при закрытии меню
-            document.body.style.overflow = 'visible';
-
-            nav.classList.remove('header__nav_mob-menu');
-        }
-    } else {
+    //  объединил закрытие мобильного и десктоп меню в одну функцию без условий по ширине экрана - закрывает ВСË.
+    if (event.target !== btnMobSubMenu) {
+        // console.log('document.addEventListener click');
+        menu.classList.remove('header__menu_mobile');
+        catalog.classList.remove('header__catalog-menu_visible');
+        nav.classList.remove('header__nav_mob-menu');
         catalog.classList.remove('header__catalog-menu_visible-desktop');
+        btnMenuToggle.classList.remove('header__icon-menu_close');
+
+        // возобновляем возможность прокрутки страницы при закрытии меню
+        document.body.style.overflow = 'visible';
+
         document.removeEventListener('click', closeMenu);
         btnCatDesktOpener.addEventListener('click', openMenu, { once: true });
     }
@@ -52,6 +48,7 @@ function openMenu() {
         nav.classList.add('header__nav_mob-menu');
     } else {
         catalog.classList.add('header__catalog-menu_visible-desktop');
+        btnMenuToggle.classList.add('header__icon-menu_close');
         setTimeout(() => {
             document.addEventListener('click', closeMenu);
         }, 16);
@@ -72,7 +69,7 @@ btnMobSubMenu.onclick = () => {
 btnCatDesktOpener.addEventListener('click', openMenu, { once: true });
 
 
-// повесить отдельный дублирующий листнер закрытия мобильного меню на кнопку закрытия моб.меню - на всякий случай
+// повесить отдельный дублирующий листнер закрытия мобильного меню на кнопку закрытия моб.меню - на всякий случай  - не надо т.к. функция closeMenu закрывает ВСЕ меню - и мобильное и десктопное
 
 
 

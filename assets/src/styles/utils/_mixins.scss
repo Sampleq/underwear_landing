@@ -180,11 +180,18 @@
     }
 
     &_close {
-        background: url(../images/icon-close.svg) no-repeat;
-        background-size: 70%;
-        background-position: 50% 55%;
+        @media ($tablet) {
+            background: url(../images/icon-close.svg) no-repeat;
+            background-size: 70%;
+            background-position: 50% 55%;
+        }
+    }
 
+    &-nav-mob_close {
         @media (max-width:767px) {
+            background: url(../images/icon-close.svg) no-repeat;
+            background-size: 70%;
+            background-position: 50% 55%;
             filter: brightness(10);
         }
     }

@@ -77,7 +77,7 @@
     &__icon-menu {
         @include icon-menu();
 
-        &-nav-mob {
+        &-nav-mob_close {
             display: none;
 
             @media (max-width:767px) {
@@ -139,7 +139,7 @@
 
             transform: translate(-100%, 0%);
             opacity: 0;
-            animation: menu-link-show 0.2s forwards;
+            animation: menu-link-show 0.3s forwards;
 
             &:nth-child(2) {
                 animation-delay: 0.1s;
@@ -247,7 +247,7 @@
                     position: fixed;
                     top: 0;
                     // background-color: rgb(254, 152, 168);
-                    background-color: rgb(254, 154, 169);
+                    background-color: rgb(255, 151, 166);
                     // position: relative;
                     z-index: 2;
                 }
@@ -292,7 +292,7 @@
             transform: translate(-100%, 0);
             opacity: 0;
             // анимация вылетания
-            animation: menu-link-show 0.2s forwards;
+            animation: menu-link-show 0.3s forwards;
             border-bottom: 0.1rem solid darken($color: $borderColor, $amount: 15%);
 
             &:last-child {
