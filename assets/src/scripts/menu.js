@@ -32,16 +32,11 @@ function openMenu() {
 
         // btnMenuToggle.removeEventListener('click', openMenu); не надо убирать т.к листнер вешался с { once: true }
 
-        // вешаем листнер закрытия с задержкой т.к. если не сделать задержку листнер закрытия мгновенно повесится на документ и обработается клик который его же и повесил - меню откроется и закроется мгновенно - т.е. не откроется вообще
-        setTimeout(() => {
-            document.addEventListener('click', closeMenu);
-        }, 16);
-
         // перематывем страницу вверх (к меню) - на случай если меню откроют когда иконка меню уже  частично скрыта перемоткой
         // window.scrollTo(0, 0);
         window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
         // запрещаем прокрутку страницы при открытии меню
-        // на iPhone всё равно можно прокрутить страницу - выглядит очень странно. - Делаем непрозрачный фиксированный фон в цвет  и добавляем лого, дублируя HTML
+        // на iPhone всё равно можно прокрутить страницу - выглядит очень странно. - Делаем непрозрачный фиксированный фон в цвет и добавляем лого, дублируя HTML
         document.body.style.overflow = 'hidden';
         document.body.style.height = '100vh';
 
@@ -49,18 +44,16 @@ function openMenu() {
     } else {
         catalog.classList.add('header__catalog-menu_visible-desktop');
         btnMenuToggle.classList.add('header__icon-menu_close');
-        setTimeout(() => {
-            document.addEventListener('click', closeMenu);
-        }, 16);
     }
+
+    // вешаем листнер закрытия с задержкой т.к. если не сделать задержку листнер закрытия мгновенно повесится на документ и обработается клик который его же и повесил - меню откроется и закроется мгновенно - т.е. не откроется вообще
+    setTimeout(() => {
+        document.addEventListener('click', closeMenu);
+    }, 16);
 }
 
 // повесили этот листнер на btnCatDesktOpener
 // btnMenuToggle.addEventListener('click', openMenu, { once: true });
-
-// btnMenuToggle.onclick = () => {
-//     btnMenuToggle.classList.toggle('header__icon-menu_close')
-// }
 
 btnMobSubMenu.onclick = () => {
     catalog.classList.toggle('header__catalog-menu_visible');

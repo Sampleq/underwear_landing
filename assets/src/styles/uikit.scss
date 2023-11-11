@@ -52,26 +52,6 @@
     @include catText();
 }
 
-.btn {
-    @include btn();
-}
-
-.btn_small {
-    @include btn_small();
-}
-
-.btn_arrow {
-    @include btn_arrow();
-}
-
-.slider__dot {
-    @include slider__dot();
-}
-
-.basket {
-    @include basket();
-}
-
 
 // .card {
 //     @media ($tablet) {

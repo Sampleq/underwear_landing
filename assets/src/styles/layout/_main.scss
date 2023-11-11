@@ -1,0 +1,70 @@
+.main {
+
+    &__wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        column-gap: 2rem;
+        row-gap: 5rem;
+
+        @media ($tablet) {
+            flex-direction: row;
+            justify-content: space-between;
+        }
+    }
+
+    &__textblock {
+        text-align: left;
+
+        @media ($mobileL) {
+            text-align: center;
+        }
+
+        @media ($tablet) {
+            text-align: left;
+        }
+    }
+
+    &__title {
+        @include h1();
+        margin-bottom: 2.5rem;
+
+        @media ($mobileL) {
+            max-width: 52.3rem;
+            margin-bottom: 3rem;
+        }
+    }
+
+    &__descr {
+        @include p1();
+        margin-bottom: 4.5rem;
+        max-width: 26rem;
+
+        @media ($mobileL) {
+            margin: 0 auto;
+            margin-bottom: 4.5rem;
+        }
+
+        @media ($tablet) {
+            margin: 0;
+            margin-bottom: 4.5rem;
+        }
+
+        @media ($laptop) {
+            margin-bottom: 5rem;
+        }
+    }
+
+    &__btn {
+        margin: 0 auto;
+
+        @media ($tablet) {
+            margin: 0;
+        }
+    }
+
+    &__logo_mixblend {
+        margin-right: calc(100% * 4.3 / 120);
+        z-index: -1; // убираем на задний план, чтобы при использовании mix-blend-mode в Логотипе не происходило смешение цветов при наложении fixed мобильного меню с заливкой цветом на весь экран
+    }
+}

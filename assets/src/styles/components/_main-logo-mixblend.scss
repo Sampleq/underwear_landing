@@ -1,20 +1,30 @@
 // 
 
 .main__logo_mixblend {
+    // outline: 1px solid #000;
+    margin: 0 auto; // когда родитель flex, и ширина задани в vw, падинги и размеры одителя игнорируются - для выравнивания элемента используем margin: 0 auto;
+    flex-shrink: 0;
     // задаём ширину блока в процентах (%) зависимости от ширины родителя (т.е. wrapper-а). Также можно задать ширину блока в зависимости от ширины viewport - т.е. через vw. Для больших экранов, когда ширина экрана больше ширины  wrapper-а - ограничиваем макс. ширину блока с помощью max-width: 54.5rem; Также можно через медиа-запрос @media (min-width: 1200px)  просто задать ширину блока для больших экранов.
     // width: calc(100% * 545 / 1200); // при использовании % - проценты считаются от "свободной части родителя - т.е. без учёта pading - для универсальности формулы (при разных падингах родителя для разной ширины) - ситаем размер в зависимости от ширины экрана - т.е. с помощью vw :
-    width: calc(100vw * 545 / 1200);
-    max-width: 54.5rem;
+    width: 96vw;
+
+    @media ($tablet) {
+        width: calc(100vw * 545 / 1200);
+        max-width: 54.5rem;
+    }
+
 
     // задаём высоту блока в зависимости от ширины viewport - т.е. через vw - т.к. в задание в процентах от родителя - не работает. Для больших экранов, когда ширина экрана больше ширины  wrapper-а - ограничиваем макс. высоту блока с помощью max-height: 54.2rem. Также можно через медиа-запрос @media (min-width: 1200px)  просто задать высоту блока для больших экранов (или использовать height: min(calc(100vw * 542 / 1200), 54.2rem).
-    height: calc(100vw * 542 / 1200);
-    max-height: 54.2rem;
+    height: calc(96vw * 542 / 545);
+
+    @media ($tablet) {
+        height: calc(100vw * 542 / 1200);
+        max-height: 54.2rem;
+    }
+
     background: url(../images/main.jpg) no-repeat;
     background-position: 78% 70%;
     background-size: 135%;
-    // Два следующих свойства позволяют сделать текст с фоновой картинкой. Т.е. текст делается прозрачным и фон блока-родителя отображается только по границам букв текста.
-    // -webkit-text-fill-color: transparent;
-    // -webkit-background-clip: text;
 
     // добавляет обводку
     -webkit-text-stroke: 0.05rem $red;
@@ -43,9 +53,15 @@
         // font-size: 74.25rem;
 
         // используем медиа-запрос, и задаём меньший размер буквы "С" т.к. при "правильном" размере на iPhone-ах буква немного обрезается - чтобы избежать этого - делаем её меньше  
-        font-size: calc(134.5vw * 542 / 1200);
+        font-size: calc(129.5vw * (542 / 545));
         margin-top: -39.7%;
         margin-left: -5.0%;
+
+        @media ($tablet) {
+            font-size: calc(134.5vw * 542 / 1200);
+            margin-top: -39.7%;
+            margin-left: -5.0%;
+        }
 
         @media ($laptop) {
             font-size: min(calc(136.8vw * 542 / 1200), 74.12rem);
@@ -56,18 +72,27 @@
         user-select: none;
 
         &_m {
-            // font-size: calc(100vw * 276 / 1200);
-            font-size: min(calc(100vw * 276 / 1200), 27.6rem);
+            font-size: calc(100vw * 276 / 545);
             margin-top: 11%;
-            margin-left: -42.4%;
+            margin-left: -44.4%;
+
+            @media ($tablet) {
+                font-size: min(calc(100vw * 276 / 1200), 27.6rem);
+                margin-top: 11%;
+                margin-left: -42.4%;
+            }
         }
 
         &_t {
-            // font-size: min(calc(132vw * 336 / 1200), 54.4rem);
-            font-size: min(calc(100vw * 480 / 1200), 48rem);
-            // font-size: 46rem;
+            font-size: calc(100vw * 480 / 545);
             margin-top: -13%;
-            margin-left: 0.1%;
+            margin-left: -0.2%;
+
+            @media ($tablet) {
+                font-size: min(calc(100vw * 480 / 1200), 48rem);
+                margin-top: -13%;
+                margin-left: 0.1%;
+            }
         }
     }
 
