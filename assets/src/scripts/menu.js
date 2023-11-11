@@ -71,14 +71,14 @@ const menuItems = document.querySelectorAll('.header__menu-item');
 menuItems.forEach((menuItem, i) => {
     // console.log(menuItem + ' - ' + i);
     // console.log(menuItem);
-    // console.log((0 + (i / 10)) + 's');
-    menuItem.style.animationDelay = (0 + (i / 10)) + 's';
+    // console.log((0 + (i / 15)) + 's');
+    menuItem.style.animationDelay = (0 + (i / 15)) + 's';
 });
 
 const catMenuItems = document.querySelectorAll('.header__catalog-menu-item');
 catMenuItems.forEach((catMenuItem, i) => {
     // console.log(catMenuItem);
-    catMenuItem.style.animationDelay = (i / 10) + 's';
+    catMenuItem.style.animationDelay = (i / 15) + 's';
 })
 
 

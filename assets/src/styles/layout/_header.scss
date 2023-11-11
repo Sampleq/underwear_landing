@@ -57,6 +57,7 @@
             @include catText();
             display: none;
             user-select: none;
+            transition: 0.3s;
 
             // &:hover {
             //     cursor: pointer;
@@ -83,9 +84,12 @@
         }
 
         &:hover .header__icon-menu_close {
-            background: url(../images/icon-close-bordo.svg) no-repeat;
-            background-size: 70%;
-            background-position: 50% 55%;
+            @media ($tablet) {
+                background: url(../images/icon-close-bordo.svg) no-repeat;
+                background-size: 70%;
+                background-position: 50% 55%;
+            }
+
             transform: scale(1.2);
         }
     }
@@ -303,7 +307,8 @@
         @include menuText();
         white-space: nowrap;
         user-select: none;
-        transition: background-color 0.2s;
+        // transition: background-color 0.2s;
+        transition: 0.2s;
 
 
         @media (max-width:767px) {
