@@ -1,6 +1,7 @@
 const btnMenuToggle = document.querySelector('.header__icon-menu');
 const menu = document.querySelector('.header__menu');
 const header = document.querySelector('.header');
+const main = document.querySelector('.main');
 const nav = document.querySelector('.header__nav');
 const catalog = document.querySelector('.header__catalog-menu');
 const btnMobSubMenu = document.querySelector('.header__submenu-opener');
@@ -19,6 +20,8 @@ function closeMenu(event) {
 
         // возобновляем возможность прокрутки страницы при закрытии меню
         document.body.style.overflow = 'visible';
+
+        // main.style.filter = 'none';
 
         document.removeEventListener('click', closeMenu);
         btnCatDesktOpener.addEventListener('click', openMenu, { once: true });
@@ -39,6 +42,7 @@ function openMenu() {
         // на iPhone всё равно можно прокрутить страницу - выглядит очень странно. - Делаем непрозрачный фиксированный фон в цвет и добавляем лого, дублируя HTML
         document.body.style.overflow = 'hidden';
         document.body.style.height = '100vh';
+        // main.style.filter = 'contrast(0.01)';
 
         nav.classList.add('header__nav_mob-menu');
     } else {

@@ -40,6 +40,20 @@
         margin-bottom: 4.5rem;
         max-width: 26rem;
 
+        position: relative; // для &:hover::after
+        z-index: -1; // для &:hover::after
+
+        &:hover::after {
+            content: 'logo with mix-blend-mode: screen;';
+            position: absolute;
+            top: 100%;
+            left: 0;
+            font-size: 1.6rem;
+            font-style: italic;
+            color: $inputColor;
+
+        }
+
         @media ($mobileL) {
             margin: 0 auto;
             margin-bottom: 4.5rem;
@@ -66,5 +80,6 @@
     &__logo_mixblend {
         margin-right: calc(100% * 4.3 / 120);
         z-index: -1; // убираем на задний план, чтобы при использовании mix-blend-mode в Логотипе не происходило смешение цветов при наложении fixed мобильного меню с заливкой цветом на весь экран
+        // filter: blur(2px);
     }
 }

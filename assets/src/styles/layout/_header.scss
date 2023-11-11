@@ -55,6 +55,7 @@
 
             &:hover {
                 cursor: pointer;
+                color: $bordo;
             }
 
             @media ($tablet) {
@@ -71,6 +72,7 @@
         }
 
         &:hover .header__icon-menu {
+            background: url(../images/Icon-Menu-bordo.svg);
             transform: scale(1.2);
         }
     }
@@ -140,7 +142,7 @@
 
             transform: translate(-100%, 0%);
             opacity: 0;
-            animation: menu-link-show 0.3s forwards;
+            animation: menu-link-show 0.2s forwards;
 
             &:nth-child(2) {
                 animation-delay: 0.1s;
@@ -197,7 +199,7 @@
             transition: background-color 0.2s;
             display: block;
             // background-color: rgba(255, 0, 43, 0.612);
-            background-color: rgba(0, 26, 255, 0.612);
+            background-color: transparentize($color: $pink, $amount: 0.300);
             width: 100%;
             padding: 1rem;
             padding-left: 7rem;
@@ -207,10 +209,9 @@
                 padding-left: 3rem;
             }
 
-
-
             &:hover {
-                background-color: rgb(255, 0, 43);
+                background-color: $pinkRed;
+                text-shadow: 0 0 0.07rem;
             }
         }
     }
@@ -233,7 +234,7 @@
                 bottom: 0;
                 left: 0;
                 right: 0;
-                background-color: rgba(255, 0, 43, 0.429);
+                background-color: transparentize($color: $pinkRed, $amount: 0.571);
 
                 overflow: auto;
                 margin-top: 0;
@@ -248,7 +249,7 @@
                     position: fixed;
                     top: 0;
                     // background-color: rgb(254, 152, 168);
-                    background-color: rgb(255, 151, 166);
+                    background-color: rgb(255, 151, 166); // подобрано в тон, но непрозрачный
                     // position: relative;
                     z-index: 2;
                 }
@@ -288,6 +289,10 @@
     }
 
     &__menu-item {
+        // &:hover {
+        //     transform: scale(1.1);
+        // }
+
         @media (max-width:767px) {
             // скрываем начальное положение пунктов меню
             transform: translate(-100%, 0);
@@ -326,16 +331,25 @@
         user-select: none;
         transition: background-color 0.2s;
 
+
         @media (max-width:767px) {
             display: block;
-            background-color: rgba(255, 0, 43, 0.612);
+            background-color: transparentize($color: $pinkRed, $amount: 0.300);
             width: 100%;
             padding: 1rem;
             padding-left: 5rem;
             color: $white;
 
             &:hover {
-                background-color: rgb(255, 0, 43);
+                background-color: $pinkRed;
+                text-shadow: 0 0 0.07rem;
+            }
+        }
+
+        @media ($tablet) {
+            &:hover {
+                color: $bordo;
+                text-shadow: 0 0 0.05rem;
             }
         }
     }
