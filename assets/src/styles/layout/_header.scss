@@ -1,7 +1,15 @@
 .header {
     width: 100%;
     margin-top: 2rem;
-    margin-bottom: 3.2rem;
+    margin-bottom: 6rem;
+
+    @media ($mobileL) {
+        margin-bottom: 4.2rem;
+    }
+
+    @media ($tablet) {
+        margin-bottom: 3.2rem;
+    }
 
     &__wrapper {
         display: flex;
@@ -34,9 +42,6 @@
         }
     }
 
-
-
-
     &__catalog {
         display: flex;
         column-gap: 1.3rem;
@@ -53,10 +58,10 @@
             display: none;
             user-select: none;
 
-            &:hover {
-                cursor: pointer;
-                color: $bordo;
-            }
+            // &:hover {
+            //     cursor: pointer;
+            //     color: $bordo;
+            // }
 
             @media ($tablet) {
                 display: block;
@@ -68,11 +73,19 @@
         }
 
         &:hover &-text {
+            color: $bordo;
             text-shadow: 0 0 0.05rem $textColor;
         }
 
         &:hover .header__icon-menu {
-            background: url(../images/Icon-Menu-bordo.svg);
+            background: url(../images/Icon-Menu-bordo.svg) no-repeat;
+            transform: scale(1.2);
+        }
+
+        &:hover .header__icon-menu_close {
+            background: url(../images/icon-close-bordo.svg) no-repeat;
+            background-size: 70%;
+            background-position: 50% 55%;
             transform: scale(1.2);
         }
     }
@@ -144,51 +157,20 @@
             opacity: 0;
             animation: menu-link-show 0.2s forwards;
 
-            &:nth-child(2) {
-                animation-delay: 0.1s;
-            }
+            // задал задержку срабатывания анимации для разных пунктов меню через JS
+            // &:nth-child(2) {
+            //     animation-delay: 0.1s;
+            // }
 
-            &:nth-child(3) {
-                animation-delay: 0.2s;
-            }
-
-            &:nth-child(4) {
-                animation-delay: 0.3s;
-            }
-
-            &:nth-child(5) {
-                animation-delay: 0.4s;
-            }
-
-            &:nth-child(6) {
-                animation-delay: 0.5s;
-            }
+            // &:nth-child(3) {
+            //     animation-delay: 0.2s;
+            // }
 
             @media ($tablet) {
                 width: 33.33vw;
                 max-width: 40rem;
                 transform: translate(0%, 200%);
                 opacity: 0;
-
-                // &:nth-child(2) {
-                //     animation-delay: 0.1s;
-                // }
-
-                // &:nth-child(3) {
-                //     animation-delay: 0.2s;
-                // }
-
-                // &:nth-child(4) {
-                //     animation-delay: 0.3s;
-                // }
-
-                // &:nth-child(5) {
-                //     animation-delay: 0.4s;
-                // }
-
-                // &:nth-child(6) {
-                //     animation-delay: 0.5s;
-                // }
             }
         }
 
@@ -305,22 +287,14 @@
                 border-bottom: none
             }
 
-            // задаём задержку срабатывания анимации для разных пунктов меню (переписать через JS!)
-            &:nth-child(2) {
-                animation-delay: 0.1s
-            }
+            // задаём задержку срабатывания анимации для разных пунктов меню (переписать через JS - сделано!)
+            // &:nth-child(2) {
+            //     animation-delay: 0.1s
+            // }
 
-            &:nth-child(3) {
-                animation-delay: 0.2s
-            }
-
-            &:nth-child(4) {
-                animation-delay: 0.3s
-            }
-
-            &:nth-child(5) {
-                animation-delay: 0.4s
-            }
+            // &:nth-child(3) {
+            //     animation-delay: 0.2s
+            // }
         }
     }
 
@@ -365,8 +339,6 @@
 }
 
 @keyframes menu-link-show {
-    0% {}
-
     100% {
         transform: translate(0%, 0);
         opacity: 1;

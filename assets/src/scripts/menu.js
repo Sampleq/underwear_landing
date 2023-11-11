@@ -66,6 +66,22 @@ btnMobSubMenu.onclick = () => {
 btnCatDesktOpener.addEventListener('click', openMenu, { once: true });
 
 
+// устанавливаем задерку анимации (чтобы не писать вручную через CSS)
+const menuItems = document.querySelectorAll('.header__menu-item');
+menuItems.forEach((menuItem, i) => {
+    // console.log(menuItem + ' - ' + i);
+    // console.log(menuItem);
+    // console.log((0 + (i / 10)) + 's');
+    menuItem.style.animationDelay = (0 + (i / 10)) + 's';
+});
+
+const catMenuItems = document.querySelectorAll('.header__catalog-menu-item');
+catMenuItems.forEach((catMenuItem, i) => {
+    // console.log(catMenuItem);
+    catMenuItem.style.animationDelay = (i / 10) + 's';
+})
+
+
 // повесить отдельный дублирующий листнер закрытия мобильного меню на кнопку закрытия моб.меню - на всякий случай  - не надо т.к. функция closeMenu закрывает ВСЕ меню - и мобильное и десктопное
 
 

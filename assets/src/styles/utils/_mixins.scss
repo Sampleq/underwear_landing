@@ -10,7 +10,12 @@
     @extend %h;
     font-size: 3.8rem;
 
-    @media ($tablet) {
+    // @media ($tablet) {
+    //     font-size: 4.3rem;
+    // }
+
+    // индивидуально под текст на сайте
+    @media (min-width:864px) {
         font-size: 4.3rem;
     }
 
