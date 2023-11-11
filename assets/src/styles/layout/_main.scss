@@ -41,7 +41,7 @@
         max-width: 26rem;
 
         position: relative; // для &:hover::after
-        z-index: -1; // для &:hover::after
+        // z-index: 1; // для &:hover::after; - не нужно - задал z-index: 2 для .header__nav_mob-menu
 
         &:hover::after {
             content: 'logo with mix-blend-mode: screen;';
