@@ -26,7 +26,7 @@ const btnLeft = document.querySelector('.btn_arrow_l');
 const btnRight = document.querySelector('.btn_arrow_r');
 const sliderCardsCont = document.querySelector('.slider__cards-cont');
 const sliderWrapper = document.querySelector('.slider__wrapper');
-const sliderDots = document.querySelectorAll('.slider__dot');
+let sliderDots = document.querySelectorAll('.slider__dot');
 
 // делаем активной первую точку слайдера
 sliderDots[0].classList.add('slider__dot_active');
@@ -75,6 +75,11 @@ btnRight.onclick = () => {
     for (let sliderDot of sliderDots) {
         sliderDot.classList.remove('slider__dot_active');
     }
+
+    // for 3 card slider (window.innerWidth > 1250)
+    sliderDots = divSliderDots.querySelectorAll(".slider__dot:not(.slider__dot_2card):not(.slider__dot_1card)");
+    console.log(sliderDots);
+
     sliderDots[Math.round(shownImage / 3)].classList.add('slider__dot_active');
 }
 
@@ -102,24 +107,55 @@ btnLeft.onclick = () => {
     for (let sliderDot of sliderDots) {
         sliderDot.classList.remove('slider__dot_active');
     }
+    // for 3 card slider (window.innerWidth > 1250)
+    sliderDots = divSliderDots.querySelectorAll(".slider__dot:not(.slider__dot_2card):not(.slider__dot_1card)");
+    console.log(sliderDots);
+
     sliderDots[Math.round(shownImage / 3)].classList.add('slider__dot_active');
 }
 
-
-sliderDots.forEach((sliderDot, i) => {
+// при клике на любую из точек в зависимости от window.innerWidth создаем массив из отображаемых точек
+sliderDots.forEach((sliderDot) => {
     sliderDot.onclick = () => {
-        shownImage = i * 3;
+        // for 3 card slider (window.innerWidth > 1250)
+        sliderDots = divSliderDots.querySelectorAll(".slider__dot:not(.slider__dot_2card):not(.slider__dot_1card)");
+        console.log(sliderDots);
 
-        setSlideWidth();
-        slideToImage(shownImage);
 
-        // убираем со всех точек класс slider__dot_active и вешаем его на ту точку, по которой кликнули
-        // вынести в отдельную функцию
-        for (let sliderDot of sliderDots) {
-            sliderDot.classList.remove('slider__dot_active');
-        }
-        sliderDots[i].classList.add('slider__dot_active');
+        sliderDots.forEach((sliderDot, i) => {
+            sliderDot.onclick = () => {
+                shownImage = i * 3;
+
+                setSlideWidth();
+                slideToImage(shownImage);
+
+                // убираем со всех точек класс slider__dot_active и вешаем его на ту точку, по которой кликнули
+                // вынести в отдельную функцию
+                for (let sliderDot of sliderDots) {
+                    sliderDot.classList.remove('slider__dot_active');
+                }
+                sliderDots[i].classList.add('slider__dot_active');
+            }
+        })
+
+
     }
 })
+
+// sliderDots.forEach((sliderDot, i) => {
+//     sliderDot.onclick = () => {
+//         shownImage = i * 3;
+
+//         setSlideWidth();
+//         slideToImage(shownImage);
+
+//         // убираем со всех точек класс slider__dot_active и вешаем его на ту точку, по которой кликнули
+//         // вынести в отдельную функцию
+//         for (let sliderDot of sliderDots) {
+//             sliderDot.classList.remove('slider__dot_active');
+//         }
+//         sliderDots[i].classList.add('slider__dot_active');
+//     }
+// })
 
 
