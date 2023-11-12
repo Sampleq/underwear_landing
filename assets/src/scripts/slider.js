@@ -114,33 +114,32 @@ btnLeft.onclick = () => {
     sliderDots[Math.round(shownImage / 3)].classList.add('slider__dot_active');
 }
 
-// при клике на любую из точек в зависимости от window.innerWidth создаем массив из отображаемых точек
-sliderDots.forEach((sliderDot) => {
-    sliderDot.onclick = () => {
-        // for 3 card slider (window.innerWidth > 1250)
-        sliderDots = divSliderDots.querySelectorAll(".slider__dot:not(.slider__dot_2card):not(.slider__dot_1card)");
-        console.log(sliderDots);
+
+// при наведении (вхождении курсора мыши - т.е. однократно) на контейнер с точками (divSliderDots - .slider__dots) в зависимости от window.innerWidth создаем массив только из отображаемых точек - дописать ифы для разных ширин экрана!!!
+divSliderDots.onmouseenter = () => {
+    // for 3 card slider (window.innerWidth > 1250) - add if-s else-s
+    sliderDots = divSliderDots.querySelectorAll(".slider__dot:not(.slider__dot_2card):not(.slider__dot_1card)");
+    console.log(sliderDots);
 
 
-        sliderDots.forEach((sliderDot, i) => {
-            sliderDot.onclick = () => {
-                shownImage = i * 3;
+    sliderDots.forEach((sliderDot, i) => {
+        sliderDot.onclick = () => {
+            shownImage = i * 3;
 
-                setSlideWidth();
-                slideToImage(shownImage);
+            setSlideWidth();
+            slideToImage(shownImage);
 
-                // убираем со всех точек класс slider__dot_active и вешаем его на ту точку, по которой кликнули
-                // вынести в отдельную функцию
-                for (let sliderDot of sliderDots) {
-                    sliderDot.classList.remove('slider__dot_active');
-                }
-                sliderDots[i].classList.add('slider__dot_active');
+            // убираем со всех точек класс slider__dot_active и вешаем его на ту точку, по которой кликнули
+            // вынести в отдельную функцию
+            for (let sliderDot of sliderDots) {
+                sliderDot.classList.remove('slider__dot_active');
             }
-        })
+            sliderDots[i].classList.add('slider__dot_active');
+        }
+    })
 
 
-    }
-})
+}
 
 // sliderDots.forEach((sliderDot, i) => {
 //     sliderDot.onclick = () => {
