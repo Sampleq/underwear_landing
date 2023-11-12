@@ -13,6 +13,8 @@ function createSliderDots() {
     while (i < (sliderCards.length / 3)) {
         // divSliderDots.appendChild(sliderDot); - не добавляет один и тот же элемент больше одного раза
         divSliderDots.insertAdjacentHTML("beforeend", '<div class="slider__dot"></div>');
+        divSliderDots.insertAdjacentHTML("beforeend", '<div class="slider__dot slider__dot_2card"></div>');
+        divSliderDots.insertAdjacentHTML("beforeend", '<div class="slider__dot slider__dot_1card"></div>');
         i++;
         console.log(i);
     }
@@ -56,12 +58,21 @@ function slideToImage(shownImage) {
 
 
 btnRight.onclick = () => {
-    // shownImage -= slideWidth;
-    // sliderCardsCont.style.transform = 'translateX(' + (shownImage) + 'rem)'
+    // 
     shownImage++;
-    if (shownImage >= (sliderCards.length - 2)) {
+    // задаём на какой карточке при листании вперёд нужно будет переходить к первой карточке, в зависимости от ширины экрана (т.е. кол-ва отображаемых карточек в окне слайдера)
+    if (window.innerWidth < 825) {
+        if (shownImage >= (sliderCards.length)) {
+            shownImage = 0;
+        };
+    } else if (window.innerWidth < 1250) {
+        if (shownImage >= (sliderCards.length - 1)) {
+            shownImage = 0;
+        };
+    } else if (shownImage >= (sliderCards.length - 2)) {
         shownImage = 0;
     };
+
     setSlideWidth();
     slideToImage(shownImage);
 
@@ -72,13 +83,24 @@ btnRight.onclick = () => {
 }
 
 btnLeft.onclick = () => {
-    // shownImage += slideWidth;
-    // sliderCardsCont.style.transform = 'translateX(' + (shownImage) + 'rem)'
     shownImage--;
-    if (shownImage < 0) {
+
+    // задаём на какую карточку при листании назад с первой краточки нужно будет переходить, в зависимости от ширины экрана (т.е. кол-ва отображаемых карточек в окне слайдера)
+    if (window.innerWidth < 825) {
+        if (shownImage < 0) {
+            shownImage = (sliderCards.length - 1);
+        };
+    } else if (window.innerWidth < 1250) {
+        if (shownImage < 0) {
+            shownImage = (sliderCards.length - 2);
+        };
+    } else if (shownImage < 0) {
         shownImage = (sliderCards.length - 3);
-    }
+    };
+
     console.log(shownImage);
+
+    setSlideWidth();
     slideToImage(shownImage);
 
     for (let sliderDot of sliderDots) {
@@ -91,7 +113,12 @@ btnLeft.onclick = () => {
 sliderDots.forEach((sliderDot, i) => {
     sliderDot.onclick = () => {
         shownImage = i * 3;
+
+        setSlideWidth();
         slideToImage(shownImage);
+
+        // убираем со всех точек класс slider__dot_active и вешаем его на ту точку, по которой кликнули
+        // вынести в отдельную функцию
         for (let sliderDot of sliderDots) {
             sliderDot.classList.remove('slider__dot_active');
         }
