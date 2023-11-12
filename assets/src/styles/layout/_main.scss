@@ -1,5 +1,11 @@
 .main {
 
+    margin-bottom: 7rem;
+
+    @media ($tablet) {
+        margin-bottom: 11rem;
+    }
+
     &__wrapper {
         display: flex;
         flex-direction: column;
@@ -44,7 +50,7 @@
         // z-index: 1; // для &:hover::after; - не нужно - задал z-index: 2 для .header__nav_mob-menu
 
         &:hover::after {
-            content: 'logo with mix-blend-mode: screen;';
+            content: 'logo made with mix-blend-mode:';
             position: absolute;
             top: 100%;
             left: 0;

@@ -1,8 +1,9 @@
 .card {
     width: 30.0rem;
-    padding: 2.5rem 1.3rem 1.3rem;
+    // max-width: 30.0; - задаём для всех дивов карточки max-width: (или вместо ширины width  задаём для всех дивов карточки flex-basis) - чтобы крточка могла сжиматься из-за flex-shrink
+    padding: 2.5rem 1.3rem 2.5rem;
     background-color: $white;
-    transition: transform 0.3s;
+    transition: 0.3s;
 
     &:hover {
         transform: scale(1.02);
@@ -20,19 +21,19 @@
     }
 
     &__img-cont {
-        width: 27.4rem;
+        max-width: 27.4rem;
         height: 27.4rem;
         background-color: aquamarine;
         margin-bottom: 1.5rem;
 
         @media ($mobileM) {
-            width: 30.4rem;
+            max-width: 30.4rem;
             height: 30.4rem;
             margin-bottom: 2.5rem;
         }
 
         @media ($mobileL) {
-            width: 32.4rem;
+            max-width: 32.4rem;
             height: 32.4rem;
             margin-bottom: 3rem;
         }
@@ -48,7 +49,7 @@
     &__features {
         display: flex;
         justify-content: space-between;
-        // align-items: end
+        align-items: flex-end;
     }
 
     &__title {

@@ -96,8 +96,14 @@
     display: block;
     width: 5rem;
     height: 5rem;
+    flex-shrink: 0;
 
     @media ($mobileM) {
+        width: 6rem;
+        height: 6rem;
+    }
+
+    @media ($tablet) {
         width: 7rem;
         height: 7rem;
     }

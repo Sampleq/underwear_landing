@@ -1,0 +1,101 @@
+.cards {
+    background-color: $bgColor;
+    padding-top: 9rem;
+    padding-bottom: 8rem;
+
+    &__title {
+        @include h2();
+        margin-bottom: 4rem;
+    }
+}
+
+.slider {
+
+    // overflow-x: scroll;
+    // overflow-y: visible !important;
+
+    &__wrapper {
+        outline: 1px solid;
+        display: flex;
+        align-items: flex-end;
+        height: calc((50rem) * 1.02);
+        margin-bottom: 3rem;
+    }
+
+    // height: calc((50rem + (2 * 1.5rem)) * 1.02);
+
+
+    margin: 0 auto;
+
+    width: 30rem;
+
+    @media ($mobileM) {
+        width: 35.4rem;
+    }
+
+    @media ($mobileL) {
+        width: 38.4rem;
+    }
+
+
+    @media (min-width:calc(792px / 0.96)) {
+        width: 79.2rem;
+    }
+
+    @media (min-width:1250px) {
+        // width: 100%;
+        width: 124.9rem;
+    }
+
+    &__cards-cont {
+        display: flex;
+        flex-direction: row;
+        // display: grid;
+        // grid-template-columns: 1fr;
+        // grid-template-columns: repeat(auto-fill, minmax(30rem, 38.4rem));
+        // grid-template-columns: repeat(auto-fill, 1fr);
+        // width: fit-content;
+        // justify-content: center;
+
+        // height: 39.3rem;
+
+        // @media ($mobileM) {
+        //     height: 45.6rem;
+        // }
+
+        // @media ($mobileL) {
+        //     height: 49.1rem;
+        // }
+
+        // @media ($tablet) {
+        //     height: 50rem;
+        // }
+
+        // overflow-y: hidden;
+
+        @media ($tablet) {
+            // grid-template-columns: 1fr 1fr 1fr;
+            // grid-template-columns: repeat(3, minmax(30vw, 38.4rem));
+        }
+
+        gap: 2.4rem;
+        // margin-bottom: 3rem;
+    }
+
+    &__card {
+        // grid-row: 1 / 2;
+        flex-shrink: 0;
+    }
+
+    &__controls {
+        display: flex;
+        justify-content: center;
+        column-gap: 3rem;
+    }
+
+    &__dots {
+        display: flex;
+        justify-content: center;
+        column-gap: 2rem;
+    }
+}
