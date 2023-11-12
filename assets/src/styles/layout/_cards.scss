@@ -13,6 +13,7 @@
 }
 
 .slider {
+    user-select: none;
     // overflow-x: scroll;
     overflow-x: hidden;
     overflow-y: visible !important; // не работает!(
