@@ -31,14 +31,10 @@ const sliderDots = document.querySelectorAll('.slider__dot');
 // делаем активной первую точку слайдера
 sliderDots[0].classList.add('slider__dot_active');
 
-// btnRight.onclick = () => {
-//     sliderCardsCont.style.transform = 'translateX(' + 40 + 'rem);'
-// }
-
 sliderCardsCont.style.transition = '0.3s';
 sliderWrapper.style.transition = '0.3s';
 
-let shownImage = 0; // индекс отображаемой картинки (карточки)
+let shownImage = 0; //задаём индекс отображаемой картинки (карточки) -(при загрузке страницы отображается первая карточка, её индекс 0 )
 let slideWidth; // расстояние сдвига карточек при листании (ширина карточки + расстояние между карточками)
 
 function setSlideWidth() {

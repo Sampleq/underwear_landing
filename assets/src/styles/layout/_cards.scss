@@ -118,3 +118,22 @@
         column-gap: 2rem;
     }
 }
+
+
+// for JS slider dots
+
+.slider__dot_1card {
+    display: block;
+
+    @media (min-width:825px) {
+        display: none;
+    }
+}
+
+.slider__dot_2card {
+    display: block;
+
+    @media (min-width:1250px) {
+        display: none;
+    }
+}
