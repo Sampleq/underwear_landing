@@ -221,3 +221,11 @@
         }
     }
 }
+
+@mixin section_mb() {
+    margin-bottom: 7rem;
+
+    @media ($tablet) {
+        margin-bottom: 11rem;
+    }
+}

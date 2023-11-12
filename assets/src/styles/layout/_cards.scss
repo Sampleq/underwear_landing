@@ -1,4 +1,6 @@
 .cards {
+    @include section_mb();
+
     position: relative; // для абсолютного позиционирования slider__controls (чтобы он не перематывался вместе с карточками)
     background-color: $bgColor;
     padding-top: 9rem;
@@ -11,7 +13,8 @@
 }
 
 .slider {
-    overflow-x: scroll;
+    // overflow-x: scroll;
+    overflow-x: hidden;
     overflow-y: visible !important; // не работает!(
 
     margin: 0 auto;

@@ -1,10 +1,6 @@
 .main {
 
-    margin-bottom: 7rem;
-
-    @media ($tablet) {
-        margin-bottom: 11rem;
-    }
+    @include section_mb();
 
     &__wrapper {
         display: flex;
