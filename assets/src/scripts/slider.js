@@ -2,10 +2,11 @@
 const sliderCards = document.querySelectorAll('.slider__card');
 const divSliderDots = document.querySelector('.slider__dots');
 
-const sliderDot = document.createElement('div');
-// sliderDot.id = 'test';
-sliderDot.classList.add('slider__dot');
-// document.body.appendChild(sliderDot);
+// не используется т.к. метод  .appendChild не добавляет один и тот же элемент больше одного раза
+// const sliderDot = document.createElement('div');
+// // sliderDot.id = 'test';
+// sliderDot.classList.add('slider__dot');
+// // document.body.appendChild(sliderDot);
 
 function createSliderDots() {
     let i = 0;
@@ -25,8 +26,8 @@ const sliderCardsCont = document.querySelector('.slider__cards-cont');
 const sliderWrapper = document.querySelector('.slider__wrapper');
 const sliderDots = document.querySelectorAll('.slider__dot');
 
+// делаем активной первую точку слайдера
 sliderDots[0].classList.add('slider__dot_active');
-
 
 // btnRight.onclick = () => {
 //     sliderCardsCont.style.transform = 'translateX(' + 40 + 'rem);'
@@ -34,14 +35,22 @@ sliderDots[0].classList.add('slider__dot_active');
 
 sliderCardsCont.style.transition = '0.3s';
 sliderWrapper.style.transition = '0.3s';
-console.log(btnRight);
 
+let shownImage = 0; // индекс отображаемой картинки (карточки)
+let slideWidth; // расстояние сдвига карточек при листании (ширина карточки + расстояние между карточками)
 
-const slideWidth = 38.4 + 2.4;
-
-let shownImage = 0
+function setSlideWidth() {
+    if (window.innerWidth < 375) {
+        slideWidth = 30 + 2.4; //ширина карточки + расстояние между карточками
+    } else if (window.innerWidth < 425) {
+        slideWidth = 35.4 + 2.4; //ширина карточки + расстояние между карточками
+    } else {
+        slideWidth = 38.4 + 2.4; //ширина карточки + расстояние между карточками
+    }
+}
 
 function slideToImage(shownImage) {
+    //смещаем внутреннюю обёртку карточек внутри внешней с overflow:hidden; ("окошка") 
     sliderWrapper.style.transform = 'translateX(-' + (shownImage * slideWidth) + 'rem)'
 }
 
@@ -52,7 +61,8 @@ btnRight.onclick = () => {
     shownImage++;
     if (shownImage >= (sliderCards.length - 2)) {
         shownImage = 0;
-    }
+    };
+    setSlideWidth();
     slideToImage(shownImage);
 
     for (let sliderDot of sliderDots) {
