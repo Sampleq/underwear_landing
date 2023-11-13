@@ -66,7 +66,7 @@ function setSlideWidth() {
 
 function slideToImage(shownImage) {
     //смещаем внутреннюю обёртку карточек внутри внешней с overflow:hidden; ("окошка") 
-    sliderWrapper.style.transform = 'translateX(-' + (shownImage * slideWidth) + 'rem)'
+    sliderWrapper.style.transform = 'translateX(-' + (shownImage * slideWidth) + 'rem)';
 }
 
 
@@ -77,14 +77,14 @@ btnRight.onclick = () => {
     if (window.innerWidth < 825) {
         if (shownImage >= (sliderCards.length)) {
             shownImage = 0;
-        };
+        }
     } else if (window.innerWidth < 1250) {
         if (shownImage >= (sliderCards.length - 1)) {
             shownImage = 0;
-        };
+        }
     } else if (shownImage >= (sliderCards.length - 2)) {
         shownImage = 0;
-    };
+    }
 
     setSlideWidth();
     slideToImage(shownImage);
@@ -242,7 +242,7 @@ divSliderDots.onmouseenter = () => {
                 }
                 sliderDots[i].classList.add('slider__dot_active');
             }
-        })
+        });
     }
 }
 
