@@ -94,19 +94,26 @@ btnRight.onclick = () => {
     }
 
     // в зависимости от ширины экрана (и кол-ва отображаемых точек) добавляем только отображаемые точки в массив (перезаписывая его)
-    // for 2-card slider (window.innerWidth < 1250)
-    if (window.innerWidth < 1250) {
-        sliderDots = divSliderDots.querySelectorAll('.slider__dot:not(.slider__dot_1card)');
+    // for 1-card slider (window.innerWidth < 825)
+    if (window.innerWidth < 825) {
+        sliderDots = divSliderDots.querySelectorAll('.slider__dot');
         console.log(sliderDots);
-        sliderDots[Math.floor(shownImage / 2)].classList.add('slider__dot_active');
-
-    } else {
-        // for 3-card slider (window.innerWidth > 1250)
-        sliderDots = divSliderDots.querySelectorAll(".slider__dot:not(.slider__dot_2card):not(.slider__dot_1card)");
-        console.log(sliderDots);
-
-        sliderDots[Math.round(shownImage / 3)].classList.add('slider__dot_active');
+        sliderDots[shownImage].classList.add('slider__dot_active');
     }
+    else
+        // for 2-card slider (window.innerWidth < 1250)
+        if (window.innerWidth < 1250) {
+            sliderDots = divSliderDots.querySelectorAll('.slider__dot:not(.slider__dot_1card)');
+            console.log(sliderDots);
+            sliderDots[Math.floor(shownImage / 2)].classList.add('slider__dot_active');
+
+        } else {
+            // for 3-card slider (window.innerWidth > 1250)
+            sliderDots = divSliderDots.querySelectorAll(".slider__dot:not(.slider__dot_2card):not(.slider__dot_1card)");
+            console.log(sliderDots);
+
+            sliderDots[Math.round(shownImage / 3)].classList.add('slider__dot_active');
+        }
 }
 
 btnLeft.onclick = () => {
@@ -135,47 +142,76 @@ btnLeft.onclick = () => {
     }
 
     // в зависимости от ширины экрана (и кол-ва отображаемых точек) добавляем только отображаемые точки в массив (перезаписывая его)
-    // for 2-card slider (window.innerWidth < 1250)
-    if (window.innerWidth < 1250) {
-        sliderDots = divSliderDots.querySelectorAll('.slider__dot:not(.slider__dot_1card)');
+    // for 1-card slider (window.innerWidth < 825)
+    if (window.innerWidth < 825) {
+        sliderDots = divSliderDots.querySelectorAll('.slider__dot');
         console.log(sliderDots);
-        sliderDots[Math.floor(shownImage / 2)].classList.add('slider__dot_active');
+        sliderDots[shownImage].classList.add('slider__dot_active');
     }
-    else {
-        // for 3-card slider (window.innerWidth > 1250)
-        sliderDots = divSliderDots.querySelectorAll(".slider__dot:not(.slider__dot_2card):not(.slider__dot_1card)");
-        console.log(sliderDots);
+    else
+        // for 2-card slider (window.innerWidth < 1250)
+        if (window.innerWidth < 1250) {
+            sliderDots = divSliderDots.querySelectorAll('.slider__dot:not(.slider__dot_1card)');
+            console.log(sliderDots);
+            sliderDots[Math.floor(shownImage / 2)].classList.add('slider__dot_active');
+        }
+        else {
+            // for 3-card slider (window.innerWidth > 1250)
+            sliderDots = divSliderDots.querySelectorAll(".slider__dot:not(.slider__dot_2card):not(.slider__dot_1card)");
+            console.log(sliderDots);
 
-        sliderDots[Math.round(shownImage / 3)].classList.add('slider__dot_active');
-    }
+            sliderDots[Math.round(shownImage / 3)].classList.add('slider__dot_active');
+        }
 }
 
 
-// при наведении (вхождении курсора мыши - т.е. однократно) на контейнер с точками (divSliderDots - .slider__dots) в зависимости от window.innerWidth создаем массив только из отображаемых точек - дописать ифы для разных ширин экрана!!!
+// при наведении (вхождении курсора мыши - т.е. однократно) на контейнер с точками (divSliderDots - .slider__dots) в зависимости от window.innerWidth создаем массив только из отображаемых точек и присваиваем точкам (из вновь созданного массива sliderDots) действие перелистывания слайдера по клику:
 divSliderDots.onmouseenter = () => {
-    // // for 3 card slider (window.innerWidth > 1250) - add if-s else-s
-    // sliderDots = divSliderDots.querySelectorAll(".slider__dot:not(.slider__dot_2card):not(.slider__dot_1card)");
-    // console.log(sliderDots);
 
     for (let sliderDot of sliderDots) {
         sliderDot.classList.remove('slider__dot_active');
     }
-    // в зависимости от ширины экрана (и кол-ва отображаемых точек) добавляем только отображаемые точки в массив (перезаписывая его)
-    // for 2-card slider (window.innerWidth < 1250)
-    if (window.innerWidth < 1250) {
-        sliderDots = divSliderDots.querySelectorAll('.slider__dot:not(.slider__dot_1card)');
+    // в зависимости от ширины экрана (и кол-ва отображаемых точек) добавляем только отображаемые точки в массив (перезаписывая его):
+    // for 1-card slider (window.innerWidth < 825)
+    if (window.innerWidth < 825) {
+        sliderDots = divSliderDots.querySelectorAll('.slider__dot');
         console.log(sliderDots);
-        sliderDots[Math.floor(shownImage / 2)].classList.add('slider__dot_active');
+        sliderDots[shownImage].classList.add('slider__dot_active');
     }
-    else {
-        // for 3-card slider (window.innerWidth > 1250)
-        sliderDots = divSliderDots.querySelectorAll(".slider__dot:not(.slider__dot_2card):not(.slider__dot_1card)");
-        console.log(sliderDots);
+    else
+        // for 2-card slider (window.innerWidth < 1250)
+        if (window.innerWidth < 1250) {
+            sliderDots = divSliderDots.querySelectorAll('.slider__dot:not(.slider__dot_1card)');
+            console.log(sliderDots);
+            sliderDots[Math.floor(shownImage / 2)].classList.add('slider__dot_active');
+        }
+        else {
+            // for 3-card slider (window.innerWidth > 1250)
+            sliderDots = divSliderDots.querySelectorAll(".slider__dot:not(.slider__dot_2card):not(.slider__dot_1card)");
+            console.log(sliderDots);
 
-        sliderDots[Math.round(shownImage / 3)].classList.add('slider__dot_active');
+            sliderDots[Math.round(shownImage / 3)].classList.add('slider__dot_active');
+        }
+
+    // присваиваем точкам (из вновь созданного массива sliderDots) действие перелистывания слайдера по клику
+
+    if (window.innerWidth < 825) {
+        sliderDots.forEach((sliderDot, i) => {
+            sliderDot.onclick = () => {
+                shownImage = i;
+                setSlideWidth();
+                slideToImage(shownImage);
+
+                // убираем со всех точек класс slider__dot_active и вешаем его на ту точку, по которой кликнули
+                // вынести в отдельную функцию
+                for (let sliderDot of sliderDots) {
+                    sliderDot.classList.remove('slider__dot_active');
+                }
+                sliderDots[i].classList.add('slider__dot_active');
+            }
+        });
     }
-
-    if (window.innerWidth < 1250) {
+    else if (window.innerWidth < 1250) {
         sliderDots.forEach((sliderDot, i) => {
             sliderDot.onclick = () => {
                 shownImage = i * 2;
@@ -208,9 +244,6 @@ divSliderDots.onmouseenter = () => {
             }
         })
     }
-
-
-
 }
 
 
