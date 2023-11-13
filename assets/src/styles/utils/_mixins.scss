@@ -167,6 +167,7 @@
 @mixin slider__dot($_color: $white) {
     width: 1.5rem;
     height: 1.5rem;
+    flex-shrink: 0;
     background-color: $_color;
     transition: 0.3s;
 
