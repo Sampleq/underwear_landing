@@ -69,6 +69,12 @@ function slideToImage(shownImage) {
     sliderWrapper.style.transform = 'translateX(-' + (shownImage * slideWidth) + 'rem)';
 }
 
+function removeSliderDotActive() {
+    for (let sliderDot of sliderDots) {
+        sliderDot.classList.remove('slider__dot_active');
+    }
+}
+
 
 btnRight.onclick = () => {
     // 
@@ -89,9 +95,7 @@ btnRight.onclick = () => {
     setSlideWidth();
     slideToImage(shownImage);
 
-    for (let sliderDot of sliderDots) {
-        sliderDot.classList.remove('slider__dot_active');
-    }
+    removeSliderDotActive();
 
     // в зависимости от ширины экрана (и кол-ва отображаемых точек) добавляем только отображаемые точки в массив (перезаписывая его)
     // for 1-card slider (window.innerWidth < 825)
@@ -137,9 +141,7 @@ btnLeft.onclick = () => {
     setSlideWidth();
     slideToImage(shownImage);
 
-    for (let sliderDot of sliderDots) {
-        sliderDot.classList.remove('slider__dot_active');
-    }
+    removeSliderDotActive();
 
     // в зависимости от ширины экрана (и кол-ва отображаемых точек) добавляем только отображаемые точки в массив (перезаписывая его)
     // for 1-card slider (window.innerWidth < 825)
@@ -168,9 +170,7 @@ btnLeft.onclick = () => {
 // при наведении (вхождении курсора мыши - т.е. однократно) на контейнер с точками (divSliderDots - .slider__dots) в зависимости от window.innerWidth создаем массив только из отображаемых точек и присваиваем точкам (из вновь созданного массива sliderDots) действие перелистывания слайдера по клику:
 divSliderDots.onmouseenter = () => {
 
-    for (let sliderDot of sliderDots) {
-        sliderDot.classList.remove('slider__dot_active');
-    }
+    removeSliderDotActive();
     // в зависимости от ширины экрана (и кол-ва отображаемых точек) добавляем только отображаемые точки в массив (перезаписывая его):
     // for 1-card slider (window.innerWidth < 825)
     if (window.innerWidth < 825) {
@@ -203,10 +203,7 @@ divSliderDots.onmouseenter = () => {
                 slideToImage(shownImage);
 
                 // убираем со всех точек класс slider__dot_active и вешаем его на ту точку, по которой кликнули
-                // вынести в отдельную функцию
-                for (let sliderDot of sliderDots) {
-                    sliderDot.classList.remove('slider__dot_active');
-                }
+                removeSliderDotActive();
                 sliderDots[i].classList.add('slider__dot_active');
             }
         });
@@ -220,13 +217,10 @@ divSliderDots.onmouseenter = () => {
                 slideToImage(shownImage);
 
                 // убираем со всех точек класс slider__dot_active и вешаем его на ту точку, по которой кликнули
-                // вынести в отдельную функцию
-                for (let sliderDot of sliderDots) {
-                    sliderDot.classList.remove('slider__dot_active');
-                }
+                removeSliderDotActive();
                 sliderDots[i].classList.add('slider__dot_active');
             }
-        })
+        });
     } else {
         sliderDots.forEach((sliderDot, i) => {
             sliderDot.onclick = () => {
@@ -236,10 +230,7 @@ divSliderDots.onmouseenter = () => {
                 slideToImage(shownImage);
 
                 // убираем со всех точек класс slider__dot_active и вешаем его на ту точку, по которой кликнули
-                // вынести в отдельную функцию
-                for (let sliderDot of sliderDots) {
-                    sliderDot.classList.remove('slider__dot_active');
-                }
+                removeSliderDotActive();
                 sliderDots[i].classList.add('slider__dot_active');
             }
         });
