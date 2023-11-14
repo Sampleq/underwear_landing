@@ -216,7 +216,9 @@ divSliderDots.ontouchstart = turnOnSliderDots;
 
 let xStart;
 let xEnd;
+let xEndTouch;
 let distanceX;
+let distanceXTouch;
 
 sliderWrapper.onmousedown = (e) => {
     e.preventDefault(); // чтоб не перетягивалась картинка
@@ -236,7 +238,6 @@ sliderWrapper.ontouchstart = (e) => {
     xStart = e.clientX;
     console.log(xStart);
 }
-
 
 sliderWrapper.onmouseup = (e) => {
     // e.preventDefault(); // чтоб не перетягивалась картинка
@@ -262,10 +263,6 @@ sliderWrapper.onmouseup = (e) => {
 }
 sliderWrapper.ontouchend = (e) => {
     // e.preventDefault(); // чтоб не перетягивалась картинка
-    // e.stopPropagation();
-    // console.log(e);
-    // console.log(e.clientX);
-    // console.log(e.clientY);
     xEnd = e.clientX;
     console.log(xEnd);
 
@@ -279,6 +276,24 @@ sliderWrapper.ontouchend = (e) => {
         slideLeft();
     }
     if (distanceX < -10) {
+        slideRight();
+    }
+}
+sliderWrapper.ontouchmove = (e) => {
+    // e.preventDefault(); // чтоб не перетягивалась картинка
+    xEndTouch = e.clientX;
+    console.log(xEnd);
+
+    console.log('distanceX = xEnd - xStart = ' + (xEnd - xStart));
+
+    distanceXTouch = (xEndTouch - xStart);
+    console.log(distanceX);
+
+
+    if (distanceXTouch > 10) {
+        slideLeft();
+    }
+    if (distanceXTouch < -10) {
         slideRight();
     }
 }
