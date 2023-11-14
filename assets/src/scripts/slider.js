@@ -262,13 +262,57 @@ function touchSlide(e) {
     }
 }
 
-// sliderWrapper.onmouseup = (e) => {
-//     touchSlide(e);
-// }
-
-sliderWrapper.addEventListener('mouseup', (e) => { touchSlide(e) }, { passive: false });
+sliderWrapper.onmouseup = (e) => {
+    touchSlide(e);
+}
+// sliderWrapper.addEventListener('mouseup', (e) => { touchSlide(e) }, { passive: false });
 // sliderWrapper.addEventListener('mousemove', (e) => { touchSlide(e) }, { passive: false });
 
 
-sliderWrapper.addEventListener('touchstart', (e) => { touchSlide(e) }, { passive: false });
-sliderWrapper.addEventListener('touchmove', (e) => { touchSlide(e) }, { passive: false });
+// don't work on iPhone
+// sliderWrapper.addEventListener('touchstart', (e) => { touchSlide(e) }, { passive: false });
+// sliderWrapper.addEventListener('touchmove', (e) => { touchSlide(e) }, { passive: false });
+
+
+//https://stackoverflow.com/questions/62823062/adding-a-simple-left-right-swipe-gesture
+
+let touchstartX;
+let touchstartY;
+let touchendX;
+let touchendY;
+
+sliderWrapper.addEventListener('touchstart', function (event) {
+    touchstartX = event.changedTouches[0].screenX;
+    touchstartY = event.changedTouches[0].screenY;
+}, false);
+
+sliderWrapper.addEventListener('touchend', function (event) {
+    touchendX = event.changedTouches[0].screenX;
+    touchendY = event.changedTouches[0].screenY;
+    handleGesture();
+}, false);
+
+
+function handleGesture() {
+    if (touchendX < touchstartX) {
+        console.log('Swiped Left');
+        alert('Swiped Left');
+    }
+
+    if (touchendX > touchstartX) {
+        console.log('Swiped Right');
+        alert('Swiped Right');
+    }
+
+    if (touchendY < touchstartY) {
+        console.log('Swiped Up');
+    }
+
+    if (touchendY > touchstartY) {
+        console.log('Swiped Down');
+    }
+
+    if (touchendY === touchstartY) {
+        console.log('Tap');
+    }
+}
