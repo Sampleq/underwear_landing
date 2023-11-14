@@ -281,12 +281,16 @@ let touchstartY;
 let touchendX;
 let touchendY;
 
-sliderWrapper.addEventListener('touchstart', function (event) {
+const slider = document.querySelector('.slider');
+
+// slider.style.background = 'red';
+
+slider.addEventListener('touchstart', function (event) {
     touchstartX = event.changedTouches[0].screenX;
     touchstartY = event.changedTouches[0].screenY;
 }, false);
 
-sliderWrapper.addEventListener('touchend', function (event) {
+slider.addEventListener('touchend', function (event) {
     touchendX = event.changedTouches[0].screenX;
     touchendY = event.changedTouches[0].screenY;
     handleGesture();
@@ -297,13 +301,13 @@ function handleGesture() {
     if (touchendX < touchstartX) {
         console.log('Swiped Left');
         // alert('Swiped Left');
-        slideLeft();
+        slideRight();
     }
 
     if (touchendX > touchstartX) {
         console.log('Swiped Right');
         // alert('Swiped Right');
-        slideRight();
+        slideLeft();
     }
 
     if (touchendY < touchstartY) {
