@@ -239,8 +239,8 @@ sliderWrapper.ontouchstart = (e) => {
     console.log(xStart);
 }
 
-sliderWrapper.onmouseup = (e) => {
-    // e.preventDefault(); // чтоб не перетягивалась картинка
+function touchSlide(e) {
+    e.preventDefault(); // чтоб не перетягивалась картинка
     // e.stopPropagation();
     // console.log(e);
     // console.log(e.clientX);
@@ -261,39 +261,14 @@ sliderWrapper.onmouseup = (e) => {
         slideRight();
     }
 }
-sliderWrapper.ontouchend = (e) => {
-    // e.preventDefault(); // чтоб не перетягивалась картинка
-    xEnd = e.clientX;
-    console.log(xEnd);
 
-    console.log('distanceX = xEnd - xStart = ' + (xEnd - xStart));
+// sliderWrapper.onmouseup = (e) => {
+//     touchSlide(e);
+// }
 
-    distanceX = (xEnd - xStart);
-    console.log(distanceX);
+sliderWrapper.addEventListener('mouseup', (e) => { touchSlide(e) }, { passive: false });
+// sliderWrapper.addEventListener('mousemove', (e) => { touchSlide(e) }, { passive: false });
 
 
-    if (distanceX > 10) {
-        slideLeft();
-    }
-    if (distanceX < -10) {
-        slideRight();
-    }
-}
-sliderWrapper.ontouchmove = (e) => {
-    // e.preventDefault(); // чтоб не перетягивалась картинка
-    xEndTouch = e.clientX;
-    console.log(xEnd);
-
-    console.log('distanceX = xEnd - xStart = ' + (xEnd - xStart));
-
-    distanceXTouch = (xEndTouch - xStart);
-    console.log(distanceX);
-
-
-    if (distanceXTouch > 10) {
-        slideLeft();
-    }
-    if (distanceXTouch < -10) {
-        slideRight();
-    }
-}
+sliderWrapper.addEventListener('touchstart', (e) => { touchSlide(e) }, { passive: false });
+sliderWrapper.addEventListener('touchmove', (e) => { touchSlide(e) }, { passive: false });
