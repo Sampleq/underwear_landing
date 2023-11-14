@@ -2,12 +2,6 @@
 const sliderCards = document.querySelectorAll('.slider__card');
 const divSliderDots = document.querySelector('.slider__dots');
 
-// не используется т.к. метод  .appendChild не добавляет один и тот же элемент больше одного раза
-// const sliderDot = document.createElement('div');
-// // sliderDot.id = 'test';
-// sliderDot.classList.add('slider__dot');
-// // document.body.appendChild(sliderDot);
-
 function createSliderDots() {
     let i = 0;
     while (i < (sliderCards.length / 3)) {
@@ -209,3 +203,164 @@ function turnOnSliderDots() {
 
 divSliderDots.onmouseenter = turnOnSliderDots;
 divSliderDots.ontouchstart = turnOnSliderDots;
+
+
+
+// touch slider
+
+let xStart;
+let xEnd;
+let distanseX;
+
+sliderWrapper.onmousedown = (e) => {
+    e.preventDefault(); // чтоб не перетягивалась картинка
+    // e.stopPropagation();
+    // console.log(e);
+    // console.log(e.clientX);
+    // console.log(e.clientY);
+    xStart = e.clientX;
+    console.log(xStart);
+}
+sliderWrapper.ontouchstart = (e) => {
+    e.preventDefault(); // чтоб не перетягивалась картинка
+    // e.stopPropagation();
+    // console.log(e);
+    // console.log(e.clientX);
+    // console.log(e.clientY);
+    xStart = e.clientX;
+    console.log(xStart);
+}
+
+
+sliderWrapper.onmouseup = (e) => {
+    // e.preventDefault(); // чтоб не перетягивалась картинка
+    // e.stopPropagation();
+    // console.log(e);
+    // console.log(e.clientX);
+    // console.log(e.clientY);
+    xEnd = e.clientX;
+    console.log(xEnd);
+
+    console.log('distanseX = xEnd - xStart = ' + (xEnd - xStart));
+
+    distanseX = (xEnd - xStart);
+    console.log(distanseX);
+
+
+
+    // just code of btnLeft ))
+    if (distanseX > 100) {
+        shownImage--; // уменьшаем индекс отображаемой картинки на 1 (т.к. мы листаем вправо)
+
+        // задаём на какую карточку при листании назад с первой краточки нужно будет переходить, в зависимости от ширины экрана (т.е. кол-ва отображаемых карточек в окне слайдера)
+        if (window.innerWidth < 825) {
+            if (shownImage < 0) {
+                shownImage = (sliderCards.length - 1);
+            };
+        } else if (window.innerWidth < 1250) {
+            if (shownImage < 0) {
+                shownImage = (sliderCards.length - 2);
+            };
+        } else if (shownImage < 0) {
+            shownImage = (sliderCards.length - 3);
+        };
+
+        console.log(shownImage);
+
+        setSlideWidth();
+        slideToImage(shownImage);
+
+        removeSliderDotActive();
+
+        // в зависимости от ширины экрана (и кол-ва отображаемых точек) добавляем только отображаемые точки в массив (перезаписывая его)
+        // for 1-card slider (window.innerWidth < 825)
+        if (window.innerWidth < 825) {
+            sliderDots = divSliderDots.querySelectorAll('.slider__dot');
+            console.log(sliderDots);
+            sliderDots[shownImage].classList.add('slider__dot_active');
+        }
+        else
+            // for 2-card slider (window.innerWidth < 1250)
+            if (window.innerWidth < 1250) {
+                sliderDots = divSliderDots.querySelectorAll('.slider__dot:not(.slider__dot_1card)');
+                console.log(sliderDots);
+                sliderDots[Math.floor(shownImage / 2)].classList.add('slider__dot_active');
+            }
+            else {
+                // for 3-card slider (window.innerWidth > 1250)
+                sliderDots = divSliderDots.querySelectorAll(".slider__dot:not(.slider__dot_2card):not(.slider__dot_1card)");
+                console.log(sliderDots);
+                sliderDots[Math.round(shownImage / 3)].classList.add('slider__dot_active');
+            }
+    }
+
+
+
+
+}
+sliderWrapper.ontouchend = (e) => {
+    // e.preventDefault(); // чтоб не перетягивалась картинка
+    // e.stopPropagation();
+    // console.log(e);
+    // console.log(e.clientX);
+    // console.log(e.clientY);
+    xEnd = e.clientX;
+    console.log(xEnd);
+
+    console.log('distanseX = xEnd - xStart = ' + (xEnd - xStart));
+
+    distanseX = (xEnd - xStart);
+    console.log(distanseX);
+
+
+
+    // just code of btnLeft ))
+    if (distanseX > 100) {
+        shownImage--; // уменьшаем индекс отображаемой картинки на 1 (т.к. мы листаем вправо)
+
+        // задаём на какую карточку при листании назад с первой краточки нужно будет переходить, в зависимости от ширины экрана (т.е. кол-ва отображаемых карточек в окне слайдера)
+        if (window.innerWidth < 825) {
+            if (shownImage < 0) {
+                shownImage = (sliderCards.length - 1);
+            };
+        } else if (window.innerWidth < 1250) {
+            if (shownImage < 0) {
+                shownImage = (sliderCards.length - 2);
+            };
+        } else if (shownImage < 0) {
+            shownImage = (sliderCards.length - 3);
+        };
+
+        console.log(shownImage);
+
+        setSlideWidth();
+        slideToImage(shownImage);
+
+        removeSliderDotActive();
+
+        // в зависимости от ширины экрана (и кол-ва отображаемых точек) добавляем только отображаемые точки в массив (перезаписывая его)
+        // for 1-card slider (window.innerWidth < 825)
+        if (window.innerWidth < 825) {
+            sliderDots = divSliderDots.querySelectorAll('.slider__dot');
+            console.log(sliderDots);
+            sliderDots[shownImage].classList.add('slider__dot_active');
+        }
+        else
+            // for 2-card slider (window.innerWidth < 1250)
+            if (window.innerWidth < 1250) {
+                sliderDots = divSliderDots.querySelectorAll('.slider__dot:not(.slider__dot_1card)');
+                console.log(sliderDots);
+                sliderDots[Math.floor(shownImage / 2)].classList.add('slider__dot_active');
+            }
+            else {
+                // for 3-card slider (window.innerWidth > 1250)
+                sliderDots = divSliderDots.querySelectorAll(".slider__dot:not(.slider__dot_2card):not(.slider__dot_1card)");
+                console.log(sliderDots);
+                sliderDots[Math.round(shownImage / 3)].classList.add('slider__dot_active');
+            }
+    }
+
+
+
+
+}
