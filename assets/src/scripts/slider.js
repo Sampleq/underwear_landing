@@ -269,7 +269,7 @@ sliderWrapper.onmouseup = (e) => {
 // sliderWrapper.addEventListener('mousemove', (e) => { touchSlide(e) }, { passive: false });
 
 
-// don't work on iPhone
+// don't work on iPhone - ПЕРЕПРОВЕРИТЬ!!! - возможно не успел обновиться GitPages
 // sliderWrapper.addEventListener('touchstart', (e) => { touchSlide(e) }, { passive: false });
 // sliderWrapper.addEventListener('touchmove', (e) => { touchSlide(e) }, { passive: false });
 
@@ -296,12 +296,14 @@ sliderWrapper.addEventListener('touchend', function (event) {
 function handleGesture() {
     if (touchendX < touchstartX) {
         console.log('Swiped Left');
-        alert('Swiped Left');
+        // alert('Swiped Left');
+        slideLeft();
     }
 
     if (touchendX > touchstartX) {
         console.log('Swiped Right');
-        alert('Swiped Right');
+        // alert('Swiped Right');
+        slideRight();
     }
 
     if (touchendY < touchstartY) {
