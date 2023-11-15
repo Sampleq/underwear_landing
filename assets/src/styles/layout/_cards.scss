@@ -102,6 +102,10 @@
         &:last-child {
             margin-right: 2.4rem;
         }
+
+        .card__img {
+            pointer-events: none;
+        }
     }
 
     &__controls {

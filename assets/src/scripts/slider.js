@@ -225,7 +225,7 @@ let outBounds; // маркер что мы не отжали мышку над s
 
 
 sliderWrapper.onmousedown = (e) => {
-    e.preventDefault(); // чтоб не перетягивалась картинка
+    // e.preventDefault(); // чтоб не перетягивалась картинка -  от этого "зависал" :hover на карточке - переделал через CSS: .card__img {pointer-events: none;}
     // e.stopPropagation();
     // console.log(e);
     // console.log(e.clientX);
