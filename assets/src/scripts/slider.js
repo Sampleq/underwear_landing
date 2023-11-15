@@ -213,17 +213,16 @@ divSliderDots.ontouchstart = turnOnSliderDots;
 
 
 
-// touch slider
+// MOUSE DRAG touch slider
 
 let xStart;
 let xEnd;
 let xCurr;
-// let xEndTouch;
 let distanceX; // расстояние между нажатием и отжатием мышки
-// let distanceXTouch;
+let xDrag; //  расстояние между нажатием и убиранием указателя мыши за пределы sliderWrapper
 
-// маркер что мы не отжали мышку над sliderWrapper а убрали указатель за его пределы
-let outBounds;
+let outBounds; // маркер что мы не отжали мышку над sliderWrapper а убрали указатель за его пределы
+
 
 sliderWrapper.onmousedown = (e) => {
     e.preventDefault(); // чтоб не перетягивалась картинка
@@ -240,7 +239,7 @@ sliderWrapper.onmousedown = (e) => {
     setSlideWidth();
     sliderWrapper.onmousemove = (e) => {
         xCurr = e.clientX;
-        xDrag = xCurr - xStart;
+        xDrag = (xCurr - xStart) * 1.5; // 1.5 - коэфф. увеличения "движения мыши"
         // console.log(xDrag);
         // console.log(((shownImage * slideWidth) - (xDrag / 10)));
         sliderWrapper.style.transform = 'translateX(' + ((-(shownImage * slideWidth)) + (xDrag / 10)) + 'rem)';
@@ -256,15 +255,23 @@ function touchSlide(e) {
     // console.log(xEnd);
     // console.log('distanceX = xEnd - xStart = ' + (xEnd - xStart));
 
-    distanceX = (xEnd - xStart);
+    distanceX = (xEnd - xStart) * 1.5; // 1.5 - коэфф. увеличения "движения мыши"
     // console.log(distanceX);
 
-
-    if (distanceX > 0) {
-        slideToLeft();
-    }
-    if (distanceX < -0) {
+    if (distanceX < ((-slideWidth / 2) * 10)) {
         slideToRight();
+        if (distanceX < ((-3 * slideWidth / 2) * 10)) {
+            slideToRight();
+        }
+    } else {
+        if (distanceX > ((slideWidth / 2) * 10)) {
+            slideToLeft();
+            if (distanceX > ((3 * slideWidth / 2) * 10)) {
+                slideToLeft();
+            }
+        } else {
+            sliderWrapper.style.transform = 'translateX(' + (-(shownImage * slideWidth)) + 'rem)';
+        }
     }
 }
 
@@ -277,12 +284,23 @@ sliderWrapper.onmouseup = (e) => {
 }
 sliderWrapper.onmouseleave = () => {
     if (outBounds === true) {
-        if (xDrag > 0) {
-            slideToLeft();
-        }
-        if (xDrag < -0) {
+
+        if (xDrag < ((-slideWidth / 2) * 10)) {
             slideToRight();
+            if (xDrag < ((-3 * slideWidth / 2) * 10)) {
+                slideToRight();
+            }
+        } else {
+            if (xDrag > ((slideWidth / 2) * 10)) {
+                slideToLeft();
+                if (xDrag > ((3 * slideWidth / 2) * 10)) {
+                    slideToLeft();
+                }
+            } else {
+                sliderWrapper.style.transform = 'translateX(' + (-(shownImage * slideWidth)) + 'rem)';
+            }
         }
+
         outBounds = false;  // т.к. мы уже выполнили необходимое действие, поэтому сбрасываем маркер что мышь не отчали над sliderWrapper
         sliderWrapper.style.transition = '0.3s';
 
@@ -302,6 +320,8 @@ sliderWrapper.onmouseleave = () => {
 // sliderWrapper.addEventListener('touchend', (e) => { touchSlide(e) }, { passive: false });
 
 
+
+//  TOUCH SCREENS touch slider
 
 //https://css-tricks.com/simple-swipe-with-vanilla-javascript/
 // https://codepen.io/thebabydino/pen/QQRwRy/
