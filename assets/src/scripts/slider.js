@@ -54,10 +54,11 @@ function setSlideWidth() {
         slideWidth = 38.4 + 2.4; //ширина карточки + расстояние между карточками
     }
 }
+setSlideWidth();
 
-function slideToImage(shownImage) {
+function slideToImage(shownImage, manualSlideDist = 0) {
     //смещаем внутреннюю обёртку карточек внутри внешней с overflow:hidden; ("окошка") 
-    sliderWrapper.style.transform = 'translateX(-' + (shownImage * slideWidth) + 'rem)';
+    sliderWrapper.style.transform = 'translateX(' + ((-(shownImage * slideWidth)) + ((manualSlideDist) / 10)) + 'rem)';
 }
 
 function removeSliderDotActive() {
@@ -66,7 +67,7 @@ function removeSliderDotActive() {
     }
 }
 
-function slideLeft() {
+function slideToLeft() {
     shownImage--; // уменьшаем индекс отображаемой картинки на 1 (т.к. мы листаем вправо)
 
     // задаём на какую карточку при листании назад с первой краточки нужно будет переходить, в зависимости от ширины экрана (т.е. кол-ва отображаемых карточек в окне слайдера)
@@ -111,7 +112,7 @@ function slideLeft() {
         }
 }
 
-function slideRight() {
+function slideToRight() {
     shownImage++; // увеличиваем индекс отображаемой картинки на 1 (т.к. мы листаем вправо)
     // задаём на какой карточке при листании вперёд нужно будет переходить к первой карточке, в зависимости от ширины экрана (т.е. кол-ва отображаемых карточек в окне слайдера)
     if (window.innerWidth < 825) {
@@ -153,9 +154,9 @@ function slideRight() {
         }
 }
 
-btnRight.onclick = slideRight;
+btnRight.onclick = slideToRight;
 
-btnLeft.onclick = slideLeft;
+btnLeft.onclick = slideToLeft;
 
 
 
@@ -216,9 +217,13 @@ divSliderDots.ontouchstart = turnOnSliderDots;
 
 let xStart;
 let xEnd;
-let xEndTouch;
-let distanceX;
-let distanceXTouch;
+let xCurr;
+// let xEndTouch;
+let distanceX; // расстояние между нажатием и отжатием мышки
+// let distanceXTouch;
+
+// маркер что мы не отжали мышку над sliderWrapper а убрали указатель за его пределы
+let outBounds;
 
 sliderWrapper.onmousedown = (e) => {
     e.preventDefault(); // чтоб не перетягивалась картинка
@@ -227,52 +232,79 @@ sliderWrapper.onmousedown = (e) => {
     // console.log(e.clientX);
     // console.log(e.clientY);
     xStart = e.clientX;
-    console.log(xStart);
-}
-sliderWrapper.ontouchstart = (e) => {
-    e.preventDefault(); // чтоб не перетягивалась картинка
-    // e.stopPropagation();
-    // console.log(e);
-    // console.log(e.clientX);
-    // console.log(e.clientY);
-    xStart = e.clientX;
-    console.log(xStart);
+    // console.log(xStart);
+    outBounds = true;
+
+    sliderWrapper.style.transition = '0.016s';
+
+    setSlideWidth();
+    sliderWrapper.onmousemove = (e) => {
+        xCurr = e.clientX;
+        xDrag = xCurr - xStart;
+        // console.log(xDrag);
+        // console.log(((shownImage * slideWidth) - (xDrag / 10)));
+        sliderWrapper.style.transform = 'translateX(' + ((-(shownImage * slideWidth)) + (xDrag / 10)) + 'rem)';
+        // slideToImage(manualSlideDist = xDrag);
+    }
 }
 
 function touchSlide(e) {
-    e.preventDefault(); // чтоб не перетягивалась картинка
-    // e.stopPropagation();
-    // console.log(e);
-    // console.log(e.clientX);
-    // console.log(e.clientY);
-    xEnd = e.clientX;
-    console.log(xEnd);
+    //e.preventDefault(); // чтоб не перетягивалась картинка
 
-    console.log('distanceX = xEnd - xStart = ' + (xEnd - xStart));
+    xEnd = e.clientX;
+
+    // console.log(xEnd);
+    // console.log('distanceX = xEnd - xStart = ' + (xEnd - xStart));
 
     distanceX = (xEnd - xStart);
-    console.log(distanceX);
+    // console.log(distanceX);
 
 
-    if (distanceX > 10) {
-        slideLeft();
+    if (distanceX > 0) {
+        slideToLeft();
     }
-    if (distanceX < -10) {
-        slideRight();
+    if (distanceX < -0) {
+        slideToRight();
     }
 }
 
 sliderWrapper.onmouseup = (e) => {
-    touchSlide(e);
+    outBounds = false;  // сбрасываем маркер что мышь не отчали над sliderWrapper
+    sliderWrapper.style.transition = '0.3s';
+    // touchSlide(e);
+    sliderWrapper.onmousemove = undefined;
+
 }
-// sliderWrapper.addEventListener('mouseup', (e) => { touchSlide(e) }, { passive: false });
-// sliderWrapper.addEventListener('mousemove', (e) => { touchSlide(e) }, { passive: false });
+sliderWrapper.onmouseleave = () => {
+    if (outBounds === true) {
+        if (xDrag > 0) {
+            slideToLeft();
+        }
+        if (xDrag < -0) {
+            slideToRight();
+        }
+        outBounds = false;  // т.к. мы уже выполнили необходимое действие, поэтому сбрасываем маркер что мышь не отчали над sliderWrapper
+        sliderWrapper.style.transition = '0.3s';
+
+        sliderWrapper.onmousemove = undefined;
+    }
+}
+
 
 
 // don't work on iPhone - ПЕРЕПРОВЕРИТЬ!!! - возможно не успел обновиться GitPages
-// sliderWrapper.addEventListener('touchstart', (e) => { touchSlide(e) }, { passive: false });
+// sliderWrapper.addEventListener('touchstart', (e) => {
+//     e.preventDefault(); // чтоб не перетягивалась картинка
+//     xStart = e.clientX;
+//     console.log(xStart);
+// }, { passive: false });
 // sliderWrapper.addEventListener('touchmove', (e) => { touchSlide(e) }, { passive: false });
+// sliderWrapper.addEventListener('touchend', (e) => { touchSlide(e) }, { passive: false });
 
+
+
+//https://css-tricks.com/simple-swipe-with-vanilla-javascript/
+// https://codepen.io/thebabydino/pen/QQRwRy/
 
 //https://stackoverflow.com/questions/62823062/adding-a-simple-left-right-swipe-gesture
 
@@ -290,6 +322,7 @@ slider.addEventListener('touchstart', function (event) {
     touchstartY = event.changedTouches[0].screenY;
 }, false);
 
+// попробовать двигать реалтайм  через touchmove!!
 slider.addEventListener('touchend', function (event) {
     touchendX = event.changedTouches[0].screenX;
     touchendY = event.changedTouches[0].screenY;
@@ -301,13 +334,13 @@ function handleGesture() {
     if (touchendX < touchstartX) {
         console.log('Swiped Left');
         // alert('Swiped Left');
-        slideRight();
+        slideToRight();
     }
 
     if (touchendX > touchstartX) {
         console.log('Swiped Right');
         // alert('Swiped Right');
-        slideLeft();
+        slideToLeft();
     }
 
     if (touchendY < touchstartY) {
@@ -322,3 +355,6 @@ function handleGesture() {
         console.log('Tap');
     }
 }
+
+// Убрать БАГ с зависающим ховером на iPhone при перелистывании
+// не скролит строницу вверх/вниз по слуйдеру - исправить  - вернуть поведение по умолчанию ил  дописать действие через scrollBy(). 
