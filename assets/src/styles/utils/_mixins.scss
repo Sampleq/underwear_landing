@@ -171,6 +171,8 @@
     background-color: $_color;
     transition: 0.3s;
 
+    user-select: none;
+
     &:hover {
         background-color: lighten($color: $bordo, $amount: 20%);
         cursor: pointer;

@@ -346,6 +346,14 @@ slider.addEventListener('touchstart', function (event) {
 slider.addEventListener('touchend', function (event) {
     touchendX = event.changedTouches[0].screenX;
     touchendY = event.changedTouches[0].screenY;
+
+    for (let sliderCard of sliderCards) {
+        sliderCard.classList.add('card_no-hover');
+        setTimeout(() => {
+            sliderCard.classList.remove('card_no-hover');
+        }, 300);
+    }
+
     handleGesture();
 }, false);
 
