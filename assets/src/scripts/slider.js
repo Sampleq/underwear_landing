@@ -271,7 +271,7 @@ function touchSlide(e) {
 sliderWrapper.onmouseup = (e) => {
     outBounds = false;  // сбрасываем маркер что мышь не отчали над sliderWrapper
     sliderWrapper.style.transition = '0.3s';
-    // touchSlide(e);
+    touchSlide(e);
     sliderWrapper.onmousemove = undefined;
 
 }
