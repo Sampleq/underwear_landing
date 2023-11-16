@@ -225,7 +225,7 @@ let outBounds; // маркер что мы не отжали мышку над s
 
 
 sliderWrapper.onmousedown = (e) => {
-    // e.preventDefault(); // чтоб не перетягивалась картинка -  от этого "зависал" :hover на карточке - переделал через CSS: .card__img {pointer-events: none;}
+    // e.preventDefault(); // чтоб не перетягивалась картинка -  от этого "зависал" на ПК. :hover на карточке - переделал через CSS: .card__img {pointer-events: none;}
     // e.stopPropagation();
     // console.log(e);
     // console.log(e.clientX);
@@ -247,17 +247,7 @@ sliderWrapper.onmousedown = (e) => {
     }
 }
 
-function touchSlide(e) {
-    //e.preventDefault(); // чтоб не перетягивалась картинка
-
-    xEnd = e.clientX;
-
-    // console.log(xEnd);
-    // console.log('distanceX = xEnd - xStart = ' + (xEnd - xStart));
-
-    distanceX = (xEnd - xStart) * 1.5; // 1.5 - коэфф. увеличения "движения мыши"
-    // console.log(distanceX);
-
+function slideByDrag(distanceX) {
     if (distanceX < ((-slideWidth / 2) * 10)) {
         slideToRight();
         if (distanceX < ((-3 * slideWidth / 2) * 10)) {
@@ -276,30 +266,22 @@ function touchSlide(e) {
 }
 
 sliderWrapper.onmouseup = (e) => {
-    outBounds = false;  // сбрасываем маркер что мышь не отчали над sliderWrapper
+    outBounds = false;  // сбрасываем маркер что мышь не отжали над sliderWrapper
     sliderWrapper.style.transition = '0.3s';
-    touchSlide(e);
+    //e.preventDefault(); // чтоб не перетягивалась картинка
+    xEnd = e.clientX;
+    // console.log(xEnd);
+    distanceX = (xEnd - xStart) * 1.5; // 1.5 - коэфф. увеличения "движения мыши"
+    // console.log(distanceX);
+    slideByDrag(distanceX);
+    // убираем следование карточек за указателем мыши
     sliderWrapper.onmousemove = undefined;
-
 }
+
 sliderWrapper.onmouseleave = () => {
     if (outBounds === true) {
 
-        if (xDrag < ((-slideWidth / 2) * 10)) {
-            slideToRight();
-            if (xDrag < ((-3 * slideWidth / 2) * 10)) {
-                slideToRight();
-            }
-        } else {
-            if (xDrag > ((slideWidth / 2) * 10)) {
-                slideToLeft();
-                if (xDrag > ((3 * slideWidth / 2) * 10)) {
-                    slideToLeft();
-                }
-            } else {
-                sliderWrapper.style.transform = 'translateX(' + (-(shownImage * slideWidth)) + 'rem)';
-            }
-        }
+        slideByDrag(xDrag);
 
         outBounds = false;  // т.к. мы уже выполнили необходимое действие, поэтому сбрасываем маркер что мышь не отчали над sliderWrapper
         sliderWrapper.style.transition = '0.3s';
@@ -328,34 +310,46 @@ sliderWrapper.onmouseleave = () => {
 
 //https://stackoverflow.com/questions/62823062/adding-a-simple-left-right-swipe-gesture
 
-let touchstartX;
-let touchstartY;
-let touchendX;
-let touchendY;
+let touchStartX;
+let touchEndX;
+let touchCurrX;
+let touchDistanceX; // расстояние между началом и окончанием касания
+let touchDragX; //  расстояние между  началом касания и окончанием касания из-за выхода за пределы sliderWrapper
 
 const slider = document.querySelector('.slider');
 
 // slider.style.background = 'red';
 
 slider.addEventListener('touchstart', function (event) {
-    touchstartX = event.changedTouches[0].screenX;
-    touchstartY = event.changedTouches[0].screenY;
+    touchStartX = event.changedTouches[0].screenX;
 
+    // to remove stucked hover on iphone
     for (let sliderCard of sliderCards) {
         sliderCard.classList.remove('card_no-hover');
     }
+    sliderWrapper.style.transition = '0.016s';
+    setSlideWidth();
+    sliderWrapper.ontouchmove = (event) => {
+        touchCurrX = event.changedTouches[0].screenX;
+        touchDragX = (touchCurrX - touchStartX) * 1.5; // 1.5 - коэфф. увеличения "движения касания"
+        sliderWrapper.style.transform = 'translateX(' + ((-(shownImage * slideWidth)) + (touchDragX / 10)) + 'rem)';
+        // slideToImage(manualSlideDist = xDrag);
+    }
 }, false);
 
-// попробовать двигать реалтайм  через touchmove!!
 slider.addEventListener('touchend', function (event) {
-    touchendX = event.changedTouches[0].screenX;
-    touchendY = event.changedTouches[0].screenY;
+    sliderWrapper.style.transition = '0.3s';
+    touchEndX = event.changedTouches[0].screenX;
+    touchDistanceX = (touchEndX - touchStartX) * 1.5; // 1.5 - коэфф. увеличения "движения касания"
+    slideByDrag(touchDistanceX);
+    // убираем следование карточек за касанием
+    sliderWrapper.ontouchmove = undefined
 
+    // to remove stucked hover on iphone
     for (let sliderCard of sliderCards) {
         sliderCard.classList.add('card_no-hover');
     }
-
-    handleGesture();
+    // handleGesture();
 }, false);
 
 
@@ -371,19 +365,6 @@ function handleGesture() {
         // alert('Swiped Right');
         slideToLeft();
     }
-
-    if (touchendY < touchstartY) {
-        console.log('Swiped Up');
-    }
-
-    if (touchendY > touchstartY) {
-        console.log('Swiped Down');
-    }
-
-    if (touchendY === touchstartY) {
-        console.log('Tap');
-    }
 }
 
-// Убрать БАГ с зависающим ховером на iPhone при перелистывании
-// не скролит строницу вверх/вниз по слуйдеру - исправить  - вернуть поведение по умолчанию ил  дописать действие через scrollBy(). 
+// Убрать БАГ с зависающим ховером на iPhone при перелистывании - сделано через ('card_no-hover');
