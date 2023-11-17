@@ -316,6 +316,8 @@ let touchCurrX;
 let touchDistanceX; // расстояние между началом и окончанием касания
 let touchDragX; //  расстояние между  началом касания и окончанием касания из-за выхода за пределы sliderWrapper
 
+let noScroll;
+
 const slider = document.querySelector('.slider');
 
 slider.addEventListener('touchstart', function (event) {
@@ -333,6 +335,10 @@ slider.addEventListener('touchstart', function (event) {
         sliderWrapper.style.transform = 'translateX(' + ((-(shownImage * slideWidth)) + (touchDragX / 10)) + 'rem)';
         // slideToImage(manualSlideDist = xDrag);
     }
+
+    noScroll = setTimeout(() => {
+        document.body.style.overflow = 'hidden'
+    }, 100);
 }, false);
 
 slider.addEventListener('touchend', function (event) {
@@ -347,6 +353,9 @@ slider.addEventListener('touchend', function (event) {
     for (let sliderCard of sliderCards) {
         sliderCard.classList.add('card_no-hover');
     }
+
+    clearTimeout(noScroll);
+
 }, false);
 
 
