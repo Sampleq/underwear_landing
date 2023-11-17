@@ -333,7 +333,7 @@ slider.addEventListener('touchstart', function (event) {
     sliderWrapper.style.transition = '0.016s';
     setSlideWidth();
 
-    top = window.scrollY;
+    // top = window.scrollY;
     document.body.ontouchmove = (event) => {
         touchCurrX = event.changedTouches[0].screenX;
         touchCurrY = event.changedTouches[0].screenY;
@@ -345,7 +345,6 @@ slider.addEventListener('touchstart', function (event) {
         // if (Math.abs(touchDragX) > 10) {
         if (Math.abs(touchDragX) > Math.abs(touchDragY)) {
             document.body.style.overflow = 'hidden';
-
             sliderWrapper.style.transform = 'translateX(' + ((-(shownImage * slideWidth)) + (touchDragX / 10)) + 'rem)';
 
         } else {
