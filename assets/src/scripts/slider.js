@@ -247,15 +247,15 @@ sliderWrapper.onmousedown = (e) => {
 }
 
 function slideByDrag(distanceX) {
-    if (distanceX < ((-slideWidth / 2) * 10)) {
+    if (distanceX < ((-slideWidth / 2) * 10) * 0.4) {
         slideToRight();
-        if (distanceX < ((-3 * slideWidth / 2) * 10)) {
+        if (distanceX < ((-3 * slideWidth / 2) * 10) * 0.9) {
             slideToRight();
         }
     } else {
-        if (distanceX > ((slideWidth / 2) * 10)) {
+        if (distanceX > ((slideWidth / 2) * 10) * 0.4) {
             slideToLeft();
-            if (distanceX > ((3 * slideWidth / 2) * 10)) {
+            if (distanceX > ((3 * slideWidth / 2) * 10) * 0.9) {
                 slideToLeft();
             }
         } else {
@@ -325,6 +325,8 @@ const slider = document.querySelector('.slider');
 slider.addEventListener('touchstart', function (event) {
     touchStartX = event.changedTouches[0].screenX;
     touchStartY = event.changedTouches[0].screenY;
+    //event.preventDefault();// блокирует скроол страницы на айфоне
+
 
     // to remove stucked hover on iphone
     for (let sliderCard of sliderCards) {
@@ -343,14 +345,18 @@ slider.addEventListener('touchstart', function (event) {
         touchDragY = touchCurrY - touchStartY;
 
         // if (Math.abs(touchDragX) > 10) {
-        if (Math.abs(touchDragX) > Math.abs(touchDragY)) {
+        if (Math.abs(touchDragX) > (0.5 * Math.abs(touchDragY))) {
             document.body.style.overflow = 'hidden';
             sliderWrapper.style.transform = 'translateX(' + ((-(shownImage * slideWidth)) + (touchDragX / 10)) + 'rem)';
+
+
+
 
         } else {
             // sliderWrapper.style.transform = 'translateX(' + (-(shownImage * slideWidth)) + 'rem)';
             document.body.style.overflow = 'visible';
-            document.body.style.position = 'relative';
+            // document.body.style.position = 'relative';
+            document.body.scrollBy(0, -1000);
 
             sliderWrapper.style.transform = 'translateX(' + (-(shownImage * slideWidth)) + 'rem)';
 
