@@ -341,12 +341,12 @@ slider.addEventListener('touchstart', function (event) {
         // slideToImage(manualSlideDist = xDrag);
 
         touchDragY = touchCurrY - touchStartY;
+
         if (Math.abs(touchDragX) > Math.abs(touchDragY)) {
             document.body.style.overflow = 'hidden';
             sliderWrapper.style.transform = 'translateX(' + ((-(shownImage * slideWidth)) + (touchDragX / 10)) + 'rem)';
 
-        }
-        if (Math.abs(touchDragX) < Math.abs(touchDragY)) {
+        } else {
             sliderWrapper.style.transform = 'translateX(' + (-(shownImage * slideWidth)) + 'rem)';
             document.body.style.overflow = 'visible';
         }
