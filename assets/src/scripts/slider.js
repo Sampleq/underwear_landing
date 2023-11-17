@@ -318,8 +318,6 @@ let touchDragX; //  расстояние между  началом касани
 
 const slider = document.querySelector('.slider');
 
-// slider.style.background = 'red';
-
 slider.addEventListener('touchstart', function (event) {
     touchStartX = event.changedTouches[0].screenX;
 
@@ -349,22 +347,7 @@ slider.addEventListener('touchend', function (event) {
     for (let sliderCard of sliderCards) {
         sliderCard.classList.add('card_no-hover');
     }
-    // handleGesture();
 }, false);
 
-
-function handleGesture() {
-    if (touchendX < touchstartX) {
-        console.log('Swiped Left');
-        // alert('Swiped Left');
-        slideToRight();
-    }
-
-    if (touchendX > touchstartX) {
-        console.log('Swiped Right');
-        // alert('Swiped Right');
-        slideToLeft();
-    }
-}
 
 // Убрать БАГ с зависающим ховером на iPhone при перелистывании - сделано через ('card_no-hover');
