@@ -348,7 +348,7 @@ slider.addEventListener('touchstart', function (event) {
                 sliderWrapper.style.transform = 'translateX(' + ((-(shownImage * slideWidth)) + (touchDragX / 10)) + 'rem)';
 
             } else {
-                sliderWrapper.style.transform = 'translateX(' + (-(shownImage * slideWidth)) + 'rem)';
+                // sliderWrapper.style.transform = 'translateX(' + (-(shownImage * slideWidth)) + 'rem)';
                 document.body.style.overflow = 'visible';
             }
         }
@@ -371,17 +371,21 @@ slider.addEventListener('touchend', function (event) {
         sliderCard.classList.add('card_no-hover');
     }
 
-    clearTimeout(noScroll);
+    // clearTimeout(noScroll);
     document.body.style.overflow = 'visible';
 
 }, false);
 
 slider.addEventListener('touchcancel', function (event) {
 
-    clearTimeout(noScroll);
+    // clearTimeout(noScroll);
     document.body.style.overflow = 'visible';
 
 }, false);
+
+screen.orientation.addEventListener("change", (event) => {
+    sliderWrapper.style.transform = 'translateX(' + (-(shownImage * slideWidth)) + 'rem)';
+});
 
 
 // Убрать БАГ с зависающим ховером на iPhone при перелистывании - сделано через ('card_no-hover');
