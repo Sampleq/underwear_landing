@@ -8,7 +8,7 @@ function createSliderDots() {
         // divSliderDots.appendChild(sliderDot); - не добавляет один и тот же элемент больше одного раза
         divSliderDots.insertAdjacentHTML("beforeend", '<div class="slider__dot"></div>');
         i++;
-        console.log(i);
+        // console.log(i);
     }
 
     // добавляем точки для версий сладера с двумя карточками на экране - в дополнение к уже созданным точкам. 
@@ -16,14 +16,14 @@ function createSliderDots() {
     while (i < (sliderCards.length / 2)) {
         divSliderDots.insertAdjacentHTML("beforeend", '<div class="slider__dot slider__dot_2card"></div>');
         i++;
-        console.log(i);
+        // console.log(i);
     }
 
     // добавляем точки для версий сладера с одной карточкой на экране
     while (i < sliderCards.length) {
         divSliderDots.insertAdjacentHTML("beforeend", '<div class="slider__dot slider__dot_1card"></div>');
         i++;
-        console.log(i);
+        // console.log(i);
     }
 
 }
@@ -83,7 +83,7 @@ function slideToLeft() {
         shownImage = (sliderCards.length - 3);
     };
 
-    console.log(shownImage);
+    // console.log(shownImage);
 
     setSlideWidth();
     slideToImage(shownImage);
@@ -94,20 +94,20 @@ function slideToLeft() {
     // for 1-card slider (window.innerWidth < 825)
     if (window.innerWidth < 825) {
         sliderDots = divSliderDots.querySelectorAll('.slider__dot');
-        console.log(sliderDots);
+        // console.log(sliderDots);
         sliderDots[shownImage].classList.add('slider__dot_active');
     }
     else
         // for 2-card slider (window.innerWidth < 1250)
         if (window.innerWidth < 1250) {
             sliderDots = divSliderDots.querySelectorAll('.slider__dot:not(.slider__dot_1card)');
-            console.log(sliderDots);
+            // console.log(sliderDots);
             sliderDots[Math.floor(shownImage / 2)].classList.add('slider__dot_active');
         }
         else {
             // for 3-card slider (window.innerWidth > 1250)
             sliderDots = divSliderDots.querySelectorAll(".slider__dot:not(.slider__dot_2card):not(.slider__dot_1card)");
-            console.log(sliderDots);
+            // console.log(sliderDots);
             sliderDots[Math.round(shownImage / 3)].classList.add('slider__dot_active');
         }
 }
@@ -136,20 +136,20 @@ function slideToRight() {
     // for 1-card slider (window.innerWidth < 825)
     if (window.innerWidth < 825) {
         sliderDots = divSliderDots.querySelectorAll('.slider__dot');
-        console.log(sliderDots);
+        // console.log(sliderDots);
         sliderDots[shownImage].classList.add('slider__dot_active');
     }
     else
         // for 2-card slider (window.innerWidth < 1250)
         if (window.innerWidth < 1250) {
             sliderDots = divSliderDots.querySelectorAll('.slider__dot:not(.slider__dot_1card)');
-            console.log(sliderDots);
+            // console.log(sliderDots);
             sliderDots[Math.floor(shownImage / 2)].classList.add('slider__dot_active');
 
         } else {
             // for 3-card slider (window.innerWidth > 1250)
             sliderDots = divSliderDots.querySelectorAll(".slider__dot:not(.slider__dot_2card):not(.slider__dot_1card)");
-            console.log(sliderDots);
+            // console.log(sliderDots);
             sliderDots[Math.round(shownImage / 3)].classList.add('slider__dot_active');
         }
 }
@@ -169,20 +169,20 @@ function turnOnSliderDots() {
     // for 1-card slider (window.innerWidth < 825)
     if (window.innerWidth < 825) {
         sliderDots = divSliderDots.querySelectorAll('.slider__dot');
-        console.log(sliderDots);
+        // console.log(sliderDots);
         sliderDots[shownImage].classList.add('slider__dot_active');
     }
     else
         // for 2-card slider (window.innerWidth < 1250)
         if (window.innerWidth < 1250) {
             sliderDots = divSliderDots.querySelectorAll('.slider__dot:not(.slider__dot_1card)');
-            console.log(sliderDots);
+            // console.log(sliderDots);
             sliderDots[Math.floor(shownImage / 2)].classList.add('slider__dot_active');
         }
         else {
             // for 3-card slider (window.innerWidth > 1250)
             sliderDots = divSliderDots.querySelectorAll(".slider__dot:not(.slider__dot_2card):not(.slider__dot_1card)");
-            console.log(sliderDots);
+            // console.log(sliderDots);
             sliderDots[Math.round(shownImage / 3)].classList.add('slider__dot_active');
         }
 
@@ -206,7 +206,7 @@ function turnOnSliderDots() {
     });
 }
 
-// turnOnSliderDots();
+turnOnSliderDots();
 
 divSliderDots.onmouseenter = turnOnSliderDots;
 divSliderDots.ontouchstart = turnOnSliderDots;
@@ -302,7 +302,6 @@ sliderWrapper.onmouseleave = () => {
 // sliderWrapper.addEventListener('touchend', (e) => { touchSlide(e) }, { passive: false });
 
 
-
 //  TOUCH SCREENS touch slider
 
 //https://css-tricks.com/simple-swipe-with-vanilla-javascript/
@@ -345,6 +344,8 @@ slider.addEventListener('touchstart', function (event) {
         // if (Math.abs(touchDragX) > 10) {
         if (Math.abs(touchDragX) > Math.abs(touchDragY)) {
             document.body.style.overflow = 'hidden';
+            document.body.style.position = 'fixed';
+            document.body.style.top = window.scrollY;
             sliderWrapper.style.transform = 'translateX(' + ((-(shownImage * slideWidth)) + (touchDragX / 10)) + 'rem)';
 
         } else {
