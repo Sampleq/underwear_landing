@@ -311,10 +311,13 @@ sliderWrapper.onmouseleave = () => {
 //https://stackoverflow.com/questions/62823062/adding-a-simple-left-right-swipe-gesture
 
 let touchStartX;
+let touchStartY;
 let touchEndX;
 let touchCurrX;
+let touchCurrY;
 let touchDistanceX; // расстояние между началом и окончанием касания
-let touchDragX; //  расстояние между  началом касания и окончанием касания из-за выхода за пределы sliderWrapper
+let touchDragX; //  расстояние между  началом касания и текущим касанием или из-за выхода за пределы sliderWrapper
+let touchDragY;
 
 let noScroll;
 
@@ -322,6 +325,7 @@ const slider = document.querySelector('.slider');
 
 slider.addEventListener('touchstart', function (event) {
     touchStartX = event.changedTouches[0].screenX;
+    touchStartY = event.changedTouches[0].screenY;
 
     // to remove stucked hover on iphone
     for (let sliderCard of sliderCards) {
@@ -330,16 +334,26 @@ slider.addEventListener('touchstart', function (event) {
     sliderWrapper.style.transition = '0.016s';
     setSlideWidth();
 
-    sliderWrapper.ontouchmove = (event) => {
+    slider.ontouchmove = (event) => {
         touchCurrX = event.changedTouches[0].screenX;
+        touchCurrY = event.changedTouches[0].screenY;
         touchDragX = (touchCurrX - touchStartX) * 1.5; // 1.5 - коэфф. увеличения "движения касания"
-        sliderWrapper.style.transform = 'translateX(' + ((-(shownImage * slideWidth)) + (touchDragX / 10)) + 'rem)';
         // slideToImage(manualSlideDist = xDrag);
-    }
 
-    noScroll = setTimeout(() => {
-        document.body.style.overflow = 'hidden'
-    }, 135);
+        touchDragY = touchCurrY - touchStartY;
+        if (Math.abs(touchDragX) > Math.abs(touchDragY)) {
+            document.body.style.overflow = 'hidden';
+            sliderWrapper.style.transform = 'translateX(' + ((-(shownImage * slideWidth)) + (touchDragX / 10)) + 'rem)';
+
+        }
+        if (Math.abs(touchDragX) < Math.abs(touchDragY)) {
+            sliderWrapper.style.transform = 'translateX(' + (-(shownImage * slideWidth)) + 'rem)';
+            document.body.style.overflow = 'visible';
+        }
+    }
+    // noScroll = setTimeout(() => {
+    //     document.body.style.overflow = 'hidden'
+    // }, 135);
 }, false);
 
 slider.addEventListener('touchend', function (event) {
