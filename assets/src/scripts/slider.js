@@ -223,7 +223,6 @@ let xDrag; //  расстояние между нажатием и убиран�
 
 let outBounds; // маркер что мы не отжали мышку над sliderWrapper а убрали указатель за его пределы
 
-
 sliderWrapper.onmousedown = (e) => {
     // e.preventDefault(); // чтоб не перетягивалась картинка -  от этого "зависал" на ПК. :hover на карточке - переделал через CSS: .card__img {pointer-events: none;}
     // e.stopPropagation();
@@ -245,6 +244,7 @@ sliderWrapper.onmousedown = (e) => {
         sliderWrapper.style.transform = 'translateX(' + ((-(shownImage * slideWidth)) + (xDrag / 10)) + 'rem)';
         // slideToImage(manualSlideDist = xDrag);
     }
+    // top = window.scrollY;
 }
 
 function slideByDrag(distanceX) {
@@ -276,6 +276,12 @@ sliderWrapper.onmouseup = (e) => {
     slideByDrag(distanceX);
     // убираем следование карточек за указателем мыши
     sliderWrapper.onmousemove = undefined;
+
+    // console.log(`top: -${window.scrollY}px`);
+    // console.log(`-${top}px`);
+    // document.body.style.position = 'fixed';
+    // document.body.style.width = '100%';
+    // document.body.style.top = `-${top}px`;
 }
 
 sliderWrapper.onmouseleave = () => {
@@ -320,6 +326,8 @@ let touchDragY;
 
 let noScroll;
 
+let top;
+
 const slider = document.querySelector('.slider');
 
 slider.addEventListener('touchstart', function (event) {
@@ -333,6 +341,7 @@ slider.addEventListener('touchstart', function (event) {
     sliderWrapper.style.transition = '0.016s';
     setSlideWidth();
 
+    top = window.scrollY;
     document.body.ontouchmove = (event) => {
         touchCurrX = event.changedTouches[0].screenX;
         touchCurrY = event.changedTouches[0].screenY;
@@ -345,7 +354,10 @@ slider.addEventListener('touchstart', function (event) {
         if (Math.abs(touchDragX) > Math.abs(touchDragY)) {
             document.body.style.overflow = 'hidden';
             document.body.style.position = 'fixed';
-            document.body.style.top = `-${window.scrollY}px`;
+            document.body.style.width = '100%';
+            document.body.style.top = `-${top}px`;
+
+
             sliderWrapper.style.transform = 'translateX(' + ((-(shownImage * slideWidth)) + (touchDragX / 10)) + 'rem)';
 
         } else {
