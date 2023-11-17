@@ -338,7 +338,7 @@ slider.addEventListener('touchstart', function (event) {
 
     noScroll = setTimeout(() => {
         document.body.style.overflow = 'hidden'
-    }, 100);
+    }, 67);
 }, false);
 
 slider.addEventListener('touchend', function (event) {
@@ -355,6 +355,14 @@ slider.addEventListener('touchend', function (event) {
     }
 
     clearTimeout(noScroll);
+    document.body.style.overflow = 'visible';
+
+}, false);
+
+slider.addEventListener('touchcancel', function (event) {
+
+    clearTimeout(noScroll);
+    document.body.style.overflow = 'visible';
 
 }, false);
 
