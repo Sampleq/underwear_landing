@@ -334,7 +334,7 @@ slider.addEventListener('touchstart', function (event) {
     sliderWrapper.style.transition = '0.016s';
     setSlideWidth();
 
-    slider.ontouchmove = (event) => {
+    document.body.ontouchmove = (event) => {
         touchCurrX = event.changedTouches[0].screenX;
         touchCurrY = event.changedTouches[0].screenY;
         touchDragX = (touchCurrX - touchStartX) * 1.5; // 1.5 - коэфф. увеличения "движения касания"
@@ -342,17 +342,17 @@ slider.addEventListener('touchstart', function (event) {
 
         touchDragY = touchCurrY - touchStartY;
 
-        if (Math.abs(touchDragX) > 10) {
-            if (Math.abs(touchDragX) > Math.abs(touchDragY)) {
-                document.body.style.overflow = 'hidden';
-                sliderWrapper.style.transform = 'translateX(' + ((-(shownImage * slideWidth)) + (touchDragX / 10)) + 'rem)';
+        // if (Math.abs(touchDragX) > 10) {
+        if (Math.abs(touchDragX) > Math.abs(touchDragY)) {
+            document.body.style.overflow = 'hidden';
+            sliderWrapper.style.transform = 'translateX(' + ((-(shownImage * slideWidth)) + (touchDragX / 10)) + 'rem)';
 
-            } else {
-                // sliderWrapper.style.transform = 'translateX(' + (-(shownImage * slideWidth)) + 'rem)';
-                document.body.style.overflow = 'visible';
-            }
+        } else {
+            // sliderWrapper.style.transform = 'translateX(' + (-(shownImage * slideWidth)) + 'rem)';
+            document.body.style.overflow = 'visible';
         }
     }
+    // }
     // noScroll = setTimeout(() => {
     //     document.body.style.overflow = 'hidden'
     // }, 135);
@@ -364,7 +364,7 @@ slider.addEventListener('touchend', function (event) {
     touchDistanceX = (touchEndX - touchStartX) * 1.5; // 1.5 - коэфф. увеличения "движения касания"
     slideByDrag(touchDistanceX);
     // убираем следование карточек за касанием
-    sliderWrapper.ontouchmove = undefined
+    document.body.ontouchmove = undefined
 
     // to remove stucked hover on iphone
     for (let sliderCard of sliderCards) {
@@ -383,7 +383,7 @@ slider.addEventListener('touchcancel', function (event) {
 
 }, false);
 
-screen.orientation.addEventListener("change", (event) => {
+screen.orientation.addEventListener("change", () => {
     sliderWrapper.style.transform = 'translateX(' + (-(shownImage * slideWidth)) + 'rem)';
 });
 
