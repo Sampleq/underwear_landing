@@ -352,6 +352,9 @@ slider.addEventListener('touchstart', function (event) {
             // sliderWrapper.style.transform = 'translateX(' + (-(shownImage * slideWidth)) + 'rem)';
             document.body.style.overflow = 'visible';
             document.body.style.position = 'relative';
+
+            sliderWrapper.style.transform = 'translateX(' + (-(shownImage * slideWidth)) + 'rem)';
+
         }
     }
     // }
