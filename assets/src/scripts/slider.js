@@ -345,12 +345,13 @@ slider.addEventListener('touchstart', function (event) {
         if (Math.abs(touchDragX) > Math.abs(touchDragY)) {
             document.body.style.overflow = 'hidden';
             document.body.style.position = 'fixed';
-            document.body.style.top = window.scrollY;
+            document.body.style.top = `-${window.scrollY}px`;
             sliderWrapper.style.transform = 'translateX(' + ((-(shownImage * slideWidth)) + (touchDragX / 10)) + 'rem)';
 
         } else {
             // sliderWrapper.style.transform = 'translateX(' + (-(shownImage * slideWidth)) + 'rem)';
             document.body.style.overflow = 'visible';
+            document.body.style.position = 'relative';
         }
     }
     // }
@@ -373,6 +374,7 @@ slider.addEventListener('touchend', function (event) {
     }
 
     // clearTimeout(noScroll);
+    document.body.style.position = 'relative';
     document.body.style.overflow = 'visible';
 
 }, false);
@@ -381,6 +383,7 @@ slider.addEventListener('touchcancel', function (event) {
 
     // clearTimeout(noScroll);
     document.body.style.overflow = 'visible';
+    document.body.style.position = 'relative';
 
 }, false);
 
