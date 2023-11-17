@@ -244,7 +244,6 @@ sliderWrapper.onmousedown = (e) => {
         sliderWrapper.style.transform = 'translateX(' + ((-(shownImage * slideWidth)) + (xDrag / 10)) + 'rem)';
         // slideToImage(manualSlideDist = xDrag);
     }
-    // top = window.scrollY;
 }
 
 function slideByDrag(distanceX) {
@@ -277,11 +276,6 @@ sliderWrapper.onmouseup = (e) => {
     // убираем следование карточек за указателем мыши
     sliderWrapper.onmousemove = undefined;
 
-    // console.log(`top: -${window.scrollY}px`);
-    // console.log(`-${top}px`);
-    // document.body.style.position = 'fixed';
-    // document.body.style.width = '100%';
-    // document.body.style.top = `-${top}px`;
 }
 
 sliderWrapper.onmouseleave = () => {
@@ -326,8 +320,6 @@ let touchDragY;
 
 let noScroll;
 
-let top;
-
 const slider = document.querySelector('.slider');
 
 slider.addEventListener('touchstart', function (event) {
@@ -353,10 +345,6 @@ slider.addEventListener('touchstart', function (event) {
         // if (Math.abs(touchDragX) > 10) {
         if (Math.abs(touchDragX) > Math.abs(touchDragY)) {
             document.body.style.overflow = 'hidden';
-            document.body.style.position = 'fixed';
-            document.body.style.width = '100%';
-            document.body.style.top = `-${top}px`;
-
 
             sliderWrapper.style.transform = 'translateX(' + ((-(shownImage * slideWidth)) + (touchDragX / 10)) + 'rem)';
 
@@ -389,7 +377,6 @@ slider.addEventListener('touchend', function (event) {
     }
 
     // clearTimeout(noScroll);
-    document.body.style.position = 'relative';
     document.body.style.overflow = 'visible';
 
 }, false);
@@ -398,8 +385,6 @@ slider.addEventListener('touchcancel', function (event) {
 
     // clearTimeout(noScroll);
     document.body.style.overflow = 'visible';
-    document.body.style.position = 'relative';
-
 }, false);
 
 screen.orientation.addEventListener("change", () => {
