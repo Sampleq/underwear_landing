@@ -329,6 +329,7 @@ slider.addEventListener('touchstart', function (event) {
     }
     sliderWrapper.style.transition = '0.016s';
     setSlideWidth();
+
     sliderWrapper.ontouchmove = (event) => {
         touchCurrX = event.changedTouches[0].screenX;
         touchDragX = (touchCurrX - touchStartX) * 1.5; // 1.5 - коэфф. увеличения "движения касания"
@@ -338,7 +339,7 @@ slider.addEventListener('touchstart', function (event) {
 
     noScroll = setTimeout(() => {
         document.body.style.overflow = 'hidden'
-    }, 67);
+    }, 135);
 }, false);
 
 slider.addEventListener('touchend', function (event) {
