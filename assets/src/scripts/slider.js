@@ -342,13 +342,15 @@ slider.addEventListener('touchstart', function (event) {
 
         touchDragY = touchCurrY - touchStartY;
 
-        if (Math.abs(touchDragX) > Math.abs(touchDragY)) {
-            document.body.style.overflow = 'hidden';
-            sliderWrapper.style.transform = 'translateX(' + ((-(shownImage * slideWidth)) + (touchDragX / 10)) + 'rem)';
+        if (Math.abs(touchDragX) > 10) {
+            if (Math.abs(touchDragX) > Math.abs(touchDragY)) {
+                document.body.style.overflow = 'hidden';
+                sliderWrapper.style.transform = 'translateX(' + ((-(shownImage * slideWidth)) + (touchDragX / 10)) + 'rem)';
 
-        } else {
-            sliderWrapper.style.transform = 'translateX(' + (-(shownImage * slideWidth)) + 'rem)';
-            document.body.style.overflow = 'visible';
+            } else {
+                sliderWrapper.style.transform = 'translateX(' + (-(shownImage * slideWidth)) + 'rem)';
+                document.body.style.overflow = 'visible';
+            }
         }
     }
     // noScroll = setTimeout(() => {
