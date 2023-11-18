@@ -46,6 +46,12 @@
     font-weight: 900;
     line-height: 140%;
     user-select: none;
+    -webkit-user-select: none;
+
+    &:hover {
+        cursor: auto;
+    }
+
 }
 
 @mixin p1($_color: $textColor) {

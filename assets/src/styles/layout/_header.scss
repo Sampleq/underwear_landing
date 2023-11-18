@@ -160,6 +160,8 @@
             transform: translate(-100%, 0%);
             opacity: 0;
             animation: menu-link-show 0.2s forwards;
+            will-change: transform,
+            opacity;
 
             // задал задержку срабатывания анимации для разных пунктов меню через JS
             // &:nth-child(2) {
@@ -174,6 +176,7 @@
                 width: 33.33vw;
                 max-width: 40rem;
                 transform: translate(0%, 200%);
+                will-change: transform, opacity;
                 opacity: 0;
             }
         }
@@ -289,6 +292,8 @@
             opacity: 0;
             // анимация вылетания
             animation: menu-link-show 0.3s forwards;
+            will-change: transform, opacity;
+
             border-bottom: 0.1rem solid darken($color: $borderColor, $amount: 15%);
 
             &:last-child {
