@@ -190,6 +190,7 @@
             padding: 1rem;
             padding-left: 7rem;
             color: $white;
+            transition: 0.067s;
 
             @media ($tablet) {
                 padding-left: 3rem;
@@ -198,6 +199,8 @@
             &:hover {
                 background-color: $pinkRed;
                 text-shadow: 0 0 0.07rem;
+                font-size: 1.85rem;
+                line-height: 137%; // уменьшаем line-height: со 140% до 137%; - чтобы созранить высоту линии и блока соответственно
             }
         }
     }
@@ -304,32 +307,37 @@
     }
 
     &__menu-link {
-
+        display: block;
         @include menuText();
         white-space: nowrap;
         user-select: none;
         // transition: background-color 0.2s;
         transition: 0.2s;
 
-
         @media (max-width:767px) {
-            display: block;
             background-color: transparentize($color: $pinkRed, $amount: 0.300);
             width: 100%;
             padding: 1rem;
             padding-left: 5rem;
             color: $white;
+            // transition: 0.1s;
 
             &:hover {
                 background-color: $pinkRed;
+                // background-color: transparentize($color: $pinkRed, $amount: 0.050);
                 text-shadow: 0 0 0.07rem;
+                font-size: 1.85rem;
+                line-height: 137%; // уменьшаем line-height: со 140% до 137%; - чтобы созранить высоту линии и блока соответственно
             }
         }
 
         @media ($tablet) {
+            transition: 0.1s;
+
             &:hover {
                 color: $bordo;
                 text-shadow: 0 0 0.05rem;
+                transform: scale(1.01);
             }
         }
     }

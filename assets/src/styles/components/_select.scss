@@ -60,6 +60,7 @@
 
     &:hover {
         border: 0.1rem solid darken($color: $borderColor, $amount: 20%);
+        background-color: transparentize($color: $pinkRed, $amount: 0.851);
     }
 
     &:focus {

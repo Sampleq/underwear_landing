@@ -1,0 +1,65 @@
+.footer {
+    background-color: $bgColor;
+    padding: 3rem 0;
+
+    @media ($tablet) {
+        padding: 4rem 0;
+    }
+
+    &__wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        row-gap: 1.5rem;
+
+        @media (min-width:535px) {
+            flex-direction: row;
+            justify-content: space-between;
+        }
+    }
+
+    &__copyright {
+        max-width: 16.7rem;
+        @include p2();
+        text-align: center;
+
+        order: 3;
+
+        @media (min-width:535px) {
+            order: -3;
+            text-align: left;
+        }
+
+        // &::first-line {
+        //     max-width: 14.7rem;
+        // }
+    }
+
+    &__contacts {
+        text-align: center;
+
+        order: 2;
+
+        @media (min-width:535px) {
+            order: 3;
+            text-align: left;
+        }
+    }
+
+    &__contacts-descr {
+        @include p2();
+        margin-bottom: 0.8rem;
+    }
+
+    &__tel {
+        display: inline-block;
+        @include p1();
+        transition: 0.3s;
+
+        &:hover {
+            transform: scale(1.01);
+            color: $bordo;
+            text-shadow: 0 0 0.05rem;
+        }
+    }
+}
