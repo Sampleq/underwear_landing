@@ -1,0 +1,82 @@
+.ordering {
+    // @include section_mb();
+    padding: 7rem 0;
+
+    @media ($tablet) {
+        padding: 11rem 0;
+    }
+
+    background: url(../images/lingerie-order.jpg) no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center 15%;
+    background-blend-mode: overlay;
+    background-color: rgba(255, 250, 255, 0.95);
+
+    @media ($tablet) {
+        // background: none;
+    }
+
+    &__wrapper {
+        display: flex;
+        flex-direction: column;
+        row-gap: 4rem;
+        align-items: center;
+
+        @media ($tablet) {
+            flex-direction: row;
+            justify-content: space-between;
+            column-gap: 2rem;
+        }
+    }
+
+    &__img-cont {
+        display: none;
+
+        @media ($tablet) {
+            display: block;
+        }
+
+        width: 100%;
+        max-width: 36rem;
+        max-height: 32.1rem;
+    }
+
+    &__img {
+        @include img();
+        max-height: 32.1rem;
+
+    }
+
+    &__text {
+        max-width: 25.4rem;
+        flex-shrink: 0;
+    }
+
+    &__title {
+        @include h2();
+        margin-bottom: 3rem;
+    }
+
+    &__descr {
+        @include p1();
+        max-width: 25.2rem;
+    }
+
+    &__form {
+        width: 100%;
+        max-width: 30rem;
+
+        @media ($mobileM) {
+            max-width: 32rem;
+        }
+
+        display: flex;
+        flex-direction: column;
+        row-gap: 1.5rem;
+    }
+
+    &__btn {
+        width: 100%;
+    }
+}

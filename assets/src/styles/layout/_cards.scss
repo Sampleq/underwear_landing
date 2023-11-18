@@ -1,5 +1,6 @@
 .cards {
-    @include section_mb();
+    // @include section_mb();
+    // margin-bottom: 0 !important;
 
     position: relative; // для абсолютного позиционирования slider__controls (чтобы он не перематывался вместе с карточками)
     background-color: $bgColor;

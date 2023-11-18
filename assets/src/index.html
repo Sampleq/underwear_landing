@@ -278,14 +278,42 @@
     </div>
 
 
-    <br>
+    <div class="ordering">
+        <div class="wrapper ordering__wrapper">
+            <div class="ordering__img-cont">
+                <img src="./images/lingerie-order.jpg" alt="lingerie order" class="ordering__img">
+            </div>
+            <div class="ordering__text">
+                <h2 class="ordering__title">Закажите нижнее бельё </h2>
+                <p class="ordering__descr">Выберите бельё, которое вам понравилось, заполните свои данные и мы с вами
+                    свяжемся для подтверждения заказа</p>
+            </div>
+
+            <form action="#" class="ordering__form">
+                <div class="select-wrapper ordering__select-wrapper">
+                    <select name="select1" id="select1" class="ordering__select select" required>
+                        <option value="" selected disabled hidden> Выбрать бельё</option>
+                        <!-- <option value="" selected disabled> Выбрать бельё</option> -->
+                        <option value="woman-undwr">Женское бельё</option>
+                        <option value="man-undwr">Мужское бельё</option>
+                        <option value="clild-undwr">Детское бельё</option>
+                    </select>
+                </div>
+                <input type="text" class="input ordering__input" name="input-name" placeholder="Ваше имя" required>
+                <input type="tel" class="ordering__input input" name="input-tel" placeholder="Ваш телефон" required>
+                <button class="btn ordering__btn">Кнопка</button>
+
+            </form>
+
+        </div>
+    </div>
 
 
-    <div class="main__logo">
+    <!-- <div class="main__logo">
         <span class="main__logo-letter">C</span>
         <span class="main__logo-letter main__logo-letter_m">m</span>
         <span class="main__logo-letter main__logo-letter_t">t</span>
-    </div>
+    </div> -->
 
 
 

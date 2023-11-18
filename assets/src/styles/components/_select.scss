@@ -1,19 +1,50 @@
 .select {
-    display: block;
-    width: 100%;
-    padding: 2.0rem 2.3rem;
+    &-wrapper {
+        width: 100%;
+        max-width: 30rem;
 
-    @media ($mobileM) {
-        padding: 2.2rem 2.5rem;
+        @media ($mobileM) {
+            max-width: 32rem;
+        }
+
+        position: relative;
+
+        &::after {
+            content: '';
+            position: absolute;
+            //z-index: -10; // при нажатии на псевдоэлемент select-wrapper-а - не раскрывается список выбора  - убираем иконку на задний план
+            pointer-events: none; //  отключаем у псевдоэлемента взаимодействие с мышкой, иначе при клике на него выпадающий список раскрываться не будет. (тогда не нужно задавать отрицательный z-index и делать прозрачность самому select-у)
+            right: 2.5rem;
+            top: calc(50% - (1.6rem / 2));
+            display: block;
+            width: 1.6rem;
+            height: 1.6rem;
+            background: url(../images/arrow-select.svg) no-repeat;
+            background-size: 100%;
+            transition: 0.3s;
+        }
+
+        &:hover::after {
+            transform: scale(1.15);
+            filter: brightness(0.7);
+        }
     }
 
+    display: block;
+    width: 100%;
     border: 0.1rem solid $borderColor;
+    padding: 1.9rem 2.3rem;
+
+    @media ($mobileM) {
+        padding: 2.1rem 2.5rem;
+    }
+
     @include p1();
     color: $textColor;
 
     cursor: pointer;
     // background-color: transparent; // без прозрачного фона select загораживает иконку из псевдоэлемента select-wrapper-а. 
-    // не нужно задавать прозрачный фон, тюкю мы не переносим "галочку" на задний план, а отключаем событие клика на ней с помощью pointer-events: none; 
+    // не нужно задавать прозрачный фон, т.к. мы не переносим "галочку" на задний план, а отключаем событие клика на ней с помощью pointer-events: none; 
 
     appearance: none; // убираем стандартное для браузера.платформы оформление элемента. в данном случае убираем "галочку" по умолчанию.
     -webkit-appearance: none;
@@ -39,35 +70,7 @@
         color: $inputColor;
     }
 
-    &-wrapper {
-        width: 30rem;
 
-        @media ($mobileM) {
-            width: 32rem;
-        }
-
-        position: relative;
-
-        &::after {
-            content: '';
-            position: absolute;
-            //z-index: -10; // при нажатии на псевдоэлемент select-wrapper-а - не раскрывается список выбора  - убираем иконку на задний план
-            pointer-events: none; //  отключаем у псевдоэлемента взаимодействие с мышкой, иначе при клике на него выпадающий список раскрываться не будет. (тогда не нужно задавать отрицательный z-index и делать прозрачность самому select-у)
-            right: 2.5rem;
-            top: calc(50% - (1.6rem / 2));
-            display: block;
-            width: 1.6rem;
-            height: 1.6rem;
-            background: url(../images/arrow-select.svg) no-repeat;
-            background-size: 100%;
-            transition: 0.3s;
-        }
-
-        &:hover::after {
-            transform: scale(1.15);
-            filter: brightness(0.7);
-        }
-    }
 
     // Скрываем опцию которая служит нам плейсхолдером - применяется после того, как мы выберем какую-то опцию
     // option[value=""][disabled] {
