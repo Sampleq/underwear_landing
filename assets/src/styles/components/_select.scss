@@ -1,5 +1,8 @@
 .select {
     &-wrapper {
+
+
+
         width: 100%;
         max-width: 30rem;
 
@@ -30,6 +33,7 @@
         }
     }
 
+
     display: block;
     width: 100%;
     border: 0.1rem solid $borderColor;
@@ -49,10 +53,13 @@
     appearance: none; // убираем стандартное для браузера.платформы оформление элемента. в данном случае убираем "галочку" по умолчанию.
     -webkit-appearance: none;
     -moz-appearance: none; // не работает в  Firefox
-    background-color: transparent; //  принудительно задаём фон для Firefox
+    //background-color: transparent; //  принудительно задаём фон для Firefox
+
+    background-color: transparentize($color: $pinkRed, $amount: 0.871);
+    border: 0.1rem solid darken($color: $borderColor, $amount: 10%);
 
     &:hover {
-        border: 0.1rem solid darken($color: $borderColor, $amount: 10%);
+        border: 0.1rem solid darken($color: $borderColor, $amount: 20%);
     }
 
     &:focus {

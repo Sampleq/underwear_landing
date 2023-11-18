@@ -3,9 +3,14 @@
     width: 100%;
     max-width: 30rem;
     padding: 1.9rem 2.2rem;
-    border: 0.1rem solid $borderColor;
+    // border: 0.1rem solid $borderColor;
+    border: 0.1rem solid darken($color: $borderColor, $amount: 10%);
+
     @include p1();
     color: $textColor;
+
+    background-color: transparentize($color: $pinkRed, $amount: 0.871);
+
 
     @media ($mobileM) {
         max-width: 32rem;
@@ -17,12 +22,12 @@
     }
 
     &:hover {
-        border: 0.1rem solid darken($color: $borderColor, $amount: 10%);
+        border: 0.1rem solid darken($color: $borderColor, $amount: 20%);
     }
 
     &:focus {
         outline: none;
-        border: 0.1rem solid darken($color: $borderColor, $amount: 20%);
+        border: 0.1rem solid darken($color: $borderColor, $amount: 30%);
     }
 
     // &:invalid {

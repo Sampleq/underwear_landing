@@ -8,10 +8,11 @@
 
     background: url(../images/lingerie-order.jpg) no-repeat;
     background-size: cover;
-    background-attachment: fixed;
+    background-attachment: fixed; // doesn't work on iPhone ((
     background-position: center 15%;
     background-blend-mode: overlay;
-    background-color: rgba(255, 250, 255, 0.95);
+    // background-color: rgba(255, 250, 255, 0.95);
+    background-color: rgba(240, 237, 243, 0.99);
 
     @media ($tablet) {
         // background: none;
@@ -25,15 +26,19 @@
 
         @media ($tablet) {
             flex-direction: row;
-            justify-content: space-between;
+            justify-content: space-evenly;
             column-gap: 2rem;
+        }
+
+        @media ($laptop) {
+            justify-content: space-between;
         }
     }
 
     &__img-cont {
         display: none;
 
-        @media ($tablet) {
+        @media ($laptop) {
             display: block;
         }
 
@@ -49,18 +54,32 @@
     }
 
     &__text {
-        max-width: 25.4rem;
+        max-width: 80%;
         flex-shrink: 0;
+
+        @media ($tablet) {
+            max-width: 25.4rem;
+        }
     }
 
     &__title {
         @include h2();
         margin-bottom: 3rem;
+        text-align: center;
+
+        @media ($tablet) {
+            text-align: left;
+        }
     }
 
     &__descr {
         @include p1();
-        max-width: 25.2rem;
+        text-align: center;
+
+        @media ($tablet) {
+            text-align: left;
+            // max-width: 25.2rem;
+        }
     }
 
     &__form {
