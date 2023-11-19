@@ -82,6 +82,25 @@
         @media ($tablet) {
             margin: 0;
         }
+
+        position: relative;
+
+        &::after {
+            display: none;
+            content: 'Click to show/hide another realizations of logo';
+            width: max-content;
+            position: absolute;
+            top: 120%;
+            left: 0;
+            font-size: 1.6rem;
+            font-style: italic;
+            // color: $inputColor;
+            color: $bordo;
+        }
+
+        &:hover::after {
+            display: block;
+        }
     }
 
     &__logo_mixblend {
@@ -92,6 +111,7 @@
 }
 
 .main2 {
+    display: none;
     padding-top: 7rem;
     border-top: 0.1rem solid $red;
 
@@ -108,6 +128,7 @@
 }
 
 .main3 {
+    display: none;
     padding-top: 7rem;
     border-top: 0.1rem solid $red;
 
@@ -121,4 +142,8 @@
             display: block;
         }
     }
+}
+
+.main_visible {
+    display: block;
 }

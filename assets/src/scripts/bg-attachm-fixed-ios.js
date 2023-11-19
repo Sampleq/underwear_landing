@@ -2,7 +2,8 @@ const ordering = document.querySelector('.ordering');
 let scrolledY;
 let offset;
 
-window.onscroll = (e) => {
+// скрипт тормозит на iPhone 6s, 11Pro и даже (немного) на MacBook Pro 2015
+function fixBgtoScreen() {
     scrolledY = scrollY;
     orderingOffset = ordering.offsetTop; // .offsetTop - расстояние в пикселях от элемента до верхней границы его родителя (т.е. расстояние от .ordering до начала body (т.е. страницы) )
     // console.log(scrolledY);
@@ -27,3 +28,21 @@ window.onscroll = (e) => {
 }
 
 // ordering.style.backgroundPosition = 'center ' + (scrolledY - orderingOffset - 314) + 'px';
+
+
+// window.addEventListener('scroll', fixBgtoScreen)
+
+const observerFixBg = new IntersectionObserver(
+    function (entries) {
+        if (entries[0].isIntersecting) {
+            // window.addEventListener('scroll', fixBgtoScreen)
+            window.onscroll = fixBgtoScreen;
+        } else {
+            // window.removeEventListener('scroll', fixBgtoScreen)
+            window.onscroll = undefined;
+        }
+
+    }
+)
+
+observerFixBg.observe(ordering);

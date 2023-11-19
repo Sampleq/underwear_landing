@@ -10,17 +10,19 @@ function moveBg(element) {
     }
 }
 
-logoWebkit.onclick = function () {
-    moveBg(this);
-};
+// "примеряемся" )
+// logoWebkit.onclick = function () {
+//     moveBg(this);
+// };
 
 
 const observer = new IntersectionObserver(
     function (entries) {
         for (let entry of entries) {
             if (entry.isIntersecting) {
+                // применяем действие только когда больше половины (0.5) entry будет в зоне видимости - это убирает глюк, когда обе entry видны на экране
                 if (entry.intersectionRatio > 0.5) {
-                    console.log(entry.target);
+                    // console.log(entry.target);
                     moveBg(entry.target);
                 }
             } else {
