@@ -89,13 +89,15 @@
         @media (min-width:1250px) {
             width: calc((38.4rem * 3) + (2 * 2.4rem));
         }
+
+        will-change: transform;
     }
 
     &__cards-cont {
         display: flex;
         flex-direction: row;
         gap: 2.4rem;
-        will-change: transform;
+        // will-change: transform;
     }
 
     &__card {
