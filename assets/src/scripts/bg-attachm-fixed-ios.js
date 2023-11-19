@@ -5,9 +5,9 @@ let offset;
 window.onscroll = (e) => {
     scrolledY = scrollY;
     orderingOffset = ordering.offsetTop; // .offsetTop - расстояние в пикселях от элемента до верхней границы его родителя (т.е. расстояние от .ordering до начала body (т.е. страницы) )
-    console.log(scrolledY);
+    // console.log(scrolledY);
     // console.log(scrollY);
-    console.log(orderingOffset);
+    // console.log(orderingOffset);
 
     // чисто для примерки
     // ordering.style.backgroundPosition = 'center ' + (scrolledY - 1850) + 'px';

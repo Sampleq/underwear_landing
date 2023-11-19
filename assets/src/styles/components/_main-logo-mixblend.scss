@@ -98,6 +98,7 @@
 
     // скрываем выходящие за пределы блока частей букв (из-за отрицательных margin)   - из-за этого в том числе не работает hover на соседних элементах
     overflow: hidden;
+    transition: all .033s linear;
 }
 
 // https://codepen.io/santo-ss/pen/xvpBya

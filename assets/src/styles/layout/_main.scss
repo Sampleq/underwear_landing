@@ -45,15 +45,20 @@
         position: relative; // для &:hover::after
         // z-index: 1; // для &:hover::after; - не нужно - задал z-index: 2 для .header__nav_mob-menu
 
-        &:hover::after {
-            content: 'logo made with mix-blend-mode:';
+        &::after {
+            display: none;
+            content: 'logo made with mix-blend-mode: screen;';
+            width: max-content;
             position: absolute;
             top: 100%;
             left: 0;
             font-size: 1.6rem;
             font-style: italic;
             color: $inputColor;
+        }
 
+        &:hover::after {
+            display: block;
         }
 
         @media ($mobileL) {
@@ -83,5 +88,37 @@
         margin-right: calc(100% * 4.3 / 120);
         z-index: -1; // убираем на задний план, чтобы при использовании mix-blend-mode в Логотипе не происходило смешение цветов при наложении fixed мобильного меню с заливкой цветом на весь экран
         // filter: blur(2px);
+    }
+}
+
+.main2 {
+    padding-top: 7rem;
+    border-top: 0.1rem solid $red;
+
+    @media ($tablet) {
+        padding-top: 11rem;
+    }
+
+    &__descr {
+        &::after {
+            content: 'logo made with -webkit-background-clip: text;';
+            display: block;
+        }
+    }
+}
+
+.main3 {
+    padding-top: 7rem;
+    border-top: 0.1rem solid $red;
+
+    @media ($tablet) {
+        padding-top: 11rem;
+    }
+
+    &__descr {
+        &::after {
+            content: 'logo made with IMG with transparent mask';
+            display: block;
+        }
     }
 }

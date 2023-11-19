@@ -62,7 +62,8 @@
                 </ul>
             </div>
 
-            <div class="header__basket">0</div>
+            <div class="header__basket" tabindex="0">0</div>
+            <!-- без tabindex="0" не работал :hover на iPhone  -->
         </div>
     </header>
 
@@ -87,6 +88,42 @@
 
         </div>
     </main>
+
+    <div class="main2 main">
+        <div class="wrapper main__wrapper">
+
+            <div class="main__textblock">
+                <h1 class="main__title">Нижнее бельё, которое вы полюбите</h1>
+                <p class="main2__descr main__descr">Лучшие ткани, которые сделают вашу жизнь комфортной </p>
+
+                <a class="btn main__btn" href="">Выбрать бельё</a>
+
+            </div>
+
+            <div class="main__logo">
+                <span class="main__logo-letter">C</span>
+                <span class="main__logo-letter main__logo-letter_m">m</span>
+                <span class="main__logo-letter main__logo-letter_t">t</span>
+            </div>
+
+        </div>
+    </div>
+    <div class="main3 main">
+        <div class="wrapper main__wrapper">
+
+            <div class="main__textblock">
+                <h1 class="main__title">Нижнее бельё, которое вы полюбите</h1>
+                <p class="main3__descr main__descr">Лучшие ткани, которые сделают вашу жизнь комфортной </p>
+
+                <a class="btn main__btn" href="">Выбрать бельё</a>
+
+            </div>
+
+            <img src="./images/Mask-group-letters@4x.png" alt="IMG with transparent mask"
+                class="main__logo_transp-mask-img">
+
+        </div>
+    </div>
 
     <div class="cards">
         <div class="wrapper cards__wrapper">
@@ -264,10 +301,8 @@
                 <button class="btn_arrow btn_arrow_l"></button>
 
                 <div class="slider__dots">
-                    <!-- при добавлении множества карточек - сделать генерацию точек через JS -->
+                    <!-- при добавлении множества карточек - сделать генерацию точек через JS - сделано! -->
                     <!-- <div class="slider__dot slider__dot_active"></div>
-                    <div class="slider__dot"></div>
-                    <div class="slider__dot"></div>
                     <div class="slider__dot"></div> -->
                 </div>
 
@@ -276,7 +311,6 @@
 
         </div>
     </div>
-
 
     <div class="ordering">
         <div class="wrapper ordering__wrapper">
@@ -339,6 +373,8 @@
     <script src="./scripts/menu.js"></script>
     <script src="./scripts/slider.js"></script>
     <script src="./scripts/bg-attachm-fixed-ios.js"></script>
+
+    <script src="./scripts/bg-mouse-move-logo.js"></script>
 
     <script>
 

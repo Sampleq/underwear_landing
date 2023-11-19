@@ -1,11 +1,25 @@
 .main__logo_transp-mask-img {
     display: block;
-    width: calc(100% * 545 / 1200);
-    max-width: 54.5rem;
-    max-height: 54.2rem;
+
+    width: 96vw;
+
+    @media ($tablet) {
+        width: calc(100vw * 545 / 1200);
+        max-width: 54.5rem;
+    }
+
+    height: calc(96vw * 542 / 545);
+
+    @media ($tablet) {
+        height: calc(100vw * 542 / 1200);
+        max-height: 54.2rem;
+    }
+
     background: url(../images/main.jpg) no-repeat;
     background-position: 78% 68%;
     background-size: 130%;
+
+    transition: all .033s linear;
 }
 
 
@@ -18,6 +32,8 @@
 //     background-position: 78% 70%;
 //     background-size: 135%;
 
+//     transition: all .033s linear;
+// 
 //     &-img2 {
 //         width: 100%;
 //         height: 100%;
