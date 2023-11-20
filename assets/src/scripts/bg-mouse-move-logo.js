@@ -15,7 +15,6 @@ function moveBg(element) {
 //     moveBg(this);
 // };
 
-
 const observer = new IntersectionObserver(
     function (entries) {
         for (let entry of entries) {
@@ -35,3 +34,10 @@ const observer = new IntersectionObserver(
 observer.observe(logoWebkit);
 observer.observe(logoMixBlend);
 observer.observe(logoTranspMaskImg);
+
+
+// !! Обязательно запускаем moveBg(logoMixBlend) с отсрочкой - чтобы движение всед за мышью работало срзу после загрузки страницы, т.к. после загрузки страницы если не убрать из поля видимости logoMixBlend и обратно не вернуть в поле видимости - IntersectionObserver не запустит функцию moveBg()
+setTimeout(() => {
+    moveBg(logoMixBlend);
+    // alert(`start moveBg(logoMixBlend)`);
+}, 133);
