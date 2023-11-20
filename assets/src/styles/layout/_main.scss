@@ -122,6 +122,9 @@
     &__descr {
         &::after {
             content: 'logo made with -webkit-background-clip: text;';
+        }
+
+        &:hover::after {
             display: block;
         }
     }
@@ -139,6 +142,9 @@
     &__descr {
         &::after {
             content: 'logo made with IMG with transparent mask';
+        }
+
+        &:hover::after {
             display: block;
         }
     }
