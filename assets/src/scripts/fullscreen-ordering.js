@@ -13,48 +13,26 @@ const html = document.querySelector(':root');
 
 // let initScrollY;
 function fullscreenSection() {
-    // console.log(orderingImgCont);
-    // console.log(ordering);
-    // initScrollY = scrollY;
-    html.style.scrollPaddingTop = 0;
-    ordering.style.transition = '0.5s';
-    orderingOuter.style.transition = '0s';
 
-    // orderingOuter.style.transition = '0.2s';
+    if (window.innerHeight > ordering.offsetHeight) {
+        html.style.scrollPaddingTop = 0;
+        ordering.style.transition = '0.5s';
+        orderingOuter.style.transition = '0s';
+        ordering.scrollIntoView({ block: "center" });
 
-    ordering.scrollIntoView({ block: "center" });
-
-    // ordering.scrollIntoView({ block: "center" });
-
-
-
-
-
-    setTimeout(() => {
-        // orderingOuter.style.position = 'fixed'
-
-
-        // orderingOuter.style.height = '100vh';
-
-        // ordering.style.height = '100vh';
-
-
-        // html.style.scrollBehavior = 'smooth';
-        // ordering.scrollIntoView({ block: "center" });
-
-        html.style.scrollBehavior = 'auto';
-        // orderingOuter.style.transition = '0.2s';
-        orderingOuter.style.height = '100vh';
-        ordering.style.height = '100vh';
-        window.scrollBy(0, ((window.innerHeight - ordering.offsetHeight) / 2));
-
-    }, 500);
+        setTimeout(() => {
+            html.style.scrollBehavior = 'auto';
+            // orderingOuter.style.transition = '0.2s';
+            orderingOuter.style.height = '100vh';
+            ordering.style.height = '100vh';
+            window.scrollBy(0, ((window.innerHeight - ordering.offsetHeight) / 2));
+        }, 500);
+    }
 }
 
 orderingImgCont.addEventListener('mouseenter', fullscreenSection, { once: true });
 
 orderingImgContOuter.onmouseleave = () => {
-    // orderingOuter.style.transition = '0.5s';
 
     footer.style.height = '100vh';
 
@@ -81,7 +59,7 @@ orderingImgContOuter.onmouseleave = () => {
 
             footer.style.removeProperty('height');
 
-
+            html.style.scrollBehavior = 'smooth';
         }, 500);
 
         // setInterval(() => {
@@ -90,6 +68,7 @@ orderingImgContOuter.onmouseleave = () => {
         // window.scrollTo(0, (html.scrollTop - 80));
 
     }, 300);
+
 
 }
 
