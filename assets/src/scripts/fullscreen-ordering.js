@@ -65,7 +65,7 @@ orderingImgContOuter.onmouseleave = () => {
 
     setTimeout(() => {
         ordering.style.removeProperty('height');
-        // orderingOuter.style.removeProperty('height');
+        orderingOuter.style.removeProperty('height');
 
         orderingImgCont.addEventListener('mouseenter', fullscreenSection, { once: true });
 
