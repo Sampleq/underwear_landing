@@ -3,6 +3,7 @@ const orderingImgCont = document.querySelector('.ordering__img-cont');
 const orderingImgContOuter = document.querySelector('.ordering__img-cont-outer');
 const ordering = document.querySelector('.ordering');
 const orderingOuter = document.querySelector('.ordering-outer');
+const main = document.querySelector('.main');
 
 // ! selecting an <html> tag element - 3 ways:
 // const html = document.getElementsByTagName('html')[0];
@@ -16,45 +17,58 @@ function fullscreenSection() {
     // initScrollY = scrollY;
     html.style.scrollPaddingTop = 0;
     ordering.style.transition = '0.5s';
-    orderingOuter.style.transition = '0.2s';
-    orderingOuter.style.height = '100vh';
-    // window.scrollTo(0, 0);
+    orderingOuter.style.transition = '0s';
 
-    ordering.style.height = '100vh';
-    ordering.style.backgroundColor = 'rgba(240, 237, 243, 0.75)';
+    // orderingOuter.style.transition = '0.2s';
 
-    // // убрал после добавления внешнего orderingOuter, который разворачивается без transition. Вернул после добавления небольшого transition = '0.2s' orderingOute-у  - для большей визуальной плавности
+    ordering.scrollIntoView({ block: "center" });
+
+    // ordering.scrollIntoView({ block: "center" });
+
+
+
+
+
     setTimeout(() => {
-        // без задержки не прокручивается до самого верха  блока (т.к. блок растёт медленней прокрутки)
+        // orderingOuter.style.position = 'fixed'
+
+
+        // orderingOuter.style.height = '100vh';
+
+        // ordering.style.height = '100vh';
+
+
+        // html.style.scrollBehavior = 'smooth';
         // ordering.scrollIntoView({ block: "center" });
 
-        window.scrollTo(0, (orderingOuter.offsetTop));
+        html.style.scrollBehavior = 'auto';
+        // orderingOuter.style.transition = '0.2s';
+        orderingOuter.style.height = '100vh';
+        ordering.style.height = '100vh';
+        window.scrollBy(0, ((window.innerHeight - ordering.offsetHeight) / 2));
 
-    }, 100);
+    }, 500);
 }
 
 orderingImgCont.addEventListener('mouseenter', fullscreenSection, { once: true });
 
 orderingImgContOuter.onmouseleave = () => {
+    // orderingOuter.style.transition = '0.5s';
+
+
+    html.style.scrollBehavior = 'smooth';
+    ordering.scrollIntoView({ block: "center" });
+
+
     orderingOuter.style.transition = '0.5s';
 
 
     setTimeout(() => {
         ordering.style.removeProperty('height');
-        orderingOuter.style.removeProperty('height');
-        ordering.style.backgroundColor = 'rgba(240, 237, 243, 0.99)';
-        //html.style.removeProperty('scrollPaddingTop'); // not applying((
-        html.style.scrollPaddingTop = '4rem'; // 4rem - as in CSS
-
-        setTimeout(() => {
-            ordering.style.removeProperty('transition');
-            orderingOuter.style.removeProperty('transition');
-        }, 500);
+        // orderingOuter.style.removeProperty('height');
 
         orderingImgCont.addEventListener('mouseenter', fullscreenSection, { once: true });
 
-        window.scrollTo(0, (ordering.offsetTop) - 60);
-        // ordering.scrollIntoView({ block: "center" });
 
 
     }, 300);
