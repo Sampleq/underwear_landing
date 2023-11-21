@@ -12,6 +12,7 @@ const footer = document.querySelector('.footer');
 const html = document.querySelector(':root');
 
 // let initScrollY;
+
 function fullscreenSection() {
 
     if (window.innerHeight > ordering.offsetHeight) {
@@ -20,12 +21,16 @@ function fullscreenSection() {
         orderingOuter.style.transition = '0s';
         ordering.scrollIntoView({ block: "center" });
 
+
+
         setTimeout(() => {
+
             html.style.scrollBehavior = 'auto';
             // orderingOuter.style.transition = '0.2s';
             orderingOuter.style.height = '100vh';
             ordering.style.height = '100vh';
             window.scrollBy(0, ((window.innerHeight - ordering.offsetHeight) / 2));
+            // console.log(currPos);
         }, 500);
     }
 }
@@ -53,9 +58,10 @@ orderingImgContOuter.onmouseleave = () => {
         setTimeout(() => {
             orderingOuter.style.removeProperty('height');
 
-            // написать вместо 87 формулу
-            // window.scrollTo(0, (html.scrollTop - 87));
-            window.scrollTo(0, (html.scrollTop - 87));
+            // window.scrollTo(0, (html.scrollTop - 88));
+            ordering.scrollIntoView({ block: "center" });
+
+
 
             footer.style.removeProperty('height');
 
