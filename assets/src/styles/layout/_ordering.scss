@@ -1,5 +1,22 @@
+// <!-- for JS scroll animation -->
+.ordering-outer {
+    display: flex;
+    align-items: center;
+    // align-items: flex-start;
+    justify-content: center;
+    background-color: $bgColor;
+    border-top: solid 1px;
+
+    // height: 80vh;
+    height: 75vh;
+    min-height: 54.2rem;
+}
+
 .ordering {
-    // @include section_mb();
+    // @include section_mb()
+    flex-shrink: 0;
+    width: 100%;
+
     padding: 7rem 0;
 
     @media ($tablet) {
@@ -8,7 +25,8 @@
 
     @media ($laptop) {
         padding: 0;
-        height: 80vh;
+        // height: 80vh;
+        height: 75vh;
         min-height: 54.2rem;
 
         display: flex;

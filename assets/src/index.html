@@ -320,35 +320,38 @@
         </div>
     </div>
 
-    <div class="ordering">
-        <div class="wrapper ordering__wrapper">
-            <div class="ordering__img-cont-outer">
-                <div class="ordering__img-cont">
-                    <img src="./images/lingerie-order.jpg" alt="lingerie order" class="ordering__img">
+    <div class="ordering-outer"> <!-- for JS scroll animation -->
+        <div class="ordering">
+            <div class="wrapper ordering__wrapper">
+                <div class="ordering__img-cont-outer">
+                    <div class="ordering__img-cont">
+                        <img src="./images/lingerie-order.jpg" alt="lingerie order" class="ordering__img">
+                    </div>
                 </div>
-            </div>
-            <div class="ordering__text">
-                <h2 class="ordering__title">Закажите нижнее бельё </h2>
-                <p class="ordering__descr">Выберите бельё, которое вам понравилось, заполните свои данные и мы с вами
-                    свяжемся для подтверждения заказа</p>
-            </div>
-
-            <form action="#" class="ordering__form">
-                <div class="select-wrapper ordering__select-wrapper">
-                    <select name="select1" id="select1" class="ordering__select select" required>
-                        <option value="" selected disabled hidden> Выбрать бельё</option>
-                        <!-- <option value="" selected disabled> Выбрать бельё</option> -->
-                        <option value="woman-undwr">Женское бельё</option>
-                        <option value="man-undwr">Мужское бельё</option>
-                        <option value="clild-undwr">Детское бельё</option>
-                    </select>
+                <div class="ordering__text">
+                    <h2 class="ordering__title">Закажите нижнее бельё </h2>
+                    <p class="ordering__descr">Выберите бельё, которое вам понравилось, заполните свои данные и мы с
+                        вами
+                        свяжемся для подтверждения заказа</p>
                 </div>
-                <input type="text" class="input ordering__input" name="input-name" placeholder="Ваше имя" required>
-                <input type="tel" class="ordering__input input" name="input-tel" placeholder="Ваш телефон" required>
-                <button class="btn ordering__btn">Кнопка</button>
 
-            </form>
+                <form action="#" class="ordering__form">
+                    <div class="select-wrapper ordering__select-wrapper">
+                        <select name="select1" id="select1" class="ordering__select select" required>
+                            <option value="" selected disabled hidden> Выбрать бельё</option>
+                            <!-- <option value="" selected disabled> Выбрать бельё</option> -->
+                            <option value="woman-undwr">Женское бельё</option>
+                            <option value="man-undwr">Мужское бельё</option>
+                            <option value="clild-undwr">Детское бельё</option>
+                        </select>
+                    </div>
+                    <input type="text" class="input ordering__input" name="input-name" placeholder="Ваше имя" required>
+                    <input type="tel" class="ordering__input input" name="input-tel" placeholder="Ваш телефон" required>
+                    <button class="btn ordering__btn">Кнопка</button>
 
+                </form>
+
+            </div>
         </div>
     </div>
 
@@ -388,6 +391,8 @@
 
     <script src="./scripts/bg-mouse-move-logo.js"></script>
 
+    <script src="./scripts/fullscreen-ordering.js"></script>
+
 
     <!-- // script for click to show/hide another realizations of logo -->
     <script>
@@ -408,72 +413,7 @@
         }
     </script>
 
-    <script>
-        const orderingImgCont = document.querySelector('.ordering__img-cont');
-        const orderingImgContOuter = document.querySelector('.ordering__img-cont-outer');
-        const ordering = document.querySelector('.ordering');
 
-        // selecting an <html> tag element - 3 ways:
-        // const html = document.getElementsByTagName('html')[0];
-        // const html = document.body.parentNode;
-        const html = document.querySelector(':root');
-
-        // let initScrollY;
-        function fullscreenSection() {
-            // console.log(orderingImgCont);
-            // console.log(ordering);
-            initScrollY = scrollY;
-            html.style.scrollPaddingTop = 0;
-            ordering.style.transition = '0.4s';
-            // ordering.style.height = '100vh';
-
-            ordering.scrollIntoView({ block: "center" });
-
-            ordering.style.backgroundColor = 'rgba(240, 237, 243, 0.75)';
-            setTimeout(() => {
-                // без задержки не прокручивается до самого верха  блока (т.к. блок растёт медленней прокрутки)
-                // ordering.scrollIntoView({ block: "center" });
-
-                ordering.style.height = '100vh';
-                setTimeout(() => {
-                    ordering.scrollIntoView({ block: "center" });
-
-                }, 300);
-
-
-            }, 390);
-            // document.getElementsByTagName('html')[0].style.scrollPaddingTop = 0;
-            // document.body.parentNode.style.scrollPaddingTop = 0;
-            // console.log(html);
-            // window.scrollTo(0, (ordering.offsetTop));
-        }
-
-        orderingImgCont.addEventListener('mouseenter', fullscreenSection, { once: true });
-
-        orderingImgContOuter.onmouseleave = () => {
-            setTimeout(() => {
-                ordering.style.removeProperty('height');
-                ordering.style.backgroundColor = 'rgba(240, 237, 243, 0.99)';
-                //html.style.removeProperty('scrollPaddingTop'); // not applying((
-                html.style.scrollPaddingTop = '4rem'; // 4rem - as in CSS
-
-                setTimeout(() => {
-                    ordering.style.removeProperty('transition');
-                }, 400);
-
-                orderingImgCont.addEventListener('mouseenter', fullscreenSection, { once: true });
-
-                // window.scrollTo(0, initScrollY);
-                // window.scrollTo(0, ((ordering.offsetHeight / 2) + ordering.offsetTop));
-                // window.scrollTo(0, (ordering.offsetTop) - 10 * ((window.innerHeight - ordering.offsetHeight) / 2));
-
-                // window.scrollTo(0, (ordering.offsetTop) - 40);
-
-            }, 150);
-
-        }
-
-    </script>
 </body>
 
 </html>
