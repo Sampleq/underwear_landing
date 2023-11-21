@@ -4,6 +4,7 @@ const orderingImgContOuter = document.querySelector('.ordering__img-cont-outer')
 const ordering = document.querySelector('.ordering');
 const orderingOuter = document.querySelector('.ordering-outer');
 const main = document.querySelector('.main');
+const footer = document.querySelector('.footer');
 
 // ! selecting an <html> tag element - 3 ways:
 // const html = document.getElementsByTagName('html')[0];
@@ -55,21 +56,38 @@ orderingImgCont.addEventListener('mouseenter', fullscreenSection, { once: true }
 orderingImgContOuter.onmouseleave = () => {
     // orderingOuter.style.transition = '0.5s';
 
+    footer.style.height = '100vh';
 
-    html.style.scrollBehavior = 'smooth';
-    ordering.scrollIntoView({ block: "center" });
+    // html.style.scrollBehavior = 'smooth';
+    orderingOuter.scrollIntoView({ block: "center" });
 
-
-    orderingOuter.style.transition = '0.5s';
+    // orderingOuter.style.transition = '0.5s';
 
 
     setTimeout(() => {
         ordering.style.removeProperty('height');
-        orderingOuter.style.removeProperty('height');
 
         orderingImgCont.addEventListener('mouseenter', fullscreenSection, { once: true });
 
+        // document.body.style.overflow = 'hidden';
+        // orderingOuter.style.removeProperty('height');
 
+        setTimeout(() => {
+            orderingOuter.style.removeProperty('height');
+
+            // написать вместо 87 формулу
+            // window.scrollTo(0, (html.scrollTop - 87));
+            window.scrollTo(0, (html.scrollTop - 87));
+
+            footer.style.removeProperty('height');
+
+
+        }, 500);
+
+        // setInterval(() => {
+        //     orderingOuter.scrollIntoView({ block: "center" });
+        // }, 16);
+        // window.scrollTo(0, (html.scrollTop - 80));
 
     }, 300);
 
