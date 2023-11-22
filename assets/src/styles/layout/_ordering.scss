@@ -1,17 +1,19 @@
-// <!-- for JS scroll animation -->
+// <!-- for JS scroll/expand animation -->
 .ordering-outer {
     display: flex;
     align-items: center;
-    // align-items: flex-start;
     justify-content: center;
     background-color: $bgColor;
-    border-top: solid 1px;
-    border-bottom: solid 1px;
+    // border-top: solid 1px;
+    // border-bottom: solid 1px;
 
     // height: 80vh;
     height: 75vh;
     min-height: 54.2rem;
 }
+
+// <!-- for JS scroll/expand animation -->
+
 
 .ordering {
     // @include section_mb()
