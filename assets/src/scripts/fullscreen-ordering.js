@@ -19,8 +19,8 @@ function enterFullscreenSection() {
         // задаем плавность перехода блока с фоном (ordering)
         ordering.style.transition = '0.5s';
 
-        // из CSS ((100vh - 55vh) / 2) = 22.5vh . 55vh - это высота ordering (и orderingOuter)
-        footer.style.height = '22.5vh';
+        // из CSS ((100vh - 50vh) / 2) = 25vh . 50vh - это высота ordering (и orderingOuter)
+        footer.style.height = '25vh';
 
         // скроллим блок с фоном (ordering) в центр экрана
         ordering.scrollIntoView({ block: "center" });
@@ -65,9 +65,10 @@ function enterFullscreenSection() {
 orderingImgCont.addEventListener('mouseenter', enterFullscreenSection, { once: true });
 
 function exitFullscreenSection() {
-    //  для возможности прокрутки блока с фоном в центр экрана (на больших экранах) - после мгновенного сворачивания блока-обёртки блока с фоном - мгоувеличение футера - 
+    //  для возможности прокрутки блока с фоном в центр экрана (на больших экранах) - после мгновенного сворачивания блока-обёртки блока с фоном - 
     footer.style.transition = '0.5s';
-    footer.style.height = '22.5vh';
+    // из CSS ((100vh - 50vh) / 2) = 25vh . 50vh - это высота ordering (и orderingOuter)
+    footer.style.height = '25vh';
 
     // возвращаем плавность скролла (на случай, если пользователь скроллил страницу с развернуым блоком с фоном)
     html.style.scrollBehavior = 'smooth';
