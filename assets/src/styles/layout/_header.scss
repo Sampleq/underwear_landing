@@ -118,7 +118,7 @@
         }
 
         @media ($tablet) {
-            display: none;
+            display: none !important;
         }
     }
 
