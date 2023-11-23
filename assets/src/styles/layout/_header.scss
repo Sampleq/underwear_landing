@@ -40,6 +40,8 @@
                 z-index: 3;
             }
         }
+
+        background: url(../images/Icon-Menu-bordo.svg) no-repeat 100% 250%; // чисто предзагружаем иконку
     }
 
     &__catalog {
