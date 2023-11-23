@@ -12,7 +12,7 @@ const mainLogoMixblend = document.querySelector('.main__logo_mixblend');
 
 function openMenu() {
     if (window.innerWidth < 768) {
-        mainLogoMixblend.style.zIndex = '-1';
+        // mainLogoMixblend.style.zIndex = '-1';
 
         // console.log('btnMenuToggle.onclick');
         menu.classList.add('header__menu_mobile');
