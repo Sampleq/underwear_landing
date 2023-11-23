@@ -85,8 +85,8 @@ function exitFullscreenSection() {
         // делаём фоновую картинку обратно более блёклой
         ordering.style.backgroundColor = 'rgba(240, 237, 243, 0.99)';
 
-        // вешаем  однократный листнер для разворачивания блока с фоном (ordering)
-        orderingImgCont.addEventListener('mouseenter', enterFullscreenSection, { once: true });
+        // вешаем  однократный листнер для разворачивания блока с фоном (ordering) - теперь на событие 'mousemove' - чтобы не было глюка с повторным проигрыванием анимации после скрола из-за попадания курсора на картинку
+        orderingImgCont.addEventListener('mousemove', enterFullscreenSection, { once: true });
 
         // не требуется запрещать полдьзователю скролл страницы - глюков нет
         // document.body.style.overflow = 'hidden';
