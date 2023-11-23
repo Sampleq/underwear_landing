@@ -168,6 +168,9 @@
     }
 
     // реализация  эффекта background-attachment: fixed; через псевдоэлемент. требуется добавления фона всем блокам сайта (в которых нет фиксированной фоновой картинки)
+    --orderingBGColor:rgba(240, 237, 243, 0.99);
+    --transformBgBefore: none;
+
     &::before {
         display: block;
         content: '';
@@ -186,7 +189,10 @@
         background-size: cover;
         background-position: center 26%;
         background-blend-mode: overlay;
-        background-color: rgba(240, 237, 243, 0.99);
+        background-color: var(--orderingBGColor);
+        // background-color: rgba(240, 237, 243, 0.99);
+        transition: background-color 0.5s, transform 0.033s;
+        transform: var(--transformBgBefore);
     }
 
     // &-before {

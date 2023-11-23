@@ -7,6 +7,9 @@ const footer = document.querySelector('.footer');
 
 let orderingInitHeight;
 
+// создаём тег style в HEAD - вутри него можно применять и изменять сойства для псевдоэлементов
+// let styleElem = document.head.appendChild(document.createElement("style"));
+
 // ! selecting an <html> tag element - 3 ways:
 // const html = document.getElementsByTagName('html')[0];
 // const html = document.body.parentNode;
@@ -61,6 +64,11 @@ function enterFullscreenSection() {
 
             // делаем фоновую картинку более ясно видимой
             // ordering.style.backgroundColor = 'rgba(240, 237, 243, 0.75)';
+            // меняем значение переменной CSS - изменится значение свойства у псевдоэлемента (оно задано переменной CSS)  - в этом случае не работает transition ((
+            ordering.style.setProperty('--orderingBGColor', 'rgba(240, 237, 243, 0.75)');
+            //  изменяем стиль псевжоэлемента меняя содержимое тега style в head-е
+            // styleElem.innerHTML = '.ordering::before {transition: 0.5s; background-color: rgba(240, 237, 243, 0.75)}'
+
 
             // orderingImgCont.addEventListener('mouseleave', exitFullscreenSection, { once: true });
             // вешаем слушатель события на блок-обёртку контейнера картинки (у него высота 100% родителя) - чтоб не было зацикленного разворачивания сворачивания при определённном положении курсора мыши и скролла страницы
@@ -73,6 +81,14 @@ function enterFullscreenSection() {
 
             // возвращаем футер к нормальному размеру, пересчитывая высоту по макету  135px в vh. 10 - это размер шрифта в HTML (переделать в переменную и брать из CSS!!!)
             footer.style.height = `${100 * (13.5 * 10) / window.innerHeight}vh`;
+
+            // // масштабирование псевдоэлемента с фоном тормозит на MacBook Pro 2015 - не применяем
+            // document.onmousemove = function (event) {
+            //     // styleElem.innerHTML = '.ordering::before {transform: scale(' + ((1.2 + (1.0 * event.clientX / 10000)) - (event.clientY / 8000)) + ')}'
+            //     let transformBgBefore = 'scale(' + ((1.1 + (1.0 * event.clientX / 15000)) - (event.clientY / 10000)) + ')'
+
+            //     ordering.style.setProperty('--transformBgBefore', transformBgBefore);
+            // }
         }, 500);
     } else {
         // если высота экрана больше высоты блока с фоном (ordering) - только центрируем и вешаем однократный листнер - на случай увеличения высоты экрана (окна браузера) или повторного наведени после скролла
@@ -102,8 +118,14 @@ function exitFullscreenSection() {
     setTimeout(() => {
         // убираем высоту на весь экран у блока с фоном - происходит с анимацией за счёт transition 
         ordering.style.removeProperty('height');
+
         // делаём фоновую картинку обратно более блёклой
         // ordering.style.backgroundColor = 'rgba(240, 237, 243, 0.99)';
+        // меняем значение переменной CSS - изменится значение свойства у псевдоэлемента (оно задано переменной CSS) - в этом случае не работает transition ((
+        ordering.style.setProperty('--orderingBGColor', 'rgba(240, 237, 243, 0.99)');
+        // изменяем стиль псевжоэлемента меняя содержимое тега style в head-е
+        // styleElem.innerHTML = '.ordering::before {transition: 0.5s; background-color: rgba(240, 237, 243, 0.99)}'
+
 
 
         setTimeout(() => {
