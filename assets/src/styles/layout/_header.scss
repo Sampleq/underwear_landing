@@ -362,3 +362,24 @@
         opacity: 1;
     }
 }
+
+
+// Делаем белый фон для секции (при использовании фиксированной фоновой картинки через псевдоэлемент - для работы на iOS
+.header {
+    background-color: white;
+
+    margin-top: 0rem;
+    padding-top: 2rem;
+    margin-bottom: 0rem;
+    padding-bottom: 6rem;
+
+    @media ($mobileL) {
+        margin-bottom: 0rem;
+        padding-bottom: 4.2rem;
+    }
+
+    @media ($tablet) {
+        margin-bottom: 0rem;
+        padding-bottom: 3.2rem;
+    }
+}

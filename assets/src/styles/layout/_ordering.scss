@@ -3,14 +3,19 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: $bgColor;
+    // background-color: $bgColor;
     // border-top: solid 1px;
     // border-bottom: solid 1px;
+
+    // border-top: 25vh solid $bgColor;
 
     @media ($laptop) {
         height: 50vh;
         min-height: 54.2rem;
     }
+
+    // position: relative;
+    // z-index: 1;
 
 }
 
@@ -38,16 +43,17 @@
         align-items: stretch;
     }
 
+    // position: relative;
+    // z-index: 0;
 
-
-    //  не нужно при реализации  эффекта background-attachment: fixed; через псевдоэлемент (требуется добавления фона всем блокам сайта (в которых нет фиксированной фоновой картинки) -  см. ниже 
-    background: url(../images/lingerie-order.jpg) no-repeat;
-    background-size: cover;
-    background-attachment: fixed; // doesn't work on iPhone ((
-    background-position: center 26%;
-    background-blend-mode: overlay;
-    //background-color: rgba(255, 250, 255, 0.95);
-    background-color: rgba(240, 237, 243, 0.99);
+    // //  не нужно при реализации  эффекта background-attachment: fixed; через псевдоэлемент (требуется добавления фона всем блокам сайта (в которых нет фиксированной фоновой картинки) -  см. ниже 
+    // background: url(../images/lingerie-order.jpg) no-repeat;
+    // background-size: cover;
+    // background-attachment: fixed; // doesn't work on iPhone ((
+    // background-position: center 26%;
+    // background-blend-mode: overlay;
+    // //background-color: rgba(255, 250, 255, 0.95);
+    // background-color: rgba(240, 237, 243, 0.99);
 
     // !!! для реализации аналога background-attachment: fixed; через JS, но скрипт тормозит на iPhone 6s, 11Pro и даже (немного) на MacBook Pro 2015 - добавил только для нагладности возможности
     // background-attachment: scroll;
@@ -71,6 +77,9 @@
         @media ($laptop) {
             justify-content: space-between;
         }
+
+        position: relative;
+        z-index: 11;
     }
 
     &__img-cont-outer {
@@ -158,8 +167,25 @@
         width: 100%;
     }
 
-    // // реализация  эффекта background-attachment: fixed; через псевдоэлемент. требуется добавления фона всем блокам сайта (в которых нет фиксированной фоновой картинки)
-    // &::before {
+    // реализация  эффекта background-attachment: fixed; через псевдоэлемент. требуется добавления фона всем блокам сайта (в которых нет фиксированной фоновой картинки)
+    &::before {
+        display: block;
+        content: '';
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: -1000;
+
+        background: url(../images/lingerie-order.jpg) no-repeat;
+        background-size: cover;
+        background-position: center 26%;
+        background-blend-mode: overlay;
+        background-color: rgba(240, 237, 243, 0.99);
+    }
+
+    // &-before {
     //     display: block;
     //     content: '';
     //     position: fixed;

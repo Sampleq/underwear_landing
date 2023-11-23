@@ -5,6 +5,8 @@ const ordering = document.querySelector('.ordering');
 const orderingOuter = document.querySelector('.ordering-outer');
 const footer = document.querySelector('.footer');
 
+let orderingInitHeight;
+
 // ! selecting an <html> tag element - 3 ways:
 // const html = document.getElementsByTagName('html')[0];
 // const html = document.body.parentNode;
@@ -30,7 +32,14 @@ function enterFullscreenSection() {
             // убираем плавность прокрутки (скроллинга) страницы, разворачиваем блок-обёртку на всю высоту экрана и cкроллим блок обертку в центр экрана (т.е. он займёт весь экран) - все эти (три) действия происходят мгновенно - пользователь видит на экране только появление контента соседних блоков
             html.style.scrollBehavior = 'auto';
             orderingOuter.style.height = '100vh';
-            //  убрал - т.к. это работало без глюка только до 1280х800
+
+
+            orderingInitHeight = ordering.offsetHeight;
+            orderingOuter.style.borderTop = ((window.innerHeight - ordering.offsetHeight) / 2) + 'px solid #FFEEEF';
+            orderingOuter.style.borderBottom = ((window.innerHeight - ordering.offsetHeight) / 2) + 'px solid #FFEEEF';
+
+
+            //  убрал - т.к. это работало без глюка только до 1440х900
             // window.scrollBy(0, ((window.innerHeight - ordering.offsetHeight) / 2));
             // !!! нужно временно добавить высоты футеру ( и с задержкой убрать в этой же функции) чтобы не было "скачка" на больших разрешениях, где нельзя промотать ordering.scrollIntoView({ block: "center" }); ( добавлять до line 22) в центр экрана !!!
             orderingOuter.scrollIntoView({ block: "center" });
@@ -39,8 +48,19 @@ function enterFullscreenSection() {
             // разворачиваем блок с фоном (ordering) на всю высоту экрана (происходит с анимацией благодаря раннее присвоинному transition)
             ordering.style.height = '100vh';
 
+
+            // Добавляем плавность (transition  = '0.5s') orderingOuter - и убираем бордеры. после завершения transition (т.е. через 0.5сек) - убираем
+            setTimeout(() => {
+                orderingOuter.style.transition = '0.5s';
+                setTimeout(() => {
+                    orderingOuter.style.transition = '0.0s';
+                }, 500);
+                orderingOuter.style.borderTop = '0px solid #FFEEEF';
+                orderingOuter.style.borderBottom = '0px solid #FFEEEF';
+            }, 0);
+
             // делаем фоновую картинку более ясно видимой
-            ordering.style.backgroundColor = 'rgba(240, 237, 243, 0.75)';
+            // ordering.style.backgroundColor = 'rgba(240, 237, 243, 0.75)';
 
             // orderingImgCont.addEventListener('mouseleave', exitFullscreenSection, { once: true });
             // вешаем слушатель события на блок-обёртку контейнера картинки (у него высота 100% родителя) - чтоб не было зацикленного разворачивания сворачивания при определённном положении курсора мыши и скролла страницы
@@ -83,7 +103,18 @@ function exitFullscreenSection() {
         // убираем высоту на весь экран у блока с фоном - происходит с анимацией за счёт transition 
         ordering.style.removeProperty('height');
         // делаём фоновую картинку обратно более блёклой
-        ordering.style.backgroundColor = 'rgba(240, 237, 243, 0.99)';
+        // ordering.style.backgroundColor = 'rgba(240, 237, 243, 0.99)';
+
+
+        setTimeout(() => {
+            orderingOuter.style.transition = '0.5s';
+            setTimeout(() => {
+                orderingOuter.style.transition = '0.0s';
+            }, 490);
+            orderingOuter.style.borderTop = ((window.innerHeight - orderingInitHeight) / 2) + 'px solid #FFEEEF';
+            orderingOuter.style.borderBottom = ((window.innerHeight - orderingInitHeight) / 2) + 'px solid #FFEEEF';
+        }, 0);
+
 
         // вешаем  однократный листнер для разворачивания блока с фоном (ordering) - теперь на событие 'mousemove' - чтобы не было глюка с повторным проигрыванием анимации после скрола из-за попадания курсора на картинку
         orderingImgCont.addEventListener('mousemove', enterFullscreenSection, { once: true });
@@ -96,6 +127,10 @@ function exitFullscreenSection() {
             // убираем плавность прокрутки (скроллинга) страницы, сворачиваем блок-обёртку и скроллим блок с фоном (ordering) в центр - все эти (три) действия происходят мгновенно - пользователь видит на экране только исчезание контента соседних блоков (в том числе за счёт одинакового цвета фона блока-обёртки и соседних блоков) 
             html.style.scrollBehavior = 'auto';
             orderingOuter.style.removeProperty('height');
+
+            orderingOuter.style.borderTop = '0px solid #FFEEEF';
+            orderingOuter.style.borderBottom = '0px solid #FFEEEF';
+
             ordering.scrollIntoView({ block: "center" });
 
             // footer.style.height = '13.5rem';
