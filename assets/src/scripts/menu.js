@@ -5,31 +5,15 @@ const main = document.querySelector('.main');
 const nav = document.querySelector('.header__nav');
 const catalog = document.querySelector('.header__catalog-menu');
 const btnMobSubMenu = document.querySelector('.header__submenu-opener');
-const btnCatDesktOpener = document.querySelector('.header__catalog')
+const btnCatDesktOpener = document.querySelector('.header__catalog');
 
+const mainLogoMixblend = document.querySelector('.main__logo_mixblend');
 
-function closeMenu(event) {
-    //  объединил закрытие мобильного и десктоп меню в одну функцию без условий по ширине экрана - закрывает ВСË.
-    if (event.target !== btnMobSubMenu) {
-        // console.log('document.addEventListener click');
-        menu.classList.remove('header__menu_mobile');
-        catalog.classList.remove('header__catalog-menu_visible');
-        nav.classList.remove('header__nav_mob-menu');
-        catalog.classList.remove('header__catalog-menu_visible-desktop');
-        btnMenuToggle.classList.remove('header__icon-menu_close');
-
-        // возобновляем возможность прокрутки страницы при закрытии меню
-        document.body.style.overflow = 'visible';
-
-        // main.style.filter = 'none';
-
-        document.removeEventListener('click', closeMenu);
-        btnCatDesktOpener.addEventListener('click', openMenu, { once: true });
-    }
-}
 
 function openMenu() {
     if (window.innerWidth < 768) {
+        mainLogoMixblend.style.zIndex = '-1';
+
         // console.log('btnMenuToggle.onclick');
         menu.classList.add('header__menu_mobile');
 
@@ -54,6 +38,29 @@ function openMenu() {
     setTimeout(() => {
         document.addEventListener('click', closeMenu);
     }, 16);
+}
+
+function closeMenu(event) {
+    mainLogoMixblend.style.removeProperty('z-index');
+    // mainLogoMixblend.style.zIndex = '';
+
+    //  объединил закрытие мобильного и десктоп меню в одну функцию без условий по ширине экрана - закрывает ВСË.
+    if (event.target !== btnMobSubMenu) {
+        // console.log('document.addEventListener click');
+        menu.classList.remove('header__menu_mobile');
+        catalog.classList.remove('header__catalog-menu_visible');
+        nav.classList.remove('header__nav_mob-menu');
+        catalog.classList.remove('header__catalog-menu_visible-desktop');
+        btnMenuToggle.classList.remove('header__icon-menu_close');
+
+        // возобновляем возможность прокрутки страницы при закрытии меню
+        document.body.style.overflow = 'visible';
+
+        // main.style.filter = 'none';
+
+        document.removeEventListener('click', closeMenu);
+        btnCatDesktOpener.addEventListener('click', openMenu, { once: true });
+    }
 }
 
 // повесили этот листнер на btnCatDesktOpener

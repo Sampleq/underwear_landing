@@ -105,7 +105,8 @@
 
     &__logo_mixblend {
         margin-right: calc(100% * 4.3 / 120);
-        z-index: -1; // убираем на задний план, чтобы при использовании mix-blend-mode в Логотипе не происходило смешение цветов при наложении fixed мобильного меню с заливкой цветом на весь экран
+        // Добавляем (убираем) z-index: -1 при открытии (закрытии) мобильного меню
+        // z-index: -1; // убираем на задний план, чтобы при использовании mix-blend-mode в Логотипе не происходило смешение цветов при наложении fixed мобильного меню с заливкой цветом на весь экран
         // filter: blur(2px);
     }
 }
@@ -128,6 +129,10 @@
             display: block;
         }
     }
+
+    .main__logo {
+        margin-right: calc(100% * 4.3 / 120);
+    }
 }
 
 .main3 {
@@ -147,6 +152,11 @@
         &:hover::after {
             display: block;
         }
+    }
+
+    .main__logo_transp-mask-img {
+        display: block;
+        margin-right: calc(100% * 4.3 / 120);
     }
 }
 
@@ -168,6 +178,7 @@
     }
 
     // делаем фон через псевдоэлемент с z-index: -2; , т.к. у &__logo_mixblen  z-index: -1; 
+    // не работает на iPhone 11PRO iOS 15.3.1
     &:before {
         content: '';
         position: absolute;
