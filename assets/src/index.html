@@ -57,29 +57,15 @@
                                     href="javascript:void()">Бестселлеры</a></li>
                         </ul>
                     </li>
-                    <li class="header__menu-item"><a class="header__menu-link" href="javascript:void()">Заказать</a>
+                    <li class="header__menu-item"><a class="header__menu-link" href="#ordering__title">Заказать</a>
                     </li>
-                    <li class="header__menu-item"><a class="header__menu-link" href="javascript:void()">О нас</a></li>
-                    <li class="header__menu-item"><a class="header__menu-link" href="javascript:void()">Контакты</a>
+                    <li class="header__menu-item"><a class="header__menu-link" href="./uikit.html">О нас</a></li>
+                    <li class="header__menu-item"><a class="header__menu-link" href="#footer__contacts">Контакты</a>
                     </li>
-
-                    <!-- <li class="header__menu-item"><a class="header__menu-link" href="javascript:void()">Заказать</a></li>
-                    <li class="header__menu-item"><a class="header__menu-link" href="javascript:void()">О нас</a></li>
-                    <li class="header__menu-item"><a class="header__menu-link" href="javascript:void()">Контакты</a></li>
-                    <li class="header__menu-item"><a class="header__menu-link" href="javascript:void()">Заказать</a></li>
-                    <li class="header__menu-item"><a class="header__menu-link" href="javascript:void()">О нас</a></li>
-                    <li class="header__menu-item"><a class="header__menu-link" href="javascript:void()">Контакты</a></li>
-                    <li class="header__menu-item"><a class="header__menu-link" href="javascript:void()">Заказать</a></li>
-                    <li class="header__menu-item"><a class="header__menu-link" href="javascript:void()">О нас</a></li>
-                    <li class="header__menu-item"><a class="header__menu-link" href="javascript:void()">Контакты</a></li>
-                    <li class="header__menu-item"><a class="header__menu-link" href="javascript:void()">Заказать</a></li>
-                    <li class="header__menu-item"><a class="header__menu-link" href="javascript:void()">О нас</a></li>
-                    <li class="header__menu-item"><a class="header__menu-link" href="javascript:void()">Контакты</a></li> -->
-
                 </ul>
             </div>
 
-            <div class="header__basket" tabindex="0">0</div>
+            <div class="header__basket" tabindex="0" onclick="location.href = './uikit.html'">0</div>
             <!-- без tabindex="0" не работал :hover на iPhone  -->
         </div>
     </header>
@@ -311,7 +297,6 @@
                         </div>
                     </div>
 
-
                 </div>
             </div>
 
@@ -331,7 +316,7 @@
     </div>
 
     <div class="ordering-outer"> <!-- for JS scroll animation -->
-        <div class="ordering">
+        <div class="ordering" id="ordering">
             <div class="wrapper ordering__wrapper">
                 <div class="ordering__img-cont-outer">
                     <div class="ordering__img-cont">
@@ -339,13 +324,13 @@
                     </div>
                 </div>
                 <div class="ordering__text">
-                    <h2 class="ordering__title">Закажите нижнее бельё </h2>
+                    <h2 class="ordering__title" id="ordering__title">Закажите нижнее бельё </h2>
                     <p class="ordering__descr">Выберите бельё, которое вам понравилось, заполните свои данные и мы с
                         вами
                         свяжемся для подтверждения заказа</p>
                 </div>
 
-                <form action="#" class="ordering__form">
+                <form action="#" class="ordering__form" id="ordering__form">
                     <div class="select-wrapper ordering__select-wrapper">
                         <select name="select1" id="select1" class="ordering__select select" required>
                             <option value="" selected disabled hidden> Выбрать бельё</option>
@@ -375,7 +360,7 @@
 
             <div class="logo footer__logo">Comfort</div>
 
-            <div class="footer__contacts">
+            <div class="footer__contacts" id="footer__contacts">
                 <p class="footer__contacts-descr">
                     Мы на связи с вами
                 </p>
@@ -384,16 +369,6 @@
 
         </div>
     </footer>
-
-
-    <!-- <div class="main__logo">
-        <span class="main__logo-letter">C</span>
-        <span class="main__logo-letter main__logo-letter_m">m</span>
-        <span class="main__logo-letter main__logo-letter_t">t</span>
-    </div> -->
-
-
-
 
     <script src="./scripts/menu.js"></script>
     <script src="./scripts/slider.js"></script>

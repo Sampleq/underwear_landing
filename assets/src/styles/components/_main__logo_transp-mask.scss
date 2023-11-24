@@ -1,5 +1,6 @@
 .main__logo_transp-mask-img {
     display: block;
+    margin: 0 auto; // когда родитель flex, и ширина задана в vw, падинги и размеры родителя игнорируются - для выравнивания элемента используем margin: 0 auto;
 
     width: 96vw;
 
