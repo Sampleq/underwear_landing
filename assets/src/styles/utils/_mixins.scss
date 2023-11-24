@@ -206,7 +206,7 @@
     display: block;
     width: 2.6rem;
     height: 1.6rem;
-    background: url(../images/Icon-Menu.svg), url(../images/icon-close.svg) no-repeat 0% -150%, url(../images/icon-close-bordo.svg) no-repeat 0% -150%, url(../images/Icon-Menu-bordo.svg) no-repeat 100% -250%;
+    background: url(../images/Icon-Menu.svg) no-repeat, url(../images/icon-close.svg) no-repeat 1000% -1500%, url(../images/icon-close-bordo.svg) no-repeat 1000% -1500%, url(../images/Icon-Menu-bordo.svg) no-repeat 1000% -2500%;
     //    вторую фоновую картинку задаём, чтобы она загрузилась, смещаем -чтоб не было видно
     // transition: 0.2s;
     transform: scale(1.1);

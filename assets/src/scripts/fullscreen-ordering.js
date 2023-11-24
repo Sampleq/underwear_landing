@@ -21,8 +21,10 @@ function enterFullscreenSection() {
 
         // убираем паддинг прокрутки до элемента
         html.style.scrollPaddingTop = 0;
-        // задаем плавность перехода блока с фоном (ordering)
-        ordering.style.transition = '0.5s';
+
+        // // задаем плавность перехода блока с фоном (ordering)
+        // убрал transition для блока с фоном - т.к. анимированое разворачивание происходит за счёт бордеров внешнего блока-обёртки
+        // ordering.style.transition = '0.5s';
 
         // из CSS ((100vh - 50vh) / 2) = 25vh . 50vh - это высота ordering (и orderingOuter)
         footer.style.height = '25vh';
@@ -36,8 +38,9 @@ function enterFullscreenSection() {
             html.style.scrollBehavior = 'auto';
             orderingOuter.style.height = '100vh';
 
-
+            // Записываем в переменную orderingInitHeight текущую высоту блока с фоном (ordering)
             orderingInitHeight = ordering.offsetHeight;
+            // задаём блоку-обёртке orderingOuter верхний и нижний бордеры (с цветом в цвет соседей) такой высоты, чтобы блок с фоном (ordering) оказался точно в центре блоку обёртки - (т.е. ка бы закрываем створки ограничивающие внутренний блок)
             orderingOuter.style.borderTop = ((window.innerHeight - ordering.offsetHeight) / 2) + 'px solid #FFEEEF';
             orderingOuter.style.borderBottom = ((window.innerHeight - ordering.offsetHeight) / 2) + 'px solid #FFEEEF';
 
@@ -48,7 +51,7 @@ function enterFullscreenSection() {
             orderingOuter.scrollIntoView({ block: "center" });
 
 
-            // разворачиваем блок с фоном (ordering) на всю высоту экрана (происходит с анимацией благодаря раннее присвоинному transition)
+            // разворачиваем блок с фоном (ordering) на всю высоту экрана (происходит с анимацией благодаря раннее присвоенному transition  - убрал transition  чтобы было меньше исполняемых анимация т.к. уже используем бордеры с transition)
             ordering.style.height = '100vh';
 
 
@@ -58,13 +61,14 @@ function enterFullscreenSection() {
                 setTimeout(() => {
                     orderingOuter.style.transition = '0.0s';
                 }, 500);
+                // Убираем  в ноль бордеры, закрывающие блок с фоном (происходит с анимацией благодаря раннее присвоенному (на 0.5сек) transition)
                 orderingOuter.style.borderTop = '0px solid #FFEEEF';
                 orderingOuter.style.borderBottom = '0px solid #FFEEEF';
             }, 0);
 
             // делаем фоновую картинку более ясно видимой
             // ordering.style.backgroundColor = 'rgba(240, 237, 243, 0.75)';
-            // меняем значение переменной CSS - изменится значение свойства у псевдоэлемента (оно задано переменной CSS)  - в этом случае не работает transition ((
+            // меняем значение переменной CSS - изменится значение свойства у псевдоэлемента (оно задано переменной CSS)
             ordering.style.setProperty('--orderingBGColor', 'rgba(240, 237, 243, 0.75)');
             //  изменяем стиль псевжоэлемента меняя содержимое тега style в head-е
             // styleElem.innerHTML = '.ordering::before {transition: 0.5s; background-color: rgba(240, 237, 243, 0.75)}'
@@ -79,8 +83,12 @@ function enterFullscreenSection() {
             // возвращаем плавность скролла - на случай если пользователь будет пользоваться сайтом после использования "переключения" багофичей)
             html.style.scrollBehavior = 'smooth';
 
-            // возвращаем футер к нормальному размеру, пересчитывая высоту по макету  135px в vh. 10 - это размер шрифта в HTML (переделать в переменную и брать из CSS!!!)
-            footer.style.height = `${100 * (13.5 * 10) / window.innerHeight}vh`;
+            // возвращаем футер к нормальному размеру, пересчитывая высоту по макету  133px (или 13.5rem) в vh. 10 - это размер шрифта в HTML (переделать в переменную и брать из CSS!!!)
+            // htmlFontSize = getComputedStyle(html).getPropertyValue('font-size');
+            // htmlFontSize = getComputedStyle(html).fontSize.replace(/[^0-9]/g, ""); // - OK! Lasts only digits and replace all else non-digits with nothing
+            htmlFontSize = getComputedStyle(html).fontSize.replace(/\D/g, ""); // - OK! Replace all leading non-digits with nothing - more common way
+            // console.log(htmlFontSize);
+            footer.style.height = `${100 * (13.3 * htmlFontSize) / window.innerHeight}vh`;
 
             // // масштабирование псевдоэлемента с фоном тормозит на MacBook Pro 2015 - не применяем
             // document.onmousemove = function (event) {
@@ -116,18 +124,18 @@ function exitFullscreenSection() {
 
     //задаём отсрочку в 0.5 секунды чтобы страница успела проскроллиться до блока с фоном (ordering) и/или отыгралась анимация увеличения картинки, после этого делаем анимацию разворачивания
     setTimeout(() => {
-        // убираем высоту на весь экран у блока с фоном - происходит с анимацией за счёт transition 
+        // убираем высоту на весь экран у блока с фоном - происходит с анимацией за счёт transition  - убрал transition чтобы было меньше исполняемых анимация т.к. уже используем бордеры с transition
         ordering.style.removeProperty('height');
 
         // делаём фоновую картинку обратно более блёклой
         // ordering.style.backgroundColor = 'rgba(240, 237, 243, 0.99)';
-        // меняем значение переменной CSS - изменится значение свойства у псевдоэлемента (оно задано переменной CSS) - в этом случае не работает transition ((
+        // меняем значение переменной CSS - изменится значение свойства у псевдоэлемента (оно задано переменной CSS)
         ordering.style.setProperty('--orderingBGColor', 'rgba(240, 237, 243, 0.99)');
         // изменяем стиль псевжоэлемента меняя содержимое тега style в head-е
         // styleElem.innerHTML = '.ordering::before {transition: 0.5s; background-color: rgba(240, 237, 243, 0.99)}'
 
 
-
+        // плавно возвращаем размер ограничивающих фон бордеров до первоначального состояния (используя сохранённое в переменную orderingInitHeight значение высоты блока с фоном (ordering) в момент старта разворачивания)
         setTimeout(() => {
             orderingOuter.style.transition = '0.5s';
             setTimeout(() => {
@@ -137,8 +145,7 @@ function exitFullscreenSection() {
             orderingOuter.style.borderBottom = ((window.innerHeight - orderingInitHeight) / 2) + 'px solid #FFEEEF';
         }, 0);
 
-
-        // вешаем  однократный листнер для разворачивания блока с фоном (ordering) - теперь на событие 'mousemove' - чтобы не было глюка с повторным проигрыванием анимации после скрола из-за попадания курсора на картинку
+        // вешаем  однократный листнер для разворачивания блока с фоном (ordering) - теперь на событие 'mousemove' - чтобы не было глюка с повторным проигрыванием анимации после скрола из-за попадания неподвижного указателя мыши на картинку
         orderingImgCont.addEventListener('mousemove', enterFullscreenSection, { once: true });
 
         // не требуется запрещать полдьзователю скролл страницы - глюков нет
@@ -146,7 +153,7 @@ function exitFullscreenSection() {
 
         // делаем задержку на время анимации сворачивания блока с фоном
         setTimeout(() => {
-            // убираем плавность прокрутки (скроллинга) страницы, сворачиваем блок-обёртку и скроллим блок с фоном (ordering) в центр - все эти (три) действия происходят мгновенно - пользователь видит на экране только исчезание контента соседних блоков (в том числе за счёт одинакового цвета фона блока-обёртки и соседних блоков) 
+            // убираем плавность прокрутки (скроллинга) страницы, сворачиваем блок-обёртку (убирая бордеры) и скроллим блок с фоном (ordering) в центр - все эти действия происходят мгновенно - пользователь видит на экране только появление контента соседних блоков (в том числе за счёт одинакового цвета фона блока-обёртки и соседних блоков) 
             html.style.scrollBehavior = 'auto';
             orderingOuter.style.removeProperty('height');
 
@@ -156,8 +163,8 @@ function exitFullscreenSection() {
             ordering.scrollIntoView({ block: "center" });
 
             // footer.style.height = '13.5rem';
-            // возвращаем футер к нормальному размеру, пересчитывая высоту по макету  135px в vh. 10 - это размер шрифта в HTML (переделать в переменную и брать из CSS!!!)
-            footer.style.height = `${100 * (13.5 * 10) / window.innerHeight}vh`;
+            // возвращаем футер к нормальному размеру, пересчитывая высоту по макету  133px в vh. 10 - это размер шрифта в HTML (переделать в переменную и брать из CSS!!!)
+            footer.style.height = `${100 * (13.3 * htmlFontSize) / window.innerHeight}vh`;
 
             // возвращаем плавность скролла - для дальнейшего просмотра сайта
             html.style.scrollBehavior = 'smooth';
