@@ -155,7 +155,6 @@ function slideToRight() {
 }
 
 btnRight.onclick = slideToRight;
-
 btnLeft.onclick = slideToLeft;
 
 
@@ -398,3 +397,23 @@ screen.orientation.addEventListener("change", () => {
 
 
 // Убрать БАГ с зависающим ховером на iPhone при перелистывании - сделано через ('card_no-hover');
+
+//
+// Slide with Buttons
+function slideWithButtons(e) {
+    // console.log(e);
+    if (e.key === 'ArrowRight') {
+        slideToRight();
+    } else if (e.key === 'ArrowLeft') {
+        slideToLeft();
+    }
+}
+
+function slowerSlideWithButtons(e) {
+    slideWithButtons(e);
+    setTimeout(() => {
+        document.addEventListener('keydown', slowerSlideWithButtons, { once: true });
+    }, 300);
+}
+
+document.addEventListener('keydown', slowerSlideWithButtons, { once: true });

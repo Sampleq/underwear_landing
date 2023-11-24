@@ -13,7 +13,7 @@ html {
     scroll-behavior: smooth;
     scroll-padding-top: 4rem; // обязательно указываем для html scroll-padding-top:- иначе при перемотке к якорю #id - блок окажется в самом верху страницы и может сломаться его вёрстка (например, если есть overflow:hidden и выходящие абсолютно позиционированные элементы )
 
-    @media ($laptopL) {
+    @media (min-width:1500px) {
         font-size: $htmlFontSize * 1.1;
     }
 
