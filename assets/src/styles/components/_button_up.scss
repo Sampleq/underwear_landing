@@ -1,0 +1,51 @@
+.button_up {
+    width: 7rem;
+    height: 7rem;
+    border-radius: 50%;
+    background-color: transparentize($color: $pink, $amount: 0.2);
+    position: fixed;
+    z-index: 10;
+    visibility: hidden;
+    opacity: 0.0;
+    transition: 0.3s;
+
+    outline: $pink;
+    box-shadow: 0.2rem 0.4rem 1rem rgba(0, 0, 0, 0.3);
+
+    right: 2.0rem;
+    bottom: 1.5rem;
+    transform: scale(0.8);
+
+    @media ($tablet) {
+        transform: scale(1);
+        right: 2.5rem;
+        bottom: 2.5rem;
+    }
+
+    @media ($laptop) {
+        // transform: scale(0.8);
+        right: 4.0rem;
+        bottom: 3.0rem;
+    }
+
+    &:hover {
+        cursor: pointer;
+        box-shadow: 0.2rem 0.4rem 3rem rgba(0, 0, 0, 0.3);
+        background-color: $pink;
+        transform: scale(0.9);
+
+        @media ($tablet) {
+            transform: scale(1.1);
+        }
+    }
+
+    &::before {
+        content: '\2191';
+        position: absolute;
+        color: white;
+        font-size: 3.5rem;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
