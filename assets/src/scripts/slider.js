@@ -387,10 +387,42 @@ slider.addEventListener('touchcancel', function (event) {
     document.body.style.overflow = 'visible';
 }, false);
 
-screen.orientation.addEventListener("change", () => {
-    sliderWrapper.style.transform = 'translateX(' + (-(shownImage * slideWidth)) + 'rem)';
-});
+// 
+// Выравниваем слайды после изменения ориентации (поворота) экрана (без этого слайды становятся криво, пока не пролистаешь вручную)
+// if (screen.orientation === true) {
+if (screen.orientation) {
+    // Не работает на iOS ((
+    screen.orientation.addEventListener("change", () => {
+        // ставим задержку -  без задержки слайды не выравниваются
+        setTimeout(() => {
+            // (заново) рассчитываем ширину сдвига (с отсрочкой после поворота экрана)
+            setSlideWidth();
+            // сдвигаем на текущий слайд
+            sliderWrapper.style.transform = 'translateX(' + (-(shownImage * slideWidth)) + 'rem)';
+            console.log('screen orient change');
+        }, 67);
+    });
+} else {
+    console.log("device doesn't support screen.orientation")
+}
 
+window.addEventListener("orientationchange", function () {
+    // ставим задержку -  без задержки слайды не выравниваются
+    setTimeout(() => {
+        // (заново) рассчитываем ширину сдвига (с отсрочкой после поворота экрана)
+        setSlideWidth();
+        // сдвигаем на текущий слайд
+        sliderWrapper.style.transform = 'translateX(' + (-(shownImage * slideWidth)) + 'rem)';
+    }, 67);
+    //  // выводим тех. информацию
+    // console.log('aligned slider');
+    // if (window.orientation == 0 || window.orientation == 180) {
+    //     console.log('screen orient change - IN PORTRAIT MODE');
+    // } else {
+    //     console.log('screen orient change - IN LANDSCAPE MODE');
+    // }
+}, false);
+//
 
 // Убрать БАГ с зависающим ховером на iPhone при перелистывании - сделано через ('card_no-hover');
 
