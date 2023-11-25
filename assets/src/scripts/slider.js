@@ -389,41 +389,61 @@ slider.addEventListener('touchcancel', function (event) {
 
 // 
 // Выравниваем слайды после изменения ориентации (поворота) экрана (без этого слайды становятся криво, пока не пролистаешь вручную)
+// 
+// Детектирование изменения ориентации экрана (три (3) способа):
+// чисто через JS 
 // if (screen.orientation === true) {
-if (screen.orientation) {
-    // Не работает на iOS ((
-    screen.orientation.addEventListener("change", () => {
-        // ставим задержку -  без задержки слайды не выравниваются
-        setTimeout(() => {
-            // (заново) рассчитываем ширину сдвига (с отсрочкой после поворота экрана)
-            setSlideWidth();
-            // сдвигаем на текущий слайд
-            sliderWrapper.style.transform = 'translateX(' + (-(shownImage * slideWidth)) + 'rem)';
-            console.log('screen orient change');
-        }, 133);
-    });
-} else {
-    console.log("device doesn't support screen.orientation")
-}
+// if (screen.orientation) {
+//     // Не работает на iOS ((
+//     screen.orientation.addEventListener("change", () => {
+//         // ставим задержку -  без задержки слайды не выравниваются
+//         setTimeout(() => {
+//             // (заново) рассчитываем ширину сдвига (с отсрочкой после поворота экрана)
+//             setSlideWidth();
+//             // сдвигаем на текущий слайд
+//             sliderWrapper.style.transform = 'translateX(' + (-(shownImage * slideWidth)) + 'rem)';
+//             console.log('screen orient change');
+//         }, 133);
+//     });
+// } else {
+//     console.log("device doesn't support screen.orientation")
 
-// работает на iOS )
-window.addEventListener("orientationchange", function () {
-    // ставим задержку -  без задержки слайды не выравниваются
+//     // работает на iOS )
+//     window.addEventListener("orientationchange", function () {
+//         // ставим задержку -  без задержки слайды не выравниваются
+//         setTimeout(() => {
+//             // (заново) рассчитываем ширину сдвига (с отсрочкой после поворота экрана)
+//             setSlideWidth();
+//             // сдвигаем на текущий слайд
+//             sliderWrapper.style.transform = 'translateX(' + (-(shownImage * slideWidth)) + 'rem)';
+//         }, 133);
+//         //  // выводим тех. информацию
+//         // console.log('aligned slider');
+//         // if (window.orientation == 0 || window.orientation == 180) {
+//         //     console.log('screen orient change - IN PORTRAIT MODE');
+//         // } else {
+//         //     console.log('screen orient change - IN LANDSCAPE MODE');
+//         // }
+//     }, false);
+// }
+// 
+// через мониторинг медиа запроса - @media screen and (orientation: portrait) - с помощью JS - универсальный метод (но детектируется только факт изменения, без свойств - угол и т.д.)
+let portrait = window.matchMedia("(orientation: portrait)");
+portrait.addEventListener("change", function (e) {
     setTimeout(() => {
         // (заново) рассчитываем ширину сдвига (с отсрочкой после поворота экрана)
         setSlideWidth();
         // сдвигаем на текущий слайд
         sliderWrapper.style.transform = 'translateX(' + (-(shownImage * slideWidth)) + 'rem)';
     }, 133);
-    //  // выводим тех. информацию
-    // console.log('aligned slider');
-    // if (window.orientation == 0 || window.orientation == 180) {
-    //     console.log('screen orient change - IN PORTRAIT MODE');
-    // } else {
-    //     console.log('screen orient change - IN LANDSCAPE MODE');
-    // }
-}, false);
-//
+    if (e.matches) {
+        console.log(' // Portrait mode');
+    } else {
+        console.log('  // Landscape');
+    }
+})
+// https://dev.to/smpnjn/how-to-detect-device-orientation-with-javascript-29e5
+// https://developer.mozilla.org/en-US/docs/Web/API/ScreenOrientation
 
 // Убрать БАГ с зависающим ховером на iPhone при перелистывании - сделано через ('card_no-hover');
 
