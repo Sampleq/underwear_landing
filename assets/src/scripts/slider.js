@@ -400,12 +400,13 @@ if (screen.orientation) {
             // сдвигаем на текущий слайд
             sliderWrapper.style.transform = 'translateX(' + (-(shownImage * slideWidth)) + 'rem)';
             console.log('screen orient change');
-        }, 67);
+        }, 133);
     });
 } else {
     console.log("device doesn't support screen.orientation")
 }
 
+// работает на iOS )
 window.addEventListener("orientationchange", function () {
     // ставим задержку -  без задержки слайды не выравниваются
     setTimeout(() => {
@@ -413,7 +414,7 @@ window.addEventListener("orientationchange", function () {
         setSlideWidth();
         // сдвигаем на текущий слайд
         sliderWrapper.style.transform = 'translateX(' + (-(shownImage * slideWidth)) + 'rem)';
-    }, 67);
+    }, 133);
     //  // выводим тех. информацию
     // console.log('aligned slider');
     // if (window.orientation == 0 || window.orientation == 180) {
