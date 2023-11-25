@@ -289,18 +289,7 @@ sliderWrapper.onmouseleave = () => {
     }
 }
 
-
-
-// don't work on iPhone - ПЕРЕПРОВЕРИТЬ!!! - возможно не успел обновиться GitPages
-// sliderWrapper.addEventListener('touchstart', (e) => {
-//     e.preventDefault(); // чтоб не перетягивалась картинка
-//     xStart = e.clientX;
-//     console.log(xStart);
-// }, { passive: false });
-// sliderWrapper.addEventListener('touchmove', (e) => { touchSlide(e) }, { passive: false });
-// sliderWrapper.addEventListener('touchend', (e) => { touchSlide(e) }, { passive: false });
-
-
+//
 //  TOUCH SCREENS touch slider
 
 //https://css-tricks.com/simple-swipe-with-vanilla-javascript/
@@ -321,11 +310,14 @@ let noScroll;
 
 const slider = document.querySelector('.slider');
 
+// let currWindowScrollY;
+
 slider.addEventListener('touchstart', function (event) {
     touchStartX = event.changedTouches[0].screenX;
     touchStartY = event.changedTouches[0].screenY;
-    //event.preventDefault();// блокирует скроол страницы на айфоне
+    //event.preventDefault();// блокирует скроол страницы на айфоне при касании слайдера - не очень удобно
 
+    // currWindowScrollY = window.scrollY;
 
     // to remove stucked hover on iphone
     for (let sliderCard of sliderCards) {
@@ -334,7 +326,7 @@ slider.addEventListener('touchstart', function (event) {
     sliderWrapper.style.transition = '0.016s';
     setSlideWidth();
 
-    // top = window.scrollY;
+    // console.log(window.scrollY);
     document.body.ontouchmove = (event) => {
         touchCurrX = event.changedTouches[0].screenX;
         touchCurrY = event.changedTouches[0].screenY;
@@ -344,23 +336,26 @@ slider.addEventListener('touchstart', function (event) {
         touchDragY = touchCurrY - touchStartY;
 
         // if (Math.abs(touchDragX) > 10) {
-        if (Math.abs(touchDragX) > (0.5 * Math.abs(touchDragY))) {
+        if (Math.abs(touchDragX) > (0.75 * Math.abs(touchDragY))) {
             document.body.style.overflow = 'hidden';
             sliderWrapper.style.transform = 'translateX(' + ((-(shownImage * slideWidth)) + (touchDragX / 10)) + 'rem)';
 
-
-
-
         } else {
-            // sliderWrapper.style.transform = 'translateX(' + (-(shownImage * slideWidth)) + 'rem)';
+
             document.body.style.overflow = 'visible';
             // document.body.style.position = 'relative';
-            document.body.scrollBy(0, -1000);
 
             sliderWrapper.style.transform = 'translateX(' + (-(shownImage * slideWidth)) + 'rem)';
 
         }
     }
+
+    // Чтобы при скролле страницы не листался слайдер (выглядит странно) - при событии скролла снимаем слушатель touchmove.
+    document.body.onscroll = () => {
+        // console.log('document.body.onscroll fires')
+        document.body.ontouchmove = undefined;
+    }
+
     // }
     // noScroll = setTimeout(() => {
     //     document.body.style.overflow = 'hidden'
@@ -382,6 +377,7 @@ slider.addEventListener('touchend', function (event) {
 
     // clearTimeout(noScroll);
     document.body.style.overflow = 'visible';
+
 
 }, false);
 

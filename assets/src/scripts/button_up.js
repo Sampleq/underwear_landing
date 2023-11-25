@@ -14,7 +14,8 @@ document.onscroll = (event) => {
         btnUp.style.visibility = 'hidden';
         btnUp.style.opacity = 0;
     } else {
-        console.log(window.innerHeight);
+        // console.log(window.innerHeight);
+        // console.log(window.scrollY);
         // btnUp.style.display = 'block';
         btnUp.style.visibility = 'visible';
         btnUp.style.opacity = 1;
