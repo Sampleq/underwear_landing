@@ -466,3 +466,61 @@ function slowerSlideWithButtons(e) {
 }
 
 document.addEventListener('keydown', slowerSlideWithButtons, { once: true });
+
+
+
+//
+// https://markus.oberlehner.net/blog/simple-solution-to-prevent-body-scrolling-on-ios/
+// // solution for preventing scrolling on iOS - still glitchy  - needs at least prevent page reload by pulling  from top to the very down
+// // src/utils/scroll-lock.js
+// const $body = document.querySelector('body');
+// let scrollPosition = 0;
+
+// export default {
+//   enable() {
+//     scrollPosition = window.pageYOffset;
+//     $body.style.overflow = 'hidden';
+//     $body.style.position = 'fixed';
+//     $body.style.top = `-${scrollPosition}px`;
+//     $body.style.width = '100%';
+//   },
+//   disable() {
+//     $body.style.removeProperty('overflow');
+//     $body.style.removeProperty('position');
+//     $body.style.removeProperty('top');
+//     $body.style.removeProperty('width');
+//     window.scrollTo(0, scrollPosition);
+//   }
+// };
+
+// 
+// Here's a work around for iOS Safari.
+// Since iOS Safari prevents attaching the overflow property to the body tag, you can use the position: fixed attribute. Trouble with position: fixed is that when you want to remove the attribute (or make the body scrollable again) the page jumps back up to the top. To fix this, you can use window.scrollTo() to scroll the page back to where the user last scrolled to. Below is the code:
+
+//     lockBackground = ({menuOpen}) => {
+//         if (menuOpen) {
+//             const offsetY = window.pageYOffset;
+//             document.body.style.top = `${-offsetY}px`;
+//             document.body.classList.add('js-lock-position');
+
+//         } else {
+//             const offsetY = Math.abs(parseInt(document.body.style.top || 0, 10));
+//             document.body.classList.remove('js-lock-position');
+//             document.body.style.removeProperty('top');
+//             window.scrollTo(0, offsetY || 0);
+//         }
+//     }
+
+//    .js-lock-position {
+//      position: fixed;
+//      overflow: hidden;
+//    }
+// Comment 44
+// https://bugs.webkit.org/show_bug.cgi?id=153852
+
+// 
+// body-scroll-lock library (not tested with slider -declared "works with everything")
+// https://www.npmjs.com/package/body-scroll-lock
+// https://medium.com/jsdownunder/locking-body-scroll-for-all-devices-22def9615177
+
+// https://stackoverflow.com/questions/41594997/ios-10-safari-prevent-scrolling-behind-a-fixed-overlay-and-maintain-scroll-posi
