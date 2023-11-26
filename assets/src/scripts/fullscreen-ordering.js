@@ -70,7 +70,7 @@ function enterFullscreenSection() {
             // ordering.style.backgroundColor = 'rgba(240, 237, 243, 0.75)';
             // меняем значение переменной CSS - изменится значение свойства у псевдоэлемента (оно задано переменной CSS)
             ordering.style.setProperty('--orderingBGColor', 'rgba(240, 237, 243, 0.75)');
-            //  изменяем стиль псевжоэлемента меняя содержимое тега style в head-е
+            //  изменяем стиль псевдоэлемента меняя содержимое тега style в head-е
             // styleElem.innerHTML = '.ordering::before {transition: 0.5s; background-color: rgba(240, 237, 243, 0.75)}'
 
 
@@ -131,7 +131,7 @@ function exitFullscreenSection() {
         // ordering.style.backgroundColor = 'rgba(240, 237, 243, 0.99)';
         // меняем значение переменной CSS - изменится значение свойства у псевдоэлемента (оно задано переменной CSS)
         ordering.style.setProperty('--orderingBGColor', 'rgba(240, 237, 243, 0.99)');
-        // изменяем стиль псевжоэлемента меняя содержимое тега style в head-е
+        // изменяем стиль псевдоэлемента меняя содержимое тега style в head-е
         // styleElem.innerHTML = '.ordering::before {transition: 0.5s; background-color: rgba(240, 237, 243, 0.99)}'
 
 
