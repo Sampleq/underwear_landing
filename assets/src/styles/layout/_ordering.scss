@@ -1,4 +1,9 @@
 // <!-- for JS scroll/expand animation -->
+.ordering-outer-clipPath {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    /* благодаря clip-path, .ordering-outer-clipPath-а с у которого есть ребёнок .ordering псевдоэлементом с фоновой картинкой и position: fixed; - т.е. .bg  мы видим только в области видимости (т.е. там где мы видим) .ordering-outer-clipPath-а.  Т.е. получаем полный аналог backgroud-attachment:fixed; , но работающий на iOS  */
+}
+
 .ordering-outer {
     display: flex;
     align-items: center;
@@ -168,6 +173,10 @@
     }
 
     // реализация  эффекта background-attachment: fixed; через псевдоэлемент. требуется добавления фона всем блокам сайта (в которых нет фиксированной фоновой картинки)
+    // не требуется при использовании clip-path  у .ordering-а.
+
+
+    // создаём CSS переменные для возможности управления стилями всевдоэмента с помощью JS
     --orderingBGColor:rgba(240, 237, 243, 0.99);
     --transformBgBefore: none;
 
@@ -193,6 +202,8 @@
         // background-color: rgba(240, 237, 243, 0.99);
         transition: background-color 0.5s, transform 0.033s;
         transform: var(--transformBgBefore);
+
+
     }
 
     // &-before {

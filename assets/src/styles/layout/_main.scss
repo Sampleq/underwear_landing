@@ -165,35 +165,38 @@
 }
 
 
-// Делаем белый фон для секции (при использовании фиксированной фоновой картинки через псевдоэлемент - для работы на iOS
-.main {
-    position: relative;
-    background-color: white;
+// // Делаем белый фон для секции (при использовании фиксированной фоновой картинки через псевдоэлемент - для работы на iOS
+// // не требуется при использовании clip-path  у .ordering-outer-clipPath-а.
 
-    margin-bottom: 0 !important;
-    padding-bottom: 7rem;
+// .main {
+//     position: relative;
+//     background-color: white;
 
-    @media ($tablet) {
-        padding-bottom: 11rem;
-    }
+//     margin-bottom: 0 !important;
+//     padding-bottom: 7rem;
 
-    // делаем фон через псевдоэлемент с z-index: -2; , т.к. у &__logo_mixblen  z-index: -1; 
-    // не работает на iPhone 11PRO iOS 15.3.1  -  присвоил чисто .main-у
-    // &:before {
-    //     content: '';
-    //     position: absolute;
-    //     z-index: -1;
-    //     width: 100%;
-    //     height: 100%;
-    //     top: 0;
-    //     left: 0;
-    //     right: 0;
-    //     bottom: 0;
-    //     background-color: white;
-    // }
-}
+//     @media ($tablet) {
+//         padding-bottom: 11rem;
+//     }
 
-// не применяется - в марджинах между секциями( ХЗ
-body {
-    background-color: white !important;
-}
+//     // делаем фон через псевдоэлемент с z-index: -2; , т.к. у &__logo_mixblen  z-index: -1; 
+//     // не работает на iPhone 11PRO iOS 15.3.1  -  присвоил чисто .main-у
+//     // &:before {
+//     //     content: '';
+//     //     position: absolute;
+//     //     z-index: -1;
+//     //     width: 100%;
+//     //     height: 100%;
+//     //     top: 0;
+//     //     left: 0;
+//     //     right: 0;
+//     //     bottom: 0;
+//     //     background-color: white;
+//     // }
+// }
+
+// // не применяется - в марджинах между секциями( ХЗ
+//     // не требуется при использовании clip-path  у .ordering-а.
+// body {
+//     background-color: white !important;
+// }

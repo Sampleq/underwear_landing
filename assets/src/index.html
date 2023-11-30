@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
     <link rel="stylesheet" href="./styles/index.scss">
+    <link rel="icon" type="image/png" href="./images/favicon-128.png" sizes="128x128">
+    <link rel="apple-touch-icon" sizes="128x128" href="./images/apple-touch-icon-128.png">
+
+
 </head>
 
 <body>
@@ -315,40 +319,44 @@
         </div>
     </div>
 
-    <div class="ordering-outer"> <!-- for JS scroll animation -->
-        <div class="ordering" id="ordering">
-            <div class="wrapper ordering__wrapper">
-                <div class="ordering__img-cont-outer">
-                    <div class="ordering__img-cont">
-                        <img src="./images/lingerie-order.jpg" alt="lingerie order" class="ordering__img">
+    <div class="ordering-outer-clipPath">
+        <div class="ordering-outer"> <!-- for JS scroll animation -->
+            <div class="ordering" id="ordering">
+                <div class="wrapper ordering__wrapper">
+                    <div class="ordering__img-cont-outer">
+                        <div class="ordering__img-cont">
+                            <img src="./images/lingerie-order.jpg" alt="lingerie order" class="ordering__img">
+                        </div>
                     </div>
-                </div>
-                <div class="ordering__text">
-                    <h2 class="ordering__title" id="ordering__title">Закажите нижнее бельё </h2>
-                    <p class="ordering__descr">Выберите бельё, которое вам понравилось, заполните свои данные и мы с
-                        вами
-                        свяжемся для подтверждения заказа</p>
-                </div>
-
-                <form action="#" class="ordering__form" id="ordering__form">
-                    <div class="select-wrapper ordering__select-wrapper">
-                        <select name="select1" id="select1" class="ordering__select select" required>
-                            <option value="" selected disabled hidden> Выбрать бельё</option>
-                            <!-- <option value="" selected disabled> Выбрать бельё</option> -->
-                            <option value="woman-undwr">Женское бельё</option>
-                            <option value="man-undwr">Мужское бельё</option>
-                            <option value="clild-undwr">Детское бельё</option>
-                        </select>
+                    <div class="ordering__text">
+                        <h2 class="ordering__title" id="ordering__title">Закажите нижнее бельё </h2>
+                        <p class="ordering__descr">Выберите бельё, которое вам понравилось, заполните свои данные и мы с
+                            вами
+                            свяжемся для подтверждения заказа</p>
                     </div>
-                    <input type="text" class="input ordering__input" name="input-name" placeholder="Ваше имя" required>
-                    <input type="tel" class="ordering__input input" name="input-tel" placeholder="Ваш телефон" required>
-                    <button class="btn ordering__btn">Кнопка</button>
 
-                </form>
+                    <form action="#" class="ordering__form" id="ordering__form">
+                        <div class="select-wrapper ordering__select-wrapper">
+                            <select name="select1" id="select1" class="ordering__select select" required>
+                                <option value="" selected disabled hidden> Выбрать бельё</option>
+                                <!-- <option value="" selected disabled> Выбрать бельё</option> -->
+                                <option value="woman-undwr">Женское бельё</option>
+                                <option value="man-undwr">Мужское бельё</option>
+                                <option value="clild-undwr">Детское бельё</option>
+                            </select>
+                        </div>
+                        <input type="text" class="input ordering__input" name="input-name" placeholder="Ваше имя"
+                            required>
+                        <input type="tel" class="ordering__input input" name="input-tel" placeholder="Ваш телефон"
+                            required>
+                        <button class="btn ordering__btn">Кнопка</button>
 
-            </div>
-            <!-- <div class="ordering-before"><img src="./images/lingerie-order.jpg" alt="" class="ordering-before__img">
+                    </form>
+
+                </div>
+                <!-- <div class="ordering-before"><img src="./images/lingerie-order.jpg" alt="" class="ordering-before__img">
             </div> -->
+            </div>
         </div>
     </div>
 
