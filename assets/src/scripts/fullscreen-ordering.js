@@ -5,6 +5,10 @@ const ordering = document.querySelector('.ordering');
 const orderingOuter = document.querySelector('.ordering-outer');
 const footer = document.querySelector('.footer');
 
+// задаём высоту псевдоэлемента с фикс.фоном для устойств, не поддерживающих еденицы измерения lvh; // largest Viewport Height
+ordering.style.setProperty('--orderingBgHeigth', `${window.outerHeight}px`);
+// console.log(`${window.outerHeight}px`);
+
 let orderingInitHeight;
 
 // создаём тег style в HEAD - вутри него можно применять и изменять сойства для псевдоэлементов

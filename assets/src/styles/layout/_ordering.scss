@@ -178,6 +178,7 @@
 
     // создаём CSS переменные для возможности управления стилями всевдоэмента с помощью JS
     --orderingBGColor:rgba(240, 237, 243, 0.99);
+    --orderingBgHeigth: 100%;
     --transformBgBefore: none;
 
     &::before {
@@ -188,7 +189,9 @@
         bottom: 0;
         left: 0;
         right: 0;
-        height: 100%;
+        // height: 100%;
+        // задаём height: ч.з. JS для устройств не поддерживающих lvh (largest Viewport Height)
+        height: var(--orderingBgHeigth);
         // https://i.stack.imgur.com/plYwy.png  https://caniuse.com/viewport-unit-variants
         // height: 100svh;
         height: 100lvh; // largest Viewport Height
