@@ -204,8 +204,8 @@
             &:hover {
                 background-color: $pinkRed;
                 text-shadow: 0 0 0.07rem;
-                font-size: 1.85rem;
-                line-height: 137%; // уменьшаем line-height: со 140% до 137%; - чтобы созранить высоту линии и блока соответственно
+                // font-size: 1.85rem;
+                // line-height: calc(140%*1.8/1.85); // уменьшаем line-height: со 140% до ~137%; - чтобы созранить высоту линии и блока соответственно
             }
         }
     }
@@ -334,7 +334,7 @@
                 // background-color: transparentize($color: $pinkRed, $amount: 0.050);
                 text-shadow: 0 0 0.07rem;
                 font-size: 1.85rem;
-                line-height: 137%; // уменьшаем line-height: со 140% до 137%; - чтобы созранить высоту линии и блока соответственно
+                line-height: calc(140%*1.8/1.85); // уменьшаем line-height: со 140% до ~137%; - чтобы созранить высоту линии и блока соответственно
             }
         }
 
@@ -356,6 +356,17 @@
         flex-shrink: 0;
         align-self: flex-start;
         // z-index: 10;
+        // position: relative;
+
+        &_desc {
+            position: absolute;
+            top: 4rem;
+            right: 0.5rem;
+            font-size: 1.6rem;
+            font-style: italic;
+            color: lighten($color: $red, $amount: 10);
+            width: max-content;
+        }
     }
 }
 

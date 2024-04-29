@@ -46,7 +46,8 @@
         // z-index: 1; // для &:hover::after; - не нужно - задал z-index: 2 для .header__nav_mob-menu
 
         &::after {
-            display: none;
+            // display: none;
+            display: block;
             content: 'logo made with mix-blend-mode: screen;';
             width: max-content;
             position: absolute;
@@ -86,7 +87,8 @@
         position: relative;
 
         &::after {
-            display: none;
+            // display: none;
+            display: block;
             content: 'Click to show/hide another realizations of logo';
             width: max-content;
             position: absolute;
